@@ -60,6 +60,7 @@ public class RegisterController {
     private static final String REGISTER_COMPLICATION_MANAGEMENT_PAGE = "register/complicationmanagement";
     private static final String REGISTER_LIFE_STYLE_PAGE = "register/life-style";
     private static final String REGISTER_PICTURE_PAGE = "register/picture";
+    private static final String REGISTER_PAGE = "register/show";
 
     @Autowired
     private PatientService patientService;
@@ -74,6 +75,17 @@ public class RegisterController {
         binder.registerCustomEditor(RegistrationType.class, new CaseInsensitivePropertyEditor<>(RegistrationType.class));
     }
 
+    @RequestMapping(value = "show/{registerId}", method = RequestMethod.GET)
+    public String showRegister(@PathVariable Long registerId, Model uiModel) {
+
+        Register register = registerService.findRegister(registerId);
+        uiModel.addAttribute("register", register);
+        Patient patient = register.getPatient();
+        uiModel.addAttribute("patient", patient);
+
+        return REGISTER_PAGE;
+    }
+
     @RequestMapping(value = "patient/{patientId}", method = RequestMethod.GET)
     public String create(@PathVariable(value = "patientId") Long patientId, Model uiModel) {
 
@@ -82,6 +94,8 @@ public class RegisterController {
         register.setPatient(patient);
         uiModel.addAttribute("register", register);
 
+
+        //EMERGENCY
         return REGISTER_CREATE_PAGE;
     }
 
@@ -104,70 +118,70 @@ public class RegisterController {
     }
 
 
-    @RequestMapping(value = "opd/{patientId}/new", method = RequestMethod.GET)
-    public String createOutPatient(@PathVariable(value = "patientId") Long patientId, Model uiModel) {
-        Patient patient = patientService.findOne(patientId);
+//    @RequestMapping(value = "opd/{patientId}/new", method = RequestMethod.GET)
+//    public String createOutPatient(@PathVariable(value = "patientId") Long patientId, Model uiModel) {
+//        Patient patient = patientService.findOne(patientId);
+//
+//        OutdoorRegister outdoorRegister = new OutdoorRegister();
+//        outdoorRegister.setPatient(patient);
+//        uiModel.addAttribute("outdoorRegister", outdoorRegister);
+//
+//        return REGISTER_OPD_PAGE;
+//    }
+//
+//    @RequestMapping(value = "opd/save", method = RequestMethod.POST)
+//    public String saveOpd(@Valid OutdoorRegister outdoorRegister,
+//                          BindingResult result,
+//                          RedirectAttributes redirectAttributes) {
+//
+//        if (result.hasErrors()) {
+//
+//            return REGISTER_OPD_PAGE;
+//        }
+//
+//        registerService.save(outdoorRegister);
+//
+//        return REDIRECT_REGISTER_OPD + outdoorRegister.getId();
+//    }
 
-        OutdoorRegister outdoorRegister = new OutdoorRegister();
-        outdoorRegister.setPatient(patient);
-        uiModel.addAttribute("outdoorRegister", outdoorRegister);
+//    @RequestMapping(value = "ipd/{patientId}/new", method = RequestMethod.GET)
+//    public String createInpatient(@PathVariable(value = "patientId") Long patientId, Model uiModel) {
+//        Patient patient = patientService.findOne(patientId);
+//        Register register = new Register();
+//        register.setPatient(patient);
+//        uiModel.addAttribute("register", register);
+//
+//        return REGISTER_IPD_PAGE;
+//    }
+//
+//    @RequestMapping(value = "ipd/save", method = RequestMethod.POST)
+//    public String saveInpatient(@Valid Register register,
+//                                BindingResult result,
+//                                RedirectAttributes redirectAttributes) {
+//
+//        if (result.hasErrors()) {
+//
+//            return REGISTER_IPD_PAGE;
+//        }
+//
+//        registerService.save(register);
+//
+//        return REDIRECT_REGISTER_IPD_PAGE + register.getId();
+//    }
 
-        return REGISTER_OPD_PAGE;
-    }
-
-    @RequestMapping(value = "opd/save", method = RequestMethod.POST)
-    public String saveOpd(@Valid OutdoorRegister outdoorRegister,
-                          BindingResult result,
-                          RedirectAttributes redirectAttributes) {
-
-        if (result.hasErrors()) {
-
-            return REGISTER_OPD_PAGE;
-        }
-
-        registerService.save(outdoorRegister);
-
-        return REDIRECT_REGISTER_OPD + outdoorRegister.getId();
-    }
-
-    @RequestMapping(value = "ipd/{patientId}/new", method = RequestMethod.GET)
-    public String createInpatient(@PathVariable(value = "patientId") Long patientId, Model uiModel) {
-        Patient patient = patientService.findOne(patientId);
-        Register register = new Register();
-        register.setPatient(patient);
-        uiModel.addAttribute("register", register);
-
-        return REGISTER_IPD_PAGE;
-    }
-
-    @RequestMapping(value = "ipd/save", method = RequestMethod.POST)
-    public String saveInpatient(@Valid Register register,
-                                BindingResult result,
-                                RedirectAttributes redirectAttributes) {
-
-        if (result.hasErrors()) {
-
-            return REGISTER_IPD_PAGE;
-        }
-
-        registerService.save(register);
-
-        return REDIRECT_REGISTER_IPD_PAGE + register.getId();
-    }
-
-    @RequestMapping(value = "opd/{id}", method = RequestMethod.GET)
-    public String openOpdRegistration(@PathVariable Long id, Model uiModel) {
-        prepareData(id, RegistrationType.OUTDOOR, uiModel);
-
-        return REGISTER_OPD_REGISTRATION_PAGE;
-    }
-
-    @RequestMapping(value = "ipd/{id}", method = RequestMethod.GET)
-    public String openIpdRegistration(@PathVariable Long id, Model uiModel) {
-        prepareData(id, RegistrationType.INDOOR, uiModel);
-
-        return "register/ipd-registration";
-    }
+//    @RequestMapping(value = "opd/{id}", method = RequestMethod.GET)
+//    public String openOpdRegistration(@PathVariable Long id, Model uiModel) {
+//        prepareData(id, RegistrationType.OUTDOOR, uiModel);
+//
+//        return REGISTER_OPD_REGISTRATION_PAGE;
+//    }
+//
+//    @RequestMapping(value = "ipd/{id}", method = RequestMethod.GET)
+//    public String openIpdRegistration(@PathVariable Long id, Model uiModel) {
+//        prepareData(id, RegistrationType.INDOOR, uiModel);
+//
+//        return "register/ipd-registration";
+//    }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@Valid Register register,

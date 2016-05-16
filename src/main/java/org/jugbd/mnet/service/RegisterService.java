@@ -36,6 +36,8 @@ public interface RegisterService {
 
     Object findRegister(Long registerId, RegistrationType registrationType);
 
+    Register findRegister(Long id);
+
     Either<Register, OutdoorRegister> findRegisterEither(Long registerId, RegistrationType registrationType);
 
     TreatmentPlan findTreatmentPlan(Long registerId, RegistrationType registrationType);

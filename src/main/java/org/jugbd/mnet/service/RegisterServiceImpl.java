@@ -190,6 +190,12 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
+    public Register findRegister(Long id) {
+
+         return registerDao.findOne(id);
+    }
+
+    @Override
     public Either<Register, OutdoorRegister> findRegisterEither(Long registerId, RegistrationType registrationType) {
 
         return registrationType == RegistrationType.OUTDOOR ?
