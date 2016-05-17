@@ -437,7 +437,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/medicalhistory/{registerId}", method = RequestMethod.GET)
     public String pastMedicalHistory(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId, RegistrationType.INDOOR, uiModel);
+        prepareData(registerId, uiModel);
 
         return REGISTER_MEDICAL_HISTORY_PAGE;
     }
@@ -492,6 +492,13 @@ public class RegisterController {
                 .fold(Register::getPatient, OutdoorRegister::getPatient);
 
         uiModel.addAttribute("patient", patient);
+    }
+
+    private void prepareData(@PathVariable Long registerId,  Model uiModel) {
+        Register register = registerService.findOne(registerId);
+        uiModel.addAttribute("register", register);
+        uiModel.addAttribute("registrationType", register.getRegistrationType());
+        uiModel.addAttribute("patient", register.getPatient());
     }
 }
 

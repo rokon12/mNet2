@@ -28,7 +28,7 @@
 
             <div class="col-lg-9 col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Past Medical History :: <span th:text="${registrationType.label}"></span></div>
+                    <div class="panel-heading">Past Medical History :: <span class="text-uppercase" th:text="${registrationType.label}"></span></div>
                     <div class="panel-body">
                         <div th:if="${register.medicalHistory == null}">
                             <h3 class="text-primary">No Medical History found</h3>
@@ -72,7 +72,7 @@
                                             </span>
                                 </tr>
                                 <tr>
-                                    <td>Comments</td>
+                                    <td><strong>Comments</strong></td>
                                     <td th:text="${register.medicalHistory.comments} ? ${register.medicalHistory.comments}"></td>
                                 </tr>
                             </table>
