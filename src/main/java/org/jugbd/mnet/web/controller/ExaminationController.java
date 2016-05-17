@@ -1,7 +1,7 @@
 package org.jugbd.mnet.web.controller;
 
 import org.jugbd.mnet.domain.Examination;
-import org.jugbd.mnet.domain.enums.RegistrationType;
+import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.service.ExaminationService;
 import org.jugbd.mnet.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -38,49 +37,45 @@ public class ExaminationController {
 
     @RequestMapping(value = "create/{registerId}", method = RequestMethod.GET)
     public String create(@PathVariable Long registerId,
-                         @RequestParam(required = true) RegistrationType registrationType,
-                         Examination examination,
-                         Model uiModel) {
+                         Examination examination) {
 
-        uiModel.addAttribute("registrationType", registrationType);
-        registerService.findRegisterEither(registerId, registrationType)
-                .map(examination::setRegister, examination::setOutdoorRegister);
+        Register register = registerService.findOne(registerId);
+        examination.setRegister(register);
 
         return EXAMINATION_CREATE_PAGE;
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String save(@RequestParam RegistrationType registrationType,
-                       @Valid Examination examination,
+    public String save(@Valid Examination examination,
                        BindingResult result,
                        RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
+            Register register = registerService.findOne(examination.getRegister().getId());
+            examination.setRegister(register);
 
             return EXAMINATION_CREATE_PAGE;
         }
 
-        Examination examinationFromDb = examinationService.save(examination, registrationType);
+        Examination examinationFromDb = examinationService.save(examination);
         redirectAttributes.addFlashAttribute("message", "Diagnosis successfully created!");
 
-        return getRedirectUrl(registrationType, examinationFromDb);
+        return getRedirectUrl(examinationFromDb.getRegister().getId());
     }
 
     @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Long id,
-                       @RequestParam RegistrationType registrationType,
                        Model uiModel) {
 
         Examination examination = examinationService.findOne(id);
         uiModel.addAttribute("examination", examination);
-        uiModel.addAttribute("registrationType", registrationType);
+        uiModel.addAttribute("registrationType", examination.getRegister().getRegistrationType());
 
         return EXAMINATION_EDIT_PAGE;
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String update(@RequestParam RegistrationType registrationType,
-                         @Valid Examination examination,
+    public String update(@Valid Examination examination,
                          BindingResult result,
                          RedirectAttributes redirectAttributes) {
 
@@ -89,23 +84,20 @@ public class ExaminationController {
             return EXAMINATION_EDIT_PAGE;
         }
 
-        Examination examinationFromDb = examinationService.save(examination, registrationType);
+        Examination examinationFromDb = examinationService.save(examination);
         redirectAttributes.addFlashAttribute("message", "Examination successfully updated");
 
-        return getRedirectUrl(registrationType, examinationFromDb);
+        return getRedirectUrl(examinationFromDb.getRegister().getId());
     }
 
     @RequestMapping(value = "cancel/{registerId}", method = RequestMethod.GET)
-    public String cancel(@PathVariable Long registerId, @RequestParam RegistrationType registrationType) {
+    public String cancel(@PathVariable Long registerId) {
 
-        return REDIRECT_REGISTER_EXAMINATION_PAGE + registerService.findOne(registerId).getId() + "?registrationType=" + registrationType;
+        return getRedirectUrl(registerId);
     }
 
-    private String getRedirectUrl(RegistrationType registrationType, Examination examination) {
-        String appender = "?registrationType=" + registrationType;
+    private String getRedirectUrl(@PathVariable Long registerId) {
 
-        return (registrationType == RegistrationType.OUTDOOR)
-                ? (String.format("%s%d%s", REDIRECT_REGISTER_EXAMINATION_PAGE, examination.getOutdoorRegister().getId(), appender))
-                : (String.format("%s%d%s", REDIRECT_REGISTER_EXAMINATION_PAGE, examination.getRegister().getId(), appender));
+        return REDIRECT_REGISTER_EXAMINATION_PAGE + registerService.findOne(registerId).getId();
     }
 }

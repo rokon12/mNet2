@@ -2,9 +2,7 @@ package org.jugbd.mnet.service;
 
 import org.jugbd.mnet.dao.ExaminationDao;
 import org.jugbd.mnet.domain.Examination;
-import org.jugbd.mnet.domain.OutdoorRegister;
 import org.jugbd.mnet.domain.Register;
-import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,49 +42,14 @@ public class ExaminationServiceImpl implements ExaminationService {
         return examinationDao.findOne(id);
     }
 
-    @Override
-    public Examination save(Examination examination, RegistrationType registrationType) {
-
-        switch (registrationType) {
-            case OUTDOOR:
-                if (examination.getId() == null) {
-                    OutdoorRegister register = registerService.findOpdRegister(examination.getOutdoorRegister().getId());
-                    register.setExamination(examination);
-
-                    registerService.save(register);
-                    examination.setOutdoorRegister(register);
-
-                    return examinationDao.save(examination);
-                } else {
-
-                    return updateExamination(examination);
-                }
-            case INDOOR:
-                if (examination.getId() == null) {
-                    Register register = registerService.findOne(examination.getRegister().getId());
-                    register.setExamination(examination);
-
-                    registerService.save(register);
-                    examination.setRegister(register);
-
-                    return examinationDao.save(examination);
-                } else {
-                    return updateExamination(examination);
-                }
-        }
-
-        return null;
-    }
-
     private Examination updateExamination(Examination examination) {
         Examination examinationFromDb = examinationDao.findOne(examination.getId());
 
-        examinationFromDb.setJaundice(examination.getJaundice());
         examinationFromDb.setAnaemia(examination.getAnaemia());
+        examinationFromDb.setJaundice(examination.getJaundice());
         examinationFromDb.setAccessibleLymphNode(examination.getAccessibleLymphNode());
         examinationFromDb.setDehydration(examination.getDehydration());
-        examinationFromDb.setOelema(examination.getOelema());
-        examinationFromDb.setNeckVein(examination.getNeckVein());
+        examinationFromDb.setOedema(examination.getOedema());
         examinationFromDb.setgExaminationComments(examination.getgExaminationComments());
 
         examinationFromDb.setListeningExamination(examination.getListeningExamination());
@@ -96,6 +59,13 @@ public class ExaminationServiceImpl implements ExaminationService {
         examinationFromDb.setUrogenitalSystem(examination.getUrogenitalSystem());
         examinationFromDb.setNervousSystem(examination.getNervousSystem());
         examinationFromDb.setComments(examination.getComments());
+        examinationFromDb.setDre(examination.getDre());
+
+        examinationFromDb.setPulse(examination.getPulse());
+        examinationFromDb.setSystolic(examination.getSystolic());
+        examinationFromDb.setDiastolic(examination.getDiastolic());
+        examinationFromDb.setRespiratoryRate(examination.getRespiratoryRate());
+        examinationFromDb.setTemperature(examination.getTemperature());
 
         return examinationDao.save(examinationFromDb);
     }

@@ -1,8 +1,12 @@
 package org.jugbd.mnet.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.jugbd.mnet.domain.enums.Availability;
+import org.jugbd.mnet.domain.enums.LymphNode;
+import org.jugbd.mnet.domain.enums.Severity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
 
 /**
@@ -19,12 +23,23 @@ public class Examination extends PersistentObject implements Auditable {
     private Long version;
 
     //General Examination
-    private Boolean anaemia;
-    private Boolean jaundice;
-    private Boolean accessibleLymphNode;
-    private Boolean dehydration;
-    private Boolean oelema;
-    private Boolean neckVein;
+    private Severity anaemia;
+    private Severity jaundice;
+    private LymphNode accessibleLymphNode;
+    private Severity dehydration;
+    private Availability oedema; // translate to Present/Absent
+
+    private Integer pulse; //Pulse per minute
+
+    //@NotNull(message = "Systolic pressure is required")
+    @Digits(integer = 3, fraction = 0)
+    private Integer systolic;  //Blood Pressure
+
+    //@NotNull(message = "Diastolic pressure is required")
+    @Digits(integer = 3, fraction = 0)
+    private Integer diastolic;
+    private Integer respiratoryRate;//Respiratory rate per minute
+    private Double temperature; //Temperature (F)
 
     @Size(max = 1000)
     private String gExaminationComments;
@@ -35,6 +50,9 @@ public class Examination extends PersistentObject implements Auditable {
     //Systemic Examination
     @Size(max = 1000)
     private String respiratorySystem;
+
+    @Size(max = 1000)
+    private String dre;
 
     @Size(max = 1000)
     private String gISystem;
@@ -59,124 +77,177 @@ public class Examination extends PersistentObject implements Auditable {
     @Size(max = 1000)
     private String comments;
 
+    @Override
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public Examination setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Long getVersion() {
         return version;
     }
 
-    public void setVersion(Long version) {
+    public Examination setVersion(Long version) {
         this.version = version;
+        return this;
     }
 
-    public Boolean getAnaemia() {
+    public Severity getAnaemia() {
         return anaemia;
     }
 
-    public void setAnaemia(Boolean anaemia) {
+    public Examination setAnaemia(Severity anaemia) {
         this.anaemia = anaemia;
+        return this;
     }
 
-    public Boolean getJaundice() {
+    public Severity getJaundice() {
         return jaundice;
     }
 
-    public void setJaundice(Boolean jaundice) {
+    public Examination setJaundice(Severity jaundice) {
         this.jaundice = jaundice;
+        return this;
     }
 
-    public Boolean getAccessibleLymphNode() {
+    public LymphNode getAccessibleLymphNode() {
         return accessibleLymphNode;
     }
 
-    public void setAccessibleLymphNode(Boolean accessibleLymphNode) {
+    public Examination setAccessibleLymphNode(LymphNode accessibleLymphNode) {
         this.accessibleLymphNode = accessibleLymphNode;
+        return this;
     }
 
-    public Boolean getDehydration() {
+    public Severity getDehydration() {
         return dehydration;
     }
 
-    public void setDehydration(Boolean dehydration) {
+    public Examination setDehydration(Severity dehydration) {
         this.dehydration = dehydration;
+        return this;
     }
 
-    public Boolean getOelema() {
-        return oelema;
+    public Availability getOedema() {
+        return oedema;
     }
 
-    public void setOelema(Boolean oelema) {
-        this.oelema = oelema;
+    public Examination setOedema(Availability oedema) {
+        this.oedema = oedema;
+        return this;
     }
 
-    public Boolean getNeckVein() {
-        return neckVein;
+    public Integer getPulse() {
+        return pulse;
     }
 
-    public void setNeckVein(Boolean neckVein) {
-        this.neckVein = neckVein;
+    public Examination setPulse(Integer pulse) {
+        this.pulse = pulse;
+        return this;
+    }
+
+    public Integer getSystolic() {
+        return systolic;
+    }
+
+    public Examination setSystolic(Integer systolic) {
+        this.systolic = systolic;
+        return this;
+    }
+
+    public Integer getDiastolic() {
+        return diastolic;
+    }
+
+    public Examination setDiastolic(Integer diastolic) {
+        this.diastolic = diastolic;
+        return this;
+    }
+
+
+    public Double getTemperature() {
+        return temperature;
+    }
+
+    public Examination setTemperature(Double temperature) {
+        this.temperature = temperature;
+        return this;
     }
 
     public String getgExaminationComments() {
         return gExaminationComments;
     }
 
-    public void setgExaminationComments(String gExaminationComments) {
+    public Examination setgExaminationComments(String gExaminationComments) {
         this.gExaminationComments = gExaminationComments;
+        return this;
     }
 
     public String getListeningExamination() {
         return listeningExamination;
     }
 
-    public void setListeningExamination(String listeningExamination) {
+    public Examination setListeningExamination(String listeningExamination) {
         this.listeningExamination = listeningExamination;
+        return this;
     }
 
     public String getRespiratorySystem() {
         return respiratorySystem;
     }
 
-    public void setRespiratorySystem(String respiratorySystem) {
+    public Examination setRespiratorySystem(String respiratorySystem) {
         this.respiratorySystem = respiratorySystem;
+        return this;
+    }
+
+    public String getDre() {
+        return dre;
+    }
+
+    public Examination setDre(String dre) {
+        this.dre = dre;
+        return this;
     }
 
     public String getgISystem() {
         return gISystem;
     }
 
-    public void setgISystem(String gISystem) {
+    public Examination setgISystem(String gISystem) {
         this.gISystem = gISystem;
+        return this;
     }
 
     public String getCardiovascularSystem() {
         return cardiovascularSystem;
     }
 
-    public void setCardiovascularSystem(String cardiovascularSystem) {
+    public Examination setCardiovascularSystem(String cardiovascularSystem) {
         this.cardiovascularSystem = cardiovascularSystem;
+        return this;
     }
 
     public String getUrogenitalSystem() {
         return urogenitalSystem;
     }
 
-    public void setUrogenitalSystem(String urogenitalSystem) {
+    public Examination setUrogenitalSystem(String urogenitalSystem) {
         this.urogenitalSystem = urogenitalSystem;
+        return this;
     }
 
     public String getNervousSystem() {
         return nervousSystem;
     }
 
-    public void setNervousSystem(String nervousSystem) {
+    public Examination setNervousSystem(String nervousSystem) {
         this.nervousSystem = nervousSystem;
+        return this;
     }
 
     public Register getRegister() {
@@ -188,20 +259,30 @@ public class Examination extends PersistentObject implements Auditable {
         return this;
     }
 
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
     public OutdoorRegister getOutdoorRegister() {
         return outdoorRegister;
     }
 
     public Examination setOutdoorRegister(OutdoorRegister outdoorRegister) {
         this.outdoorRegister = outdoorRegister;
+        return this;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public Examination setComments(String comments) {
+        this.comments = comments;
+        return this;
+    }
+
+    public Integer getRespiratoryRate() {
+        return respiratoryRate;
+    }
+
+    public Examination setRespiratoryRate(Integer respiratoryRate) {
+        this.respiratoryRate = respiratoryRate;
         return this;
     }
 }

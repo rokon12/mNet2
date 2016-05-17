@@ -289,12 +289,8 @@ public class RegisterController {
     //Examination
 
     @RequestMapping(value = "/examination/{registerId}", method = RequestMethod.GET)
-    public String examination(@PathVariable Long registerId,
-                              @RequestParam RegistrationType registrationType,
-                              Model uiModel) {
-
-        uiModel.addAttribute("examination", registerService.findExamination(registerId, registrationType));
-        prepareData(registerId, registrationType, uiModel);
+    public String examination(@PathVariable Long registerId, Model uiModel) {
+        prepareData(registerId,  uiModel);
 
         return REGISTER_EXAMINATION_PAGE;
     }
@@ -494,7 +490,7 @@ public class RegisterController {
         uiModel.addAttribute("patient", patient);
     }
 
-    private void prepareData(@PathVariable Long registerId,  Model uiModel) {
+    private void prepareData(Long registerId,  Model uiModel) {
         Register register = registerService.findOne(registerId);
         uiModel.addAttribute("register", register);
         uiModel.addAttribute("registrationType", register.getRegistrationType());
