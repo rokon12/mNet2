@@ -23,12 +23,7 @@
         <div class="row clearfix">
 
             <div class="col-lg-3 col-md-4">
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'INDOOR'}">
-                    <div layout:include="layout/common-fragment :: ipd-register"></div>
-                </div>
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'OUTDOOR'}">
-                    <div layout:include="layout/common-fragment :: opd-register"></div>
-                </div>
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -40,58 +35,25 @@
                             <h3 class="text-primary">No Chief Complaint found</h3>
                         </div>
                         <div th:if="${register.chiefComplaint != null}">
+
                             <table class="table table-condensed">
+
                                 <tr>
-                                    <td>H/O Burn</td>
-                                    <td th:if="${register.chiefComplaint.daysOfBurns}"
-                                        th:text="${register.chiefComplaint.daysOfBurns + ' day(s)'}"></td>
-                                    <td th:if="${register.chiefComplaint.hoursOfBurn}"
-                                        th:text="${register.chiefComplaint.hoursOfBurn + ' hour(s)'}"></td>
+                                    <td><strong>Chief Complaint: </strong></td>
+                                    <td></td>
+                                </tr>
+                                <tr th:each="item, stat : ${register.chiefComplaint.complaints}">
+                                    <td th:text="${stat.index+1}"></td>
+                                    <td th:text="${item}"></td>
                                 </tr>
 
                                 <tr>
-                                    <td>Child Born With</td>
-                                    <td th:text="${register.chiefComplaint.childBornWith} ? ${register.chiefComplaint.childBornWith.label}"></td>
-                                    <td th:text="${register.chiefComplaint.childBornWithOther} ? ${register.chiefComplaint.childBornWithOther}"></td>
-                                </tr>
-                                <tr>
-                                    <td>H/O Trauma</td>
-                                    <td th:if="${register.chiefComplaint.daysOfTrauma}"
-                                        th:text="${register.chiefComplaint.daysOfTrauma + ' day(s)'}"></td>
-                                    <td th:if="${register.chiefComplaint.hoursOfTrauma}"
-                                        th:text="${register.chiefComplaint.hoursOfTrauma + ' hour(s)'}"></td>
-                                </tr>
-
-                                <tr>
-                                    <td>H/O Infection</td>
-                                    <td th:if="${register.chiefComplaint.daysOfInfection}"
-                                        th:text="${register.chiefComplaint.daysOfInfection + ' day(s)'}"></td>
-                                    <td th:if="${register.chiefComplaint.hoursOfInfection}"
-                                        th:text="${register.chiefComplaint.hoursOfInfection + ' hour(s)'}"></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Presented with ulcer or swelling for</td>
-                                    <td th:if="${register.chiefComplaint.yearsOfUlcerOrSwellingFor}"
-                                        th:text="${register.chiefComplaint.yearsOfUlcerOrSwellingFor + ' year(s)'}"></td>
-                                    <td th:if="${register.chiefComplaint.monthOfUlcerOrSwellingFor}"
-                                        th:text="${register.chiefComplaint.monthOfUlcerOrSwellingFor + ' month(s)'}"></td>
-                                    <td th:if="${register.chiefComplaint.daysOfUlcerOrSwellingFor}"
-                                        th:text="${register.chiefComplaint.daysOfUlcerOrSwellingFor + ' day(s)'}"></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Breast Related Complaint</td>
-                                    <td th:text="${register.chiefComplaint.breastRelatedComplaint} ? ${register.chiefComplaint.breastRelatedComplaint }"></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Present Illness</td>
+                                    <td><strong>Present Illness:</strong></td>
                                     <td th:text="${register.chiefComplaint.presentIllness} ? ${register.chiefComplaint.presentIllness }"></td>
                                 </tr>
 
                                 <tr>
-                                    <td>Comments</td>
+                                    <td><strong>Comments:</strong></td>
                                     <td th:text="${register.chiefComplaint.comments} ? ${register.chiefComplaint.comments}"></td>
                                 </tr>
                             </table>
@@ -102,13 +64,13 @@
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
                             <div th:if="${register.chiefComplaint == null}">
                                 <a class="btn btn-sm btn-info pull-right"
-                                   th:href="@{/chiefcomplaints/create/__${register.id}__?registrationType=}+ ${registrationType}"><span
+                                   th:href="@{/chiefcomplaints/create/__${register.id}__}"><span
                                         class="glyphicon glyphicon-plus"></span> Add New</a>
                             </div>
 
                             <div th:unless="${register.chiefComplaint == null}">
                                 <a href="#" class="btn btn-sm btn-info pull-right"
-                                   th:href="@{/chiefcomplaints/edit/__${register.chiefComplaint.id}__?registrationType=} +${registrationType}"> <span
+                                   th:href="@{/chiefcomplaints/edit/__${register.chiefComplaint.id}__}"> <span
                                         class="glyphicon glyphicon-edit"></span> Edit </a>
                             </div>
                         </div>

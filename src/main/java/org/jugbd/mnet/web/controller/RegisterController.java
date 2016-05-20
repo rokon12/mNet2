@@ -298,11 +298,10 @@ public class RegisterController {
     //Cheif Complaints
     @RequestMapping(value = "/chiefcomplaints/{registerId}", method = RequestMethod.GET)
     public String chiefcomplaints(@PathVariable Long registerId,
-                                  @RequestParam RegistrationType registrationType,
                                   Model uiModel) {
 
-        uiModel.addAttribute("chiefcomplaints", registerService.findChiefcomplaints(registerId, registrationType));
-        prepareData(registerId, registrationType, uiModel);
+        uiModel.addAttribute("chiefcomplaints", registerService.findOne(registerId));
+        prepareData(registerId, uiModel);
 
         return REGISTER_CHIEF_COMPLAINTS_PAGE;
     }

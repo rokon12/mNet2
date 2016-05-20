@@ -13,6 +13,4 @@ public interface ChiefComplaintService {
     ChiefComplaint save(ChiefComplaint chiefComplaint);
 
     ChiefComplaint findOne(Long id);
-
-    ChiefComplaint save(ChiefComplaint chiefComplaint, RegistrationType registrationType);
 }

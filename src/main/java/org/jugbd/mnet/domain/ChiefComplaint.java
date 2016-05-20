@@ -1,10 +1,11 @@
 package org.jugbd.mnet.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.jugbd.mnet.domain.enums.ChildBornWith;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Bazlur Rahman Rokon
@@ -16,27 +17,12 @@ public class ChiefComplaint extends PersistentObject implements Auditable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer hoursOfBurn;
-    private Integer daysOfBurns;
+    @Version
+    private Long version;
 
-    @Column(length = 20)
-    @Enumerated(EnumType.STRING)
-    private ChildBornWith childBornWith;
-    @Size(max = 100)
-    private String childBornWithOther;
-
-    private Integer hoursOfTrauma;
-    private Integer daysOfTrauma;
-
-    private Integer hoursOfInfection;
-    private Integer daysOfInfection;
-
-    private Integer daysOfUlcerOrSwellingFor; //Presented with ulcer or swelling for
-    private Integer monthOfUlcerOrSwellingFor; //Presented with ulcer or swelling for
-    private Integer yearsOfUlcerOrSwellingFor; //Presented with ulcer or swelling for
-
-    @Size(max = 1000)
-    private String breastRelatedComplaint; //TODO have to figure out what they meant actually
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Column(length = 1000)
+    private List<String> complaints = new ArrayList<>();
 
     @Size(max = 1000)
     private String presentIllness;
@@ -45,124 +31,44 @@ public class ChiefComplaint extends PersistentObject implements Auditable {
     @OneToOne(mappedBy = "chiefComplaint")
     private Register register;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "chiefComplaint")
-    private OutdoorRegister outdoorRegister;
-
     @Size(max = 1000)
     private String comments;
 
+    @Override
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public ChiefComplaint setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getHoursOfBurn() {
-        return hoursOfBurn;
-    }
-
-    public void setHoursOfBurn(Integer hoursOfBurn) {
-        this.hoursOfBurn = hoursOfBurn;
-    }
-
-    public Integer getDaysOfBurns() {
-        return daysOfBurns;
-    }
-
-    public void setDaysOfBurns(Integer daysOfBurns) {
-        this.daysOfBurns = daysOfBurns;
-    }
-
-    public ChildBornWith getChildBornWith() {
-        return childBornWith;
-    }
-
-    public void setChildBornWith(ChildBornWith childBornWith) {
-        this.childBornWith = childBornWith;
-    }
-
-    public String getChildBornWithOther() {
-        return childBornWithOther;
-    }
-
-    public ChiefComplaint setChildBornWithOther(String childBornWithOther) {
-        this.childBornWithOther = childBornWithOther;
         return this;
     }
 
-    public Integer getHoursOfTrauma() {
-        return hoursOfTrauma;
+    public Long getVersion() {
+        return version;
     }
 
-    public void setHoursOfTrauma(Integer hoursOfTrauma) {
-        this.hoursOfTrauma = hoursOfTrauma;
+    public ChiefComplaint setVersion(Long version) {
+        this.version = version;
+        return this;
     }
 
-    public Integer getDaysOfTrauma() {
-        return daysOfTrauma;
+    public List<String> getComplaints() {
+        return complaints;
     }
 
-    public void setDaysOfTrauma(Integer daysOfTrauma) {
-        this.daysOfTrauma = daysOfTrauma;
-    }
-
-    public Integer getHoursOfInfection() {
-        return hoursOfInfection;
-    }
-
-    public void setHoursOfInfection(Integer hoursOfInfection) {
-        this.hoursOfInfection = hoursOfInfection;
-    }
-
-    public Integer getDaysOfInfection() {
-        return daysOfInfection;
-    }
-
-    public void setDaysOfInfection(Integer daysOfInfection) {
-        this.daysOfInfection = daysOfInfection;
-    }
-
-    public Integer getDaysOfUlcerOrSwellingFor() {
-        return daysOfUlcerOrSwellingFor;
-    }
-
-    public void setDaysOfUlcerOrSwellingFor(Integer daysOfUlcerOrSwellingFor) {
-        this.daysOfUlcerOrSwellingFor = daysOfUlcerOrSwellingFor;
-    }
-
-    public Integer getMonthOfUlcerOrSwellingFor() {
-        return monthOfUlcerOrSwellingFor;
-    }
-
-    public void setMonthOfUlcerOrSwellingFor(Integer monthOfUlcerOrSwellingFor) {
-        this.monthOfUlcerOrSwellingFor = monthOfUlcerOrSwellingFor;
-    }
-
-    public Integer getYearsOfUlcerOrSwellingFor() {
-        return yearsOfUlcerOrSwellingFor;
-    }
-
-    public void setYearsOfUlcerOrSwellingFor(Integer yearsOfUlcerOrSwellingFor) {
-        this.yearsOfUlcerOrSwellingFor = yearsOfUlcerOrSwellingFor;
-    }
-
-    public String getBreastRelatedComplaint() {
-        return breastRelatedComplaint;
-    }
-
-    public void setBreastRelatedComplaint(String breastRelatedComplaint) {
-        this.breastRelatedComplaint = breastRelatedComplaint;
+    public ChiefComplaint setComplaints(List<String> complaints) {
+        this.complaints = complaints;
+        return this;
     }
 
     public String getPresentIllness() {
         return presentIllness;
     }
 
-    public void setPresentIllness(String presentIllness) {
+    public ChiefComplaint setPresentIllness(String presentIllness) {
         this.presentIllness = presentIllness;
+        return this;
     }
 
     public Register getRegister() {
@@ -174,20 +80,12 @@ public class ChiefComplaint extends PersistentObject implements Auditable {
         return this;
     }
 
-    public OutdoorRegister getOutdoorRegister() {
-        return outdoorRegister;
-    }
-
-    public ChiefComplaint setOutdoorRegister(OutdoorRegister outdoorRegister) {
-        this.outdoorRegister = outdoorRegister;
-        return this;
-    }
-
     public String getComments() {
         return comments;
     }
 
-    public void setComments(String comments) {
+    public ChiefComplaint setComments(String comments) {
         this.comments = comments;
+        return this;
     }
 }
