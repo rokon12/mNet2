@@ -147,7 +147,7 @@
         <div class="list-group">
 
             <a href="#" class="list-group-item" th:classappend="${page == 'registration' ? 'active' : ''}"
-               th:href="@{/register/ipd/__${register.id}__}">
+               th:href="@{/register/show/__${register.id}__}">
                 <i class="fa fa-user-md fa-fw"></i> <span class="">Registration </span><span class="fa arrow"></span>
                 <span class="pull-right" id="slide-submenu"> </span>
             </a>
@@ -192,10 +192,10 @@
                 <i class="fa fa-info fa-fw"></i>Complication Management<span class="fa arrow"></span>
             </a>
 
-            <a class="list-group-item" th:classappend="${page == 'lifestyle' ? 'active' : ''}"
-               th:href="@{/register/lifestyle/__${register.id}__?registrationType=INDOOR}">
-                <i class="fa fa-info fa-fw"></i>Life Style<span class="fa arrow"></span>
-            </a>
+            <!--<a class="list-group-item" th:classappend="${page == 'lifestyle' ? 'active' : ''}"-->
+               <!--th:href="@{/register/lifestyle/__${register.id}__?registrationType=INDOOR}">-->
+                <!--<i class="fa fa-info fa-fw"></i>Life Style<span class="fa arrow"></span>-->
+            <!--</a>-->
 
             <a class="list-group-item" th:classappend="${page == 'picture' ? 'active' : ''}"
                th:href="@{/register/picture/__${register.id}__}">

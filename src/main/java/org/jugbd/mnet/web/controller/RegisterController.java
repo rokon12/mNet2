@@ -398,39 +398,39 @@ public class RegisterController {
 
     // Convert OPD to IPD
 
-    @RequestMapping(value = "/convert-to-ipd/{registerId}", method = RequestMethod.GET)
-    public String convert(@PathVariable Long registerId,
-                          @RequestParam RegistrationType registrationType,
-                          Model uiModel) {
-
-        OutdoorRegister outdoorRegister = registerService.findOpdRegister(registerId);
-
-        Register register = new Register();
-        register.setRegistrationId(outdoorRegister.getRegistrationId());
-        register.setPatientContact(outdoorRegister.getPatientContact());
-        register.setPatient(outdoorRegister.getPatient());
-
-        uiModel.addAttribute("register", register);
-        uiModel.addAttribute("registerId", registerId);
-
-        return REGISTER_CONVERT_PAGE;
-    }
-
-    @RequestMapping(value = "/convert-to-ipd/{registerId}", method = RequestMethod.POST)
-    public String completeConversion(@PathVariable Long registerId,
-                                     @Valid Register register,
-                                     BindingResult result,
-                                     Model uiModel) {
-        if (result.hasErrors()) {
-            uiModel.addAttribute("registerId", registerId);
-
-            return REGISTER_CONVERT_PAGE;
-        }
-
-        Register savedRegister = registerService.convertOutdoorRegisterToIndoorRegister(registerId, register);
-
-        return REDIRECT_PATIENT_SHOW_PAGE + savedRegister.getPatient().getId();
-    }
+//    @RequestMapping(value = "/convert-to-ipd/{registerId}", method = RequestMethod.GET)
+//    public String convert(@PathVariable Long registerId,
+//                          @RequestParam RegistrationType registrationType,
+//                          Model uiModel) {
+//
+//        OutdoorRegister outdoorRegister = registerService.findOpdRegister(registerId);
+//
+//        Register register = new Register();
+//        register.setRegistrationId(outdoorRegister.getRegistrationId());
+//        register.setPatientContact(outdoorRegister.getPatientContact());
+//        register.setPatient(outdoorRegister.getPatient());
+//
+//        uiModel.addAttribute("register", register);
+//        uiModel.addAttribute("registerId", registerId);
+//
+//        return REGISTER_CONVERT_PAGE;
+//    }
+//
+//    @RequestMapping(value = "/convert-to-ipd/{registerId}", method = RequestMethod.POST)
+//    public String completeConversion(@PathVariable Long registerId,
+//                                     @Valid Register register,
+//                                     BindingResult result,
+//                                     Model uiModel) {
+//        if (result.hasErrors()) {
+//            uiModel.addAttribute("registerId", registerId);
+//
+//            return REGISTER_CONVERT_PAGE;
+//        }
+//
+//        Register savedRegister = registerService.convertOutdoorRegisterToIndoorRegister(registerId, register);
+//
+//        return REDIRECT_PATIENT_SHOW_PAGE + savedRegister.getPatient().getId();
+//    }
 
     @RequestMapping(value = "/medicalhistory/{registerId}", method = RequestMethod.GET)
     public String pastMedicalHistory(@PathVariable Long registerId, Model uiModel) {
@@ -442,9 +442,11 @@ public class RegisterController {
 
     @RequestMapping(value = "/operationaldetail/{registerId}", method = RequestMethod.GET)
     public String operationalDetails(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId, RegistrationType.INDOOR, uiModel);
-        Set<OperationalDetail> detailList = registerService.findOperationalDetailList(registerId);
 
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
+
+        Set<OperationalDetail> detailList = registerService.findOperationalDetailList(registerId);
         uiModel.addAttribute("operationaldetails", detailList);
 
         return REGISTER_OPERATIONAL_DETAIL_PAGE;
@@ -467,13 +469,13 @@ public class RegisterController {
 
         return REGISTER_COMPLICATION_MANAGEMENT_PAGE;
     }
-
-    @RequestMapping(value = "/lifestyle/{registerId}", method = RequestMethod.GET)
-    public String lifeStyle(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId, RegistrationType.INDOOR, uiModel);
-
-        return REGISTER_LIFE_STYLE_PAGE;
-    }
+//
+//    @RequestMapping(value = "/lifestyle/{registerId}", method = RequestMethod.GET)
+//    public String lifeStyle(@PathVariable Long registerId, Model uiModel) {
+//        prepareData(registerId, RegistrationType.INDOOR, uiModel);
+//
+//        return REGISTER_LIFE_STYLE_PAGE;
+//    }
 
     @RequestMapping(value = "/picture/{registerId}", method = RequestMethod.GET)
     public String pictureInformation(@PathVariable Long registerId, Model uiModel) {
