@@ -168,6 +168,11 @@
                 <i class="fa fa-info fa-fw"></i>Examination<span class="fa arrow"></span>
             </a>
 
+            <a class="list-group-item" th:classappend="${page == 'investigation' ? 'active' : ''}"
+               th:href="@{/register/investigation/__${register.id}__}">
+                <i class="fa fa-info fa-fw"></i>Investigation<span class="fa arrow"></span>
+            </a>
+
             <a class="list-group-item" th:classappend="${page == 'diagnosis' ? 'active' : ''}"
                th:href="@{/register/diagnosis/__${register.id}__?registrationType=INDOOR}">
                 <i class="fa fa-user-md fa-fw"></i>Diagnosis<span class="fa arrow"></span>
@@ -180,11 +185,6 @@
             <a class="list-group-item" th:classappend="${page == 'operational-detail' ? 'active' : ''}"
                th:href="@{/register/operationaldetail/__${register.id}__}">
                 <i class="fa fa-info fa-fw"></i>Operational Details<span class="fa arrow"></span>
-            </a>
-
-            <a class="list-group-item" th:classappend="${page == 'investigation' ? 'active' : ''}"
-               th:href="@{/register/investigation/__${register.id}__}">
-                <i class="fa fa-info fa-fw"></i>Investigation<span class="fa arrow"></span>
             </a>
 
             <a class="list-group-item" th:classappend="${page == 'complicationmanagement' ? 'active' : ''}"
