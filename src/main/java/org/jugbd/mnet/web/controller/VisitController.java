@@ -1,5 +1,6 @@
 package org.jugbd.mnet.web.controller;
 
+import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.domain.Visit;
 import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.service.RegisterService;
@@ -35,20 +36,18 @@ public class VisitController {
     @RequestMapping(value = "new/{registerId}", method = RequestMethod.GET)
     private String createVisitNote(Visit visit,
                                    @PathVariable Long registerId,
-                                   @RequestParam(required = true) RegistrationType registrationType,
                                    Model uiModel) {
-        uiModel.addAttribute("registrationType", registrationType);
         uiModel.addAttribute("registerId", registerId);
+        Register register = registerService.findOne(registerId);
 
-        registerService.findRegisterEither(registerId, registrationType)
-                .map(visit::setRegister, visit::setOutdoorRegister);
+        visit.setRegister(register);
+        uiModel.addAttribute("registrationType", register.getRegistrationType());
 
         return VISIT_CREATE_PAGE;
     }
 
     @RequestMapping(value = "new", method = RequestMethod.POST)
-    private String saveVisitNote(@RequestParam RegistrationType registrationType,
-                                 @Valid Visit visit,
+    private String saveVisitNote(@Valid Visit visit,
                                  BindingResult result,
                                  Long registerId) {
         if (result.hasErrors()) {
@@ -56,9 +55,9 @@ public class VisitController {
             return VISIT_CREATE_PAGE;
         }
 
-        visitService.save(visit, registerId, registrationType);
+        visitService.save(visit, registerId);
 
-        return REDIRECT_REGISTER_VISITS_PAGE + registerId + "?registrationType=" + registrationType;
+        return REDIRECT_REGISTER_VISITS_PAGE + registerId ;
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)

@@ -256,21 +256,17 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public Vital getLastVital(Long registerId, RegistrationType registrationType) {
-        log.info("getLastVital() registerId:{}, registrationType : {}", registerId, registrationType);
+    public Vital getLastVital(Long registerId) {
+        Register register = findOne(registerId);
 
-        return findRegisterEither(registerId, registrationType)
-                .fold(register -> getVital(register.getVitals()),
-                        outdoorRegister -> getVital(outdoorRegister.getVitals()));
+        return getVital(register.getVitals());
     }
 
     @Override
-    public List<Visit> getVisits(Long registerId, RegistrationType registrationType) {
+    public List<Visit> getVisits(Long registerId) {
+        Register register = findOne(registerId);
 
-        return findRegisterEither(registerId, registrationType)
-                .fold(register -> (register.getVisits()),
-                        outdoorRegister -> (outdoorRegister.getVisits()))
-                .stream()
+        return register.getVisits().stream()
                 .filter(visit -> visit.getStatus() == Status.ACTIVE)
                 .sorted((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()))
                 .collect(Collectors.toList());

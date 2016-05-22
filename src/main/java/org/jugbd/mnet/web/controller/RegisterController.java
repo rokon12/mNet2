@@ -311,11 +311,11 @@ public class RegisterController {
     //vitals
     @RequestMapping(value = "/vitals/{registerId}", method = RequestMethod.GET)
     public String vital(@PathVariable Long registerId,
-                        @RequestParam RegistrationType registrationType,
                         Model uiModel) {
 
-        uiModel.addAttribute("lastVital", registerService.getLastVital(registerId, registrationType));
-        prepareData(registerId, registrationType, uiModel);
+        uiModel.addAttribute("lastVital", registerService.getLastVital(registerId));
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
 
         return REGISTER_VITAL_PAGE;
     }
@@ -323,11 +323,11 @@ public class RegisterController {
     //Visit note
     @RequestMapping(value = "/visits/{registerId}", method = RequestMethod.GET)
     public String visitNotes(@PathVariable Long registerId,
-                             @RequestParam RegistrationType registrationType,
                              Model uiModel) {
 
-        uiModel.addAttribute("visits", registerService.getVisits(registerId, registrationType));
-        prepareData(registerId, registrationType, uiModel);
+        uiModel.addAttribute("visits", registerService.getVisits(registerId));
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
 
         return REGISTER_VISIT_NOTE_PAGE;
     }
@@ -335,9 +335,9 @@ public class RegisterController {
     //outcome
     @RequestMapping(value = "/outcome/{registerId}", method = RequestMethod.GET)
     public String outcome(@PathVariable Long registerId,
-                          @RequestParam RegistrationType registrationType,
                           Model uiModel) {
-        prepareData(registerId, registrationType, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
 
         return REGISTER_OUTCOME_PAGE;
     }
@@ -346,7 +346,9 @@ public class RegisterController {
     public String editOutcome(@PathVariable Long registerId,
                               @RequestParam RegistrationType registrationType,
                               Model uiModel) {
-        prepareData(registerId, registrationType, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
+
         uiModel.addAttribute("edit", true);
         uiModel.addAttribute("registerId", registerId);
 
@@ -487,15 +489,15 @@ public class RegisterController {
         return REGISTER_PICTURE_PAGE;
     }
 
-    private void prepareData(@PathVariable Long registerId, RegistrationType registrationType, Model uiModel) {
-        uiModel.addAttribute("register", registerService.findRegister(registerId, registrationType));
-        uiModel.addAttribute("registrationType", registrationType);
-
-        Patient patient = registerService.findRegisterEither(registerId, registrationType)
-                .fold(Register::getPatient, OutdoorRegister::getPatient);
-
-        uiModel.addAttribute("patient", patient);
-    }
+//    private void prepareData(@PathVariable Long registerId, RegistrationType registrationType, Model uiModel) {
+//        uiModel.addAttribute("register", registerService.findRegister(registerId, registrationType));
+//        uiModel.addAttribute("registrationType", registrationType);
+//
+//        Patient patient = registerService.findRegisterEither(registerId, registrationType)
+//                .fold(Register::getPatient, OutdoorRegister::getPatient);
+//
+//        uiModel.addAttribute("patient", patient);
+//    }
 
     private void prepareData(Register register,  Model uiModel) {
         uiModel.addAttribute("register", register);

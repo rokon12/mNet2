@@ -24,12 +24,7 @@
         <div class="row clearfix">
 
             <div class="col-lg-3 col-md-4">
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'INDOOR'}">
-                    <div layout:include="layout/common-fragment :: ipd-register"></div>
-                </div>
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'OUTDOOR'}">
-                    <div layout:include="layout/common-fragment :: opd-register"></div>
-                </div>
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -97,12 +92,12 @@
                     <div class="panel-footer clearfix">
 
                         <a class="btn btn-sm btn-info pull-left"
-                           th:href="@{/vital/index/__${register.id}__?registrationType=} +${registrationType}"><span
+                           th:href="@{/vital/index/__${register.id}__}"><span
                                 class="glyphicon glyphicon-th-list"></span>View all</a>
 
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
                             <a class="btn btn-sm btn-info pull-right"
-                               th:href="@{/vital/create/__${register.id}__?registrationType=} +${registrationType}"><span
+                               th:href="@{/vital/create/__${register.id}__}"><span
                                     class="glyphicon glyphicon-plus"></span> Add New</a>
                         </div>
                     </div>
