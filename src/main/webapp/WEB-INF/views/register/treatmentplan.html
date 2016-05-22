@@ -22,12 +22,7 @@
 
         <div class="row clearfix">
             <div class="col-lg-3 col-md-4">
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'INDOOR'}">
-                    <div layout:include="layout/common-fragment :: ipd-register"></div>
-                </div>
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'OUTDOOR'}">
-                    <div layout:include="layout/common-fragment :: opd-register"></div>
-                </div>
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -110,12 +105,12 @@
                                                    th:checked="${register.treatmentPlan.repairReconstructionPart}"/>
                                         </td>
                                     </tr>
-
-                                    <tr>
-                                        <td>Comments</td>
-                                        <td th:text="${register.treatmentPlan.comment}"></td>
-                                    </tr>
                                 </div>
+
+                                <tr>
+                                    <td>Comments</td>
+                                    <td th:text="${register.treatmentPlan.comment}"></td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -123,13 +118,13 @@
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
                             <div th:if="${register.treatmentPlan == null}">
                                 <a class="btn btn-sm btn-info pull-right"
-                                   th:href="@{/treatmentplan/create/__${register.id}__?registrationType=}+ ${registrationType}"><span
+                                   th:href="@{/treatmentplan/create/__${register.id}__}"><span
                                         class="glyphicon glyphicon-plus"></span> Add New</a>
                             </div>
 
                             <div th:unless="${register.treatmentPlan == null}">
                                 <a href="#" class="btn btn-sm btn-info pull-right"
-                                   th:href="@{/treatmentplan/edit/__${register.treatmentPlan.id}__?registrationType=} +${registrationType}"> <span
+                                   th:href="@{/treatmentplan/edit/__${register.treatmentPlan.id}__}"> <span
                                         class="glyphicon glyphicon-edit"></span> Edit </a>
                             </div>
                         </div>

@@ -277,11 +277,10 @@ public class RegisterController {
 
     @RequestMapping(value = "/treatmentplan/{registerId}", method = RequestMethod.GET)
     public String treatmentPlan(@PathVariable Long registerId,
-                                @RequestParam RegistrationType registrationType,
                                 Model uiModel) {
-
-        uiModel.addAttribute("treatmentPlan", registerService.findTreatmentPlan(registerId, registrationType));
-        prepareData(registerId, registrationType, uiModel);
+        Register register = registerService.findOne(registerId);
+        uiModel.addAttribute("treatmentPlan", register);
+        prepareData(register, uiModel);
 
         return REGISTER_TREATMENT_PLAN_PAGE;
     }
@@ -290,7 +289,8 @@ public class RegisterController {
 
     @RequestMapping(value = "/examination/{registerId}", method = RequestMethod.GET)
     public String examination(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId,  uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register,  uiModel);
 
         return REGISTER_EXAMINATION_PAGE;
     }
@@ -300,8 +300,9 @@ public class RegisterController {
     public String chiefcomplaints(@PathVariable Long registerId,
                                   Model uiModel) {
 
-        uiModel.addAttribute("chiefcomplaints", registerService.findOne(registerId));
-        prepareData(registerId, uiModel);
+        Register register = registerService.findOne(registerId);
+        uiModel.addAttribute("chiefcomplaints", register);
+        prepareData(register, uiModel);
 
         return REGISTER_CHIEF_COMPLAINTS_PAGE;
     }
@@ -432,7 +433,8 @@ public class RegisterController {
 
     @RequestMapping(value = "/medicalhistory/{registerId}", method = RequestMethod.GET)
     public String pastMedicalHistory(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
 
         return REGISTER_MEDICAL_HISTORY_PAGE;
     }
@@ -489,8 +491,7 @@ public class RegisterController {
         uiModel.addAttribute("patient", patient);
     }
 
-    private void prepareData(Long registerId,  Model uiModel) {
-        Register register = registerService.findOne(registerId);
+    private void prepareData( Register register,  Model uiModel) {
         uiModel.addAttribute("register", register);
         uiModel.addAttribute("registrationType", register.getRegistrationType());
         uiModel.addAttribute("patient", register.getPatient());

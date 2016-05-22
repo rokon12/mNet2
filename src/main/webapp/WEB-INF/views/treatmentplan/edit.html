@@ -14,11 +14,11 @@
             <div class="col-lg-12">
                 <h2 class="page-header">Edit Plan Rx
                     (
-                    <span th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).OUTDOOR}">
-                        Outdoor Patient
+                    <span th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).EMERGENCY}">
+                       Emergency Outdoor Patient
                     </span>
-                    <span th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).INDOOR}">
-                        Indoor Patient
+                    <span th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).GENERAL}">
+                       General Indoor Patient
                     </span>
                     )</h2>
             </div>
@@ -27,18 +27,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Edit Treatment Plan</div>
                 <form class="form-horizontal" method='POST' th:object="${treatmentPlan}"
-                      th:action="@{/treatmentplan/edit?registrationType=}+ ${registrationType}">
+                      th:action="@{/treatmentplan/edit}">
                     <div class="panel-body">
 
                         <fieldset>
                             <input type="hidden" th:field="*{id}"/>
-
-                            <span th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).OUTDOOR}">
-                                <input type="hidden" th:field="*{outdoorRegister.id}"/>
-                            </span>
-                            <span th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).INDOOR}">
-                                <input type="hidden" th:field="*{register.id}"/>
-                            </span>
+                            <input type="hidden" th:field="*{register.id}"/>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" th:text="#{label.treatment.plan.plan}">
@@ -206,18 +200,17 @@
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Comments </label>
 
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"> Comments </label>
-
-                                    <div class="col-sm-3">
+                                <div class="col-sm-3">
                                         <textarea type="text" class="form-control" rows="3"
                                                   th:field="*{comment}"></textarea>
 
-                                        <p class="text-danger" th:if="${#fields.hasErrors('comment')}">
-                                            <span th:errors="*{comment}">Required</span>
-                                        </p>
-                                    </div>
+                                    <p class="text-danger" th:if="${#fields.hasErrors('comment')}">
+                                        <span th:errors="*{comment}">Required</span>
+                                    </p>
                                 </div>
                             </div>
                         </fieldset>
@@ -225,16 +218,8 @@
                     </div>
 
                     <div class="panel-footer clearfix">
-
-                        <a th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).INDOOR}"
-                           class="btn btn-danger"
-                           th:href="@{/treatmentplan/back/__${treatmentPlan.register.id}__?registrationType=}+${registrationType}">
-                            <i class="fa fa-arrow-left"></i> <span th:text="#{label.back}">Back</span>
-                        </a>
-
-                        <a th:if="${registrationType == T(org.jugbd.mnet.domain.enums.RegistrationType).OUTDOOR}"
-                           class="btn btn-danger"
-                           th:href="@{/treatmentplan/back/__${treatmentPlan.outdoorRegister.id}__?registrationType=}+${registrationType}">
+                        <a class="btn btn-danger"
+                           th:href="@{/treatmentplan/back/__${treatmentPlan.register.id}__}">
                             <i class="fa fa-arrow-left"></i> <span th:text="#{label.back}">Back</span>
                         </a>
 
