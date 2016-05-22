@@ -454,7 +454,9 @@ public class RegisterController {
 
     @RequestMapping(value = "/investigation/{registerId}", method = RequestMethod.GET)
     public String investigation(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId, RegistrationType.INDOOR, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register,  uiModel);
+
         Set<Investigation> investigations = registerService.findInvestigations(registerId);
 
         uiModel.addAttribute("investigations", investigations);
@@ -465,7 +467,8 @@ public class RegisterController {
     //complicationmanagement
     @RequestMapping(value = "/complicationmanagement/{registerId}", method = RequestMethod.GET)
     public String complicationmanagement(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId, RegistrationType.INDOOR, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register,  uiModel);
 
         return REGISTER_COMPLICATION_MANAGEMENT_PAGE;
     }
@@ -479,7 +482,8 @@ public class RegisterController {
 
     @RequestMapping(value = "/picture/{registerId}", method = RequestMethod.GET)
     public String pictureInformation(@PathVariable Long registerId, Model uiModel) {
-        prepareData(registerId, RegistrationType.INDOOR, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register,  uiModel);
 
         return REGISTER_PICTURE_PAGE;
     }
@@ -494,7 +498,7 @@ public class RegisterController {
         uiModel.addAttribute("patient", patient);
     }
 
-    private void prepareData( Register register,  Model uiModel) {
+    private void prepareData(Register register,  Model uiModel) {
         uiModel.addAttribute("register", register);
         uiModel.addAttribute("registrationType", register.getRegistrationType());
         uiModel.addAttribute("patient", register.getPatient());
