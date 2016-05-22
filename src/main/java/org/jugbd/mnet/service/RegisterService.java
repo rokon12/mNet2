@@ -54,7 +54,7 @@ public interface RegisterService {
 
     void saveOutcome(String outcome, Long registerId, RegistrationType registrationType);
 
-    void saveRemarks(String remark, Long registerId, RegistrationType registrationType);
+    void saveRemarks(String remark, Long registerId);
 
     Register convertOutdoorRegisterToIndoorRegister(Long registerId, Register register);
 

@@ -286,12 +286,12 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public void saveRemarks(String remark, Long registerId, RegistrationType registrationType) {
-        if (registrationType == RegistrationType.OUTDOOR) {
-            OutdoorRegister outdoorRegister = outdoorRegisterRepository.findOne(registerId);
-            outdoorRegister.setRemarks(remark);
-            outdoorRegisterRepository.save(outdoorRegister);
-        }
+    public void saveRemarks(String remark, Long registerId) {
+            //OutdoorRegister outdoorRegister = outdoorRegisterRepository.findOne(registerId);
+            //outdoorRegister.setRemarks(remark);
+        Register register = registerDao.findOne(registerId);
+        register.setRemarks(remark);
+        registerDao.save(register);
     }
 
     @Override

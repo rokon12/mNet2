@@ -123,6 +123,15 @@ public class Register extends PersistentObject {
     @Embedded
     private PatientContact patientContact;
 
+    @Column(columnDefinition = "LONGTEXT" )
+    private String outcome;
+
+    @Column(columnDefinition = "LONGTEXT" )
+    private String remarks;
+
+    @Lob
+    private String followUpAdvice;
+
     @Column(name = "outdoor_register_blnk", nullable = true)
     private Long outdoorRegister; //back reference
 
@@ -341,6 +350,33 @@ public class Register extends PersistentObject {
 
     public Register setRegistrationType(RegistrationType registrationType) {
         this.registrationType = registrationType;
+        return this;
+    }
+
+    public String getOutcome() {
+        return outcome;
+    }
+
+    public Register setOutcome(String outcome) {
+        this.outcome = outcome;
+        return this;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public Register setRemarks(String remarks) {
+        this.remarks = remarks;
+        return this;
+    }
+
+    public String getFollowUpAdvice() {
+        return followUpAdvice;
+    }
+
+    public Register setFollowUpAdvice(String followUpAdvice) {
+        this.followUpAdvice = followUpAdvice;
         return this;
     }
 

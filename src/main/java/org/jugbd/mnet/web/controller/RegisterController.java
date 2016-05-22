@@ -367,18 +367,18 @@ public class RegisterController {
     //Remarks
     @RequestMapping(value = "/remarks/{registerId}", method = RequestMethod.GET)
     public String remarks(@PathVariable Long registerId,
-                          @RequestParam RegistrationType registrationType,
                           Model uiModel) {
-        prepareData(registerId, registrationType, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
 
         return REGISTER_REMARKS_PAGE;
     }
 
     @RequestMapping(value = "/edit-remarks/{registerId}", method = RequestMethod.GET)
     public String editRemarks(@PathVariable Long registerId,
-                              @RequestParam RegistrationType registrationType,
                               Model uiModel) {
-        prepareData(registerId, registrationType, uiModel);
+        Register register = registerService.findOne(registerId);
+        prepareData(register,  uiModel);
         uiModel.addAttribute("edit", true);
         uiModel.addAttribute("registerId", registerId);
 
@@ -387,13 +387,12 @@ public class RegisterController {
 
     @RequestMapping(value = "/edit-remarks/{registerId}", method = RequestMethod.POST)
     public String saveRemarks(@PathVariable Long registerId,
-                              @RequestParam RegistrationType registrationType,
                               String remarks,
                               Model uiModel) {
 
-        registerService.saveRemarks(remarks, registerId, registrationType);
+        registerService.saveRemarks(remarks, registerId);
 
-        return REDIRECT_REGISTER_REMARKS_PAGE + registerId + "?registrationType=" + registrationType;
+        return REDIRECT_REGISTER_REMARKS_PAGE + registerId ;
     }
 
     // Convert OPD to IPD
