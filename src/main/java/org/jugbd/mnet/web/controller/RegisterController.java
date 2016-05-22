@@ -263,12 +263,12 @@ public class RegisterController {
     //Diagnosis
 
     @RequestMapping(value = "/diagnosis/{registerId}", method = RequestMethod.GET)
-    public String diagnosis(@PathVariable Long registerId,
-                            @RequestParam RegistrationType registrationType,
+    public String diagnosis(@PathVariable Long registerId, Diagnosis diagnosis,
                             Model uiModel) {
 
-        uiModel.addAttribute("diagnosis", registerService.findDiagnosis(registerId, registrationType));
-        prepareData(registerId, registrationType, uiModel);
+        Register register = registerService.findOne(registerId);
+        diagnosis.setRegister(register);
+        prepareData(register, uiModel);
 
         return REGISTER_DIAGNOSIS_PAGE;
     }
@@ -277,9 +277,10 @@ public class RegisterController {
 
     @RequestMapping(value = "/treatmentplan/{registerId}", method = RequestMethod.GET)
     public String treatmentPlan(@PathVariable Long registerId,
+                                TreatmentPlan treatmentPlan,
                                 Model uiModel) {
         Register register = registerService.findOne(registerId);
-        uiModel.addAttribute("treatmentPlan", register);
+        treatmentPlan.setRegister(register);
         prepareData(register, uiModel);
 
         return REGISTER_TREATMENT_PLAN_PAGE;

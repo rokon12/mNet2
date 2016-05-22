@@ -12,6 +12,4 @@ public interface DiagnosisService {
     Diagnosis save(Diagnosis diagnosis);
 
     Diagnosis findOne(Long id);
-
-    Diagnosis save(Diagnosis diagnosis, RegistrationType registrationType);
 }

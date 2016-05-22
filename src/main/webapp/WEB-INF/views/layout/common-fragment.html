@@ -152,6 +152,11 @@
                 <span class="pull-right" id="slide-submenu"> </span>
             </a>
 
+            <a class="list-group-item" th:classappend="${page == 'chiefcomplaints' ? 'active' : ''}"
+               th:href="@{/register/chiefcomplaints/__${register.id}__}">
+                <i class="fa fa-info fa-fw"></i>Chief Complaint<span class="fa arrow"></span>
+            </a>
+
             <a href="#" class="list-group-item" th:classappend="${page == 'medical-history' ? 'active' : ''}"
                th:href="@{/register/medicalhistory/__${register.id}__}">
                 <i class="fa fa-user-md fa-fw"></i> <span class="">Past Medical History </span><span class="fa arrow"></span>
@@ -161,11 +166,6 @@
             <a class="list-group-item" th:classappend="${page == 'examination' ? 'active' : ''}"
                th:href="@{/register/examination/__${register.id}__}">
                 <i class="fa fa-info fa-fw"></i>Examination<span class="fa arrow"></span>
-            </a>
-
-            <a class="list-group-item" th:classappend="${page == 'chiefcomplaints' ? 'active' : ''}"
-               th:href="@{/register/chiefcomplaints/__${register.id}__}">
-                <i class="fa fa-info fa-fw"></i>Chief Complaint<span class="fa arrow"></span>
             </a>
 
             <a class="list-group-item" th:classappend="${page == 'diagnosis' ? 'active' : ''}"

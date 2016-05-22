@@ -25,12 +25,7 @@
         <div class="row clearfix">
 
             <div class="col-lg-3 col-md-4">
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'INDOOR'}">
-                    <div layout:include="layout/common-fragment :: ipd-register"></div>
-                </div>
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'OUTDOOR'}">
-                    <div layout:include="layout/common-fragment :: opd-register"></div>
-                </div>
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -51,51 +46,15 @@
                                 </tr>
 
                                 <tr>
-                                    <td><strong>Burn</strong></td>
-                                            <span th:if="${register.diagnosis.burns}">
-                                                <td>
-                                                    <span th:text="${register.diagnosis.burns.percentage} ? ${register.diagnosis.burns.percentage} + '%' "></span>&nbsp;&nbsp;
-                                                    <span th:text="${register.diagnosis.burns.conditions} ? 'Condition - ' + ${register.diagnosis.burns.conditions.label}"></span>&nbsp;&nbsp;
-                                                    <span th:text="${register.diagnosis.burns.daysOld} ? ${register.diagnosis.burns.daysOld} + ' day(s) old' "></span>&nbsp;&nbsp;
-                                                </td>
-                                            </span>
-                                </tr>
-
-                                <tr>
-                                    <td><strong>Congenital Anomaly</strong></td>
-                                            <span th:if="${register.diagnosis.congenitalAnomaly}"> <td
-                                                    th:text="${register.diagnosis.congenitalAnomaly}"></td> </span>
-                                </tr>
-
-                                <tr>
-                                    <td><strong>Neoplastic</strong></td>
-                                            <span th:if="${register.diagnosis.neoplastic}"> <td
-                                                    th:text="${register.diagnosis.neoplastic}"></td> </span>
-                                </tr>
-
-                                <tr>
-                                    <td><strong>Post Infective</strong></td>
-                                            <span th:if="${register.diagnosis.postInfective}"> <td
-                                                    th:text="${register.diagnosis.postInfective}"></td> </span>
-                                </tr>
-
-                                <tr>
-                                    <td><strong>Traumatic</strong></td>
-                                            <span th:if="${register.diagnosis.traumatic}"> <td
-                                                    th:text="${register.diagnosis.traumatic}"></td> </span>
-                                </tr>
-
-                                <tr>
-                                    <td><strong>Aesthetic</strong></td>
-                                            <span th:if="${register.diagnosis.aesthetic}"> <td
-                                                    th:text="${register.diagnosis.aesthetic}"></td> </span></tr>
+                                    <td><strong>Diagnosis</strong></td>
+                                            <span th:if="${register.diagnosis.diagnosis}"> <td
+                                                    th:text="${register.diagnosis.diagnosis}"></td> </span></tr>
 
                                 <tr>
                                     <td><strong>Comment</strong></td>
                                             <span th:if="${register.diagnosis.comment}"><td
                                                     th:text="${register.diagnosis.comment}"></td> </span>
                                 </tr>
-
                             </table>
                         </div>
                     </div>
@@ -103,13 +62,13 @@
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
                             <div th:if="${register.diagnosis == null}">
                                 <a class="btn btn-sm btn-info pull-right"
-                                   th:href="@{/diagnosis/create/__${register.id}__?registrationType=}+ ${registrationType}"><span
+                                   th:href="@{/diagnosis/create/__${register.id}__}"><span
                                         class="glyphicon glyphicon-plus"></span> Add New</a>
                             </div>
 
                             <div th:unless="${register.diagnosis == null}">
                                 <a href="#" class="btn btn-sm btn-info pull-right"
-                                   th:href="@{/diagnosis/edit/__${register.diagnosis.id}__?registrationType=} +${registrationType}"> <span
+                                   th:href="@{/diagnosis/edit/__${register.diagnosis.id}__}"> <span
                                         class="glyphicon glyphicon-edit"></span> Edit </a>
                             </div>
                         </div>
