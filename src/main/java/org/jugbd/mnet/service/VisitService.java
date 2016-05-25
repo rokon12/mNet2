@@ -3,7 +3,6 @@ package org.jugbd.mnet.service;
 import org.jugbd.mnet.dao.VisitRepository;
 import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.domain.Visit;
-import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.domain.enums.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +33,11 @@ public class VisitService {
         return visitRepository.save(visit);
     }
 
-    public Long delete(Long id, RegistrationType registrationType) {
+    public Long delete(Long id) {
         Visit visit = visitRepository.findOne(id);
         visit.setStatus(Status.DELETED);
         Visit savedVital = visitRepository.save(visit);
 
-        return savedVital.getId();
+        return savedVital.getRegister().getId();
     }
 }

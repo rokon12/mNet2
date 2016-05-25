@@ -264,7 +264,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public List<Visit> getVisits(Long registerId) {
-        Register register = findOne(registerId);
+        Register register = registerDao.findOne(registerId);
 
         return register.getVisits().stream()
                 .filter(visit -> visit.getStatus() == Status.ACTIVE)
