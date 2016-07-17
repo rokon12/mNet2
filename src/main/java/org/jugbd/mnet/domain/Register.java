@@ -4,7 +4,7 @@ package org.jugbd.mnet.domain;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.domain.enums.Status;
-import org.jugbd.mnet.domain.enums.Ward;
+import org.jugbd.mnet.domain.enums.Unit;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,9 +39,8 @@ public class Register extends PersistentObject {
     private Date admissionDate;
 
     @NotNull
-    @Column(length = 10)
-    @Enumerated(EnumType.STRING)
-    private Ward ward;
+    @Column(length = 200)
+    private String ward;
 
     @NotNull(message = "Registration type is required")
     @Column(length = 20)
@@ -57,10 +56,10 @@ public class Register extends PersistentObject {
     @Column(length = 32)
     private String bedNumber;
 
-    @NotEmpty
-    @Size(max = 32)
+    @NotNull
     @Column(length = 32)
-    private String unit;
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
 
     @ManyToOne
     private Patient patient;
@@ -167,11 +166,11 @@ public class Register extends PersistentObject {
         this.admissionDate = admissionDate;
     }
 
-    public Ward getWard() {
+    public String getWard() {
         return ward;
     }
 
-    public void setWard(Ward ward) {
+    public void setWard(String ward) {
         this.ward = ward;
     }
 
@@ -191,11 +190,11 @@ public class Register extends PersistentObject {
         this.bedNumber = bedNumber;
     }
 
-    public String getUnit() {
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 

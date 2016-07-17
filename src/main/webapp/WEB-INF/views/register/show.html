@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td>Ward</td>
-                                <td th:text="${register.ward} ? ${register.ward.label}"></td>
+                                <td th:text="${register.ward} ? ${register.ward}"></td>
                                 <td th:if="${register.wardOther}" th:text="${register.wardOther}"></td>
                             </tr>
                             <tr>
@@ -85,7 +85,7 @@
                             </tr>
                             <tr>
                                 <td>Unit</td>
-                                <td th:text="${register.unit} ? ${register.unit}"></td>
+                                <td th:text="${register.unit} ? ${register.unit.label}"></td>
                             </tr>
                         </table>
                     </div>

@@ -135,14 +135,7 @@
                                 <label class="col-sm-2 control-label" th:text="#{label.ward}"> Ward </label>
 
                                 <div class="col-sm-3">
-                                    <select class="form-control" th:field="*{ward}">
-                                        <option value="" th:text="#{common.select.prompt}"></option>
-                                        <option th:each="ward : ${T(org.jugbd.mnet.domain.enums.Ward).values()}"
-                                                th:value="${ward}"
-                                                th:text="${ward.label}"
-                                                th:selected="${ward == register.ward}">
-                                        </option>
-                                    </select>
+                                    <input type="text" class="form-control input-sm" th:field="*{ward}"/>
 
                                     <p class="text-danger" th:if="${#fields.hasErrors('ward')}">
                                         <span th:errors="*{ward}">Required</span>
@@ -183,7 +176,14 @@
                                     Unit </label>
 
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control input-sm" th:field="*{unit}"/>
+                                    <select class="form-control" th:field="*{unit}">
+                                        <option value="" th:text="#{common.select.prompt}"></option>
+                                        <option th:each="unit : ${T(org.jugbd.mnet.domain.enums.Unit).values()}"
+                                                th:value="${unit}"
+                                                th:text="${unit.label}"
+                                                th:selected="${unit == register.unit}">
+                                        </option>
+                                    </select>
 
                                     <p class="text-danger" th:if="${#fields.hasErrors('unit')}">
                                         <span th:errors="*{unit}">Required</span>
@@ -267,7 +267,7 @@
             } else {
                 jQuery("#" + commentId).hide();
             }
-        }
+        }oj 
 
     </script>
 </div>
