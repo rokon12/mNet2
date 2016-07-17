@@ -2,7 +2,6 @@ package org.jugbd.mnet.web.controller;
 
 import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.domain.Visit;
-import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.service.RegisterService;
 import org.jugbd.mnet.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -61,10 +59,9 @@ public class VisitController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String delete(@PathVariable Long id,
-                         @RequestParam(required = true) RegistrationType registrationType) {
-        Long registrationId = visitService.delete(id, registrationType);
+    public String delete(@PathVariable Long id) {
+        Long registrationId = visitService.delete(id);
 
-        return REDIRECT_REGISTER_VISITS_PAGE + registrationId + "?registrationType=" + registrationType.name().toLowerCase();
+        return REDIRECT_REGISTER_VISITS_PAGE + registrationId;
     }
 }
