@@ -88,113 +88,16 @@
                             </div>
 
                             <div id="treatmentPlanDiv">
-
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label" th:text="#{label.treatment.plan.stsgOrFtsg}">
-                                        stsgOrFtsg
-                                    </label>
+                                    <label class="col-sm-2 control-label"> Type of Operative Treatment </label>
 
                                     <div class="col-sm-3">
-                                        <input type="checkbox" class="form-control checkbox input-sm"
-                                               th:field="*{stsgOrFtsg}"/>
+                                        <input type="text" class="form-control"
+                                               th:field="*{typeOfOperativeTreatment}"/>
 
-                                        <p class="text-danger" th:if="${#fields.hasErrors('stsgOrFtsg')}">
-                                            <span th:errors="*{stsgOrFtsg}">Required</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"
-                                           th:text="#{label.treatment.plan.flapPedicled}">
-                                        flapPedicled
-                                    </label>
-
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" class="form-control checkbox input-sm"
-                                               th:field="*{flapPedicled}"/>
-
-                                        <p class="text-danger" th:if="${#fields.hasErrors('flapPedicled')}">
-                                            <span th:errors="*{flapPedicled}">Required</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" th:text="#{label.treatment.plan.freeFlap}">
-                                        freeFlap
-                                    </label>
-
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" class="form-control checkbox input-sm"
-                                               th:field="*{freeFlap}"/>
-
-                                        <p class="text-danger" th:if="${#fields.hasErrors('freeFlap')}">
-                                            <span th:errors="*{freeFlap}">Required</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"
-                                           th:text="#{label.treatment.plan.tissueExpansion}">
-                                        tissueExpansion
-                                    </label>
-
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" class="form-control checkbox input-sm"
-                                               th:field="*{tissueExpansion}"/>
-
-                                        <p class="text-danger" th:if="${#fields.hasErrors('tissueExpansion')}">
-                                            <span th:errors="*{tissueExpansion}">Required</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"
-                                           th:text="#{label.treatment.plan.fasciotomyOrEscharotomy}">
-                                        fasciotomyOrEscharotomy
-                                    </label>
-
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" class="form-control checkbox input-sm"
-                                               th:field="*{fasciotomyOrEscharotomy}"/>
-
-                                        <p class="text-danger" th:if="${#fields.hasErrors('fasciotomyOrEscharotomy')}">
-                                            <span th:errors="*{fasciotomyOrEscharotomy}">Required</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"
-                                           th:text="#{label.treatment.plan.implantInsertion}">
-                                        implantInsertion
-                                    </label>
-
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" class="form-control checkbox input-sm"
-                                               th:field="*{implantInsertion}"/>
-
-                                        <p class="text-danger" th:if="${#fields.hasErrors('implantInsertion')}">
-                                            <span th:errors="*{implantInsertion}">Required</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"
-                                           th:text="#{label.treatment.plan.repairReconstructionPart}">
-                                        repairReconstructionPart
-                                    </label>
-
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" class="form-control checkbox input-sm"
-                                               th:field="*{repairReconstructionPart}"/>
-
-                                        <p class="text-danger" th:if="${#fields.hasErrors('repairReconstructionPart')}">
-                                            <span th:errors="*{repairReconstructionPart}">Required</span>
+                                        <p class="text-danger"
+                                           th:if="${#fields.hasErrors('typeOfConservativeTreatment')}">
+                                            <span th:errors="*{typeOfOperativeTreatment}">Required</span>
                                         </p>
                                     </div>
                                 </div>

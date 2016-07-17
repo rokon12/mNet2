@@ -39,13 +39,7 @@ public class TreatmentPlanServiceImpl implements TreatmentPlanService {
             treatmentPlanFromDb.setTreatmentPlanType(treatmentPlan.getTreatmentPlanType());
             treatmentPlanFromDb.setOtherTreatmentPlanType(treatmentPlan.getOtherTreatmentPlanType());
             treatmentPlanFromDb.setTypeOfConservativeTreatment(treatmentPlan.getTypeOfConservativeTreatment());
-            treatmentPlanFromDb.setStsgOrFtsg(treatmentPlan.getStsgOrFtsg());
-            treatmentPlanFromDb.setFlapPedicled(treatmentPlan.getFreeFlap());
-            treatmentPlanFromDb.setFreeFlap(treatmentPlan.getFreeFlap());
-            treatmentPlanFromDb.setTissueExpansion(treatmentPlan.getTissueExpansion());
-            treatmentPlanFromDb.setFasciotomyOrEscharotomy(treatmentPlan.getFasciotomyOrEscharotomy());
-            treatmentPlanFromDb.setImplantInsertion(treatmentPlan.getImplantInsertion());
-            treatmentPlanFromDb.setRepairReconstructionPart(treatmentPlan.getRepairReconstructionPart());
+            treatmentPlanFromDb.setTypeOfOperativeTreatment(treatmentPlan.getTypeOfOperativeTreatment());
             treatmentPlanFromDb.setComment(treatmentPlan.getComment());
 
             return treatmentPlanDao.save(treatmentPlanFromDb);
