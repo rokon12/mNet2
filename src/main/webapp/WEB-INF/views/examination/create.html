@@ -152,6 +152,75 @@
                         </fieldset>
 
                         <fieldset class="border">
+                            <legend class="border">Vitals</legend>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    Temperature(&deg;F)
+                                </label>
+
+                                <div class="col-sm-3">
+                                    <input type="number" step="any" class="form-control input-sm"
+                                           th:field="*{temperature}"/>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('temperature')}">
+                                        <span th:errors="*{temperature}">Required</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    Pulse/min
+                                </label>
+
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control input-sm" th:field="*{pulse}"/>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('pulse')}">
+                                        <span th:errors="*{pulse}">Required</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    Respiratory rate/min
+                                </label>
+
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control input-sm" th:field="*{respiratoryRate}"/>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('respiratoryRate')}">
+                                        <span th:errors="*{respiratoryRate}">Required</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    Blood Pressure
+                                </label>
+
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control input-sm" th:field="*{systolic}"
+                                           placeholder="Systolic"/>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('systolic')}">
+                                        <span th:errors="*{systolic}">Required</span>
+                                    </p>
+                                    <br/>
+                                    <input type="number" class="form-control input-sm" th:field="*{diastolic}"
+                                           placeholder="Diastolic"/>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('systolic')}">
+                                        <span th:errors="*{diastolic}">Required</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="border">
                             <legend class="border">Local Examination</legend>
 
                             <div class="form-group">
@@ -268,75 +337,6 @@
                                 </div>
                             </div>
 
-                        </fieldset>
-
-                        <fieldset class="border">
-                            <legend class="border">Vitals</legend>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    Temperature(&deg;F)
-                                </label>
-
-                                <div class="col-sm-3">
-                                    <input type="number" step="any" class="form-control input-sm"
-                                           th:field="*{temperature}"/>
-
-                                    <p class="text-danger" th:if="${#fields.hasErrors('temperature')}">
-                                        <span th:errors="*{temperature}">Required</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    Pulse/min
-                                </label>
-
-                                <div class="col-sm-3">
-                                    <input type="number" class="form-control input-sm" th:field="*{pulse}"/>
-
-                                    <p class="text-danger" th:if="${#fields.hasErrors('pulse')}">
-                                        <span th:errors="*{pulse}">Required</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    Respiratory rate/min
-                                </label>
-
-                                <div class="col-sm-3">
-                                    <input type="number" class="form-control input-sm" th:field="*{respiratoryRate}"/>
-
-                                    <p class="text-danger" th:if="${#fields.hasErrors('respiratoryRate')}">
-                                        <span th:errors="*{respiratoryRate}">Required</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    Blood Pressure
-                                </label>
-
-                                <div class="col-sm-3">
-                                    <input type="number" class="form-control input-sm" th:field="*{systolic}"
-                                           placeholder="Systolic"/>
-
-                                    <p class="text-danger" th:if="${#fields.hasErrors('systolic')}">
-                                        <span th:errors="*{systolic}">Required</span>
-                                    </p>
-                                    <br/>
-                                    <input type="number" class="form-control input-sm" th:field="*{diastolic}"
-                                           placeholder="Diastolic"/>
-
-                                    <p class="text-danger" th:if="${#fields.hasErrors('systolic')}">
-                                        <span th:errors="*{diastolic}">Required</span>
-                                    </p>
-                                </div>
-                            </div>
                         </fieldset>
 
                     </div>

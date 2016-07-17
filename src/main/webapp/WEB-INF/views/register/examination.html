@@ -38,128 +38,148 @@
                         </div>
 
                         <div th:unless="${register.examination == null}">
-                            <table class="table table-condensed">
 
-                                <tr>
-                                    <td><strong>Anaemia</strong></td>
-                                    <td>
-                                        <span th:text="${register.examination.anaemia} ? ${register.examination.anaemia.label}"></span>
-                                    </td>
-                                </tr>
+                            <fieldset class="border">
+                                <legend class="border">General Examination</legend>
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td><strong>Anaemia</strong></td>
+                                        <td>
+                                            <span th:text="${register.examination.anaemia} ? ${register.examination.anaemia.label}"></span>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td><strong>Jaundice</strong></td>
-                                    <td>
-                                        <span th:text="${register.examination.jaundice} ? ${register.examination.jaundice.label}"></span>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>Jaundice</strong></td>
+                                        <td>
+                                            <span th:text="${register.examination.jaundice} ? ${register.examination.jaundice.label}"></span>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td><strong>Accessible Lymph Node</strong></td>
-                                    <td>
-                                        <span th:text="${register.examination.accessibleLymphNode} ?  ${register.examination.accessibleLymphNode.label}"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Dehydration</strong></td>
-                                    <td>
-                                        <span th:text="${register.examination.dehydration} ?  ${register.examination.dehydration.label}"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Oedema</strong></td>
-                                    <td>
-                                        <span th:text="${register.examination.oedema} ?  ${register.examination.oedema.label}"></span>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>Accessible Lymph Node</strong></td>
+                                        <td>
+                                            <span th:text="${register.examination.accessibleLymphNode} ?  ${register.examination.accessibleLymphNode.label}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dehydration</strong></td>
+                                        <td>
+                                            <span th:text="${register.examination.dehydration} ?  ${register.examination.dehydration.label}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Oedema</strong></td>
+                                        <td>
+                                            <span th:text="${register.examination.oedema} ?  ${register.examination.oedema.label}"></span>
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td><strong>General Examination Comments</strong></td>
-                                    <td th:text="${register.examination.gExaminationComments} ? ${register.examination.gExaminationComments}"></td>
-                                </tr>
-                                <hr/>
-                                <tr>
-                                    <td><strong>Local Examination</strong></td>
-                                    <td th:text="${register.examination.listeningExamination} ? ${register.examination.listeningExamination}"></td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>General Examination Comments</strong></td>
+                                        <td th:text="${register.examination.gExaminationComments} ? ${register.examination.gExaminationComments}"></td>
+                                    </tr>
+                                </table>
+                            </fieldset>
 
-                                <tr>
-                                    <td><strong>Respiratory System</strong></td>
-                                    <td th:if="${!#strings.isEmpty(register.examination.respiratorySystem)}"
-                                        th:text="${register.examination.respiratorySystem}"></td>
-                                    <td th:if="${#strings.isEmpty(register.examination.respiratorySystem)}"
-                                        th:text="'No Abnormality Detected'"></td>
-                                </tr>
+                            <fieldset class="border">
+                                <legend class="border">Vitals</legend>
+                                <table class="table table-condensed">
 
-                                <tr>
-                                    <td><strong>GI System</strong></td>
-                                    <td th:if="${!#strings.isEmpty(register.examination.gISystem)}"
-                                        th:text="${register.examination.gISystem}"></td>
-                                    <td th:if="${#strings.isEmpty(register.examination.gISystem)}"
-                                        th:text="'No Abnormality Detected'"></td>
-                                </tr>
+                                    <tr class="dl-horizontal">
+                                        <td><strong>Pulse</strong></td>
+                                        <td th:text="${register.examination.pulse} ? ${register.examination.pulse}"></td>
+                                    </tr>
 
-                                <tr>
-                                    <td><strong>Cardiovascular System</strong></td>
-                                    <td th:if="${!#strings.isEmpty(register.examination.cardiovascularSystem)}"
-                                        th:text="${register.examination.cardiovascularSystem}"></td>
-                                    <td th:if="${#strings.isEmpty(register.examination.cardiovascularSystem)}"
-                                        th:text="'No Abnormality Detected'"></td>
-                                </tr>
+                                    <tr class="dl-horizontal">
+                                        <td><strong>Temperature (&deg;F)</strong></td>
+                                        <td th:text="${register.examination.temperature} ? ${register.examination.temperature}"></td>
+                                    </tr>
 
-                                <tr>
-                                    <td><strong>Urogenital System</strong></td>
-                                    <td th:if="${!#strings.isEmpty(register.examination.urogenitalSystem)}"
-                                        th:text="${register.examination.urogenitalSystem}"></td>
-                                    <td th:if="${#strings.isEmpty(register.examination.urogenitalSystem)}"
-                                        th:text="'No Abnormality Detected'"></td>
-                                </tr>
+                                    <tr class="dl-horizontal">
+                                        <td><strong>Respiratory Rate</strong></td>
+                                        <td th:text="${register.examination.respiratoryRate} ? ${register.examination.respiratoryRate + '/min'}"></td>
+                                    </tr>
 
-                                <tr>
-                                    <td><strong>Nervous System</strong></td>
-                                    <td th:if="${!#strings.isEmpty(register.examination.nervousSystem)}"
-                                        th:text="${register.examination.nervousSystem}"></td>
-                                    <td th:if="${#strings.isEmpty(register.examination.nervousSystem)}"
-                                        th:text="'No Abnormality Detected'"></td>
-                                </tr>
+                                    <tr class="dl-horizontal">
+                                        <td><strong>Blood Pressure</strong></td>
+                                        <td>
+                                            <span th:text="${register.examination.systolic} ? ${register.examination.systolic }"></span>&MediumSpace;/
+                                            <span th:text="${register.examination.diastolic} ? ${register.examination.diastolic }"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
 
-                                <tr>
-                                    <td><strong>DRE</strong></td>
-                                    <td th:if="${!#strings.isEmpty(register.examination.dre)}"
-                                        th:text="${register.examination.dre}"></td>
-                                    <td th:if="${#strings.isEmpty(register.examination.dre)}"
-                                        th:text="'No Abnormality Detected'"></td>
-                                </tr>
 
-                                <tr>
-                                    <td><strong>Comments</strong></td>
-                                    <td th:if="${!#strings.isEmpty(register.examination.comments)}"
-                                        th:text="${register.examination.comments}"></td>
-                                </tr>
+                            <fieldset class="border">
+                                <legend class="border">Local Examination</legend>
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td><strong>Local Examination</strong></td>
+                                        <td th:text="${register.examination.listeningExamination} ? ${register.examination.listeningExamination}"></td>
+                                    </tr>
+                                </table>
+                            </fieldset>
 
-                                <tr class="dl-horizontal">
-                                    <td><strong>Pulse</strong></td>
-                                    <td th:text="${register.examination.pulse} ? ${register.examination.pulse}"></td>
-                                </tr>
+                            <fieldset class="border">
+                                <legend class="border">Systemic Examination</legend>
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td><strong>Respiratory System</strong></td>
+                                        <td th:if="${!#strings.isEmpty(register.examination.respiratorySystem)}"
+                                            th:text="${register.examination.respiratorySystem}"></td>
+                                        <td th:if="${#strings.isEmpty(register.examination.respiratorySystem)}"
+                                            th:text="'No Abnormality Detected'"></td>
+                                    </tr>
 
-                                <tr class="dl-horizontal">
-                                    <td><strong>Temperature (&deg;F)</strong></td>
-                                    <td th:text="${register.examination.temperature} ? ${register.examination.temperature}"></td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>GI System</strong></td>
+                                        <td th:if="${!#strings.isEmpty(register.examination.gISystem)}"
+                                            th:text="${register.examination.gISystem}"></td>
+                                        <td th:if="${#strings.isEmpty(register.examination.gISystem)}"
+                                            th:text="'No Abnormality Detected'"></td>
+                                    </tr>
 
-                                <tr class="dl-horizontal">
-                                    <td><strong>Respiratory Rate</strong></td>
-                                    <td th:text="${register.examination.respiratoryRate} ? ${register.examination.respiratoryRate + '/min'}"></td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>Cardiovascular System</strong></td>
+                                        <td th:if="${!#strings.isEmpty(register.examination.cardiovascularSystem)}"
+                                            th:text="${register.examination.cardiovascularSystem}"></td>
+                                        <td th:if="${#strings.isEmpty(register.examination.cardiovascularSystem)}"
+                                            th:text="'No Abnormality Detected'"></td>
+                                    </tr>
 
-                                <tr class="dl-horizontal">
-                                    <td><strong>Blood Pressure</strong></td>
-                                    <td>
-                                        <span th:text="${register.examination.systolic} ? ${register.examination.systolic }"></span>&MediumSpace;/
-                                        <span th:text="${register.examination.diastolic} ? ${register.examination.diastolic }"></span>
-                                    </td>
-                                </tr>
-                            </table>
+                                    <tr>
+                                        <td><strong>Urogenital System</strong></td>
+                                        <td th:if="${!#strings.isEmpty(register.examination.urogenitalSystem)}"
+                                            th:text="${register.examination.urogenitalSystem}"></td>
+                                        <td th:if="${#strings.isEmpty(register.examination.urogenitalSystem)}"
+                                            th:text="'No Abnormality Detected'"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Nervous System</strong></td>
+                                        <td th:if="${!#strings.isEmpty(register.examination.nervousSystem)}"
+                                            th:text="${register.examination.nervousSystem}"></td>
+                                        <td th:if="${#strings.isEmpty(register.examination.nervousSystem)}"
+                                            th:text="'No Abnormality Detected'"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>DRE</strong></td>
+                                        <td th:if="${!#strings.isEmpty(register.examination.dre)}"
+                                            th:text="${register.examination.dre}"></td>
+                                        <td th:if="${#strings.isEmpty(register.examination.dre)}"
+                                            th:text="'No Abnormality Detected'"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Comments</strong></td>
+                                        <td th:if="${!#strings.isEmpty(register.examination.comments)}"
+                                            th:text="${register.examination.comments}"></td>
+                                    </tr>
+                                </table>
+                            </fieldset>
                         </div>
                     </div>
 
