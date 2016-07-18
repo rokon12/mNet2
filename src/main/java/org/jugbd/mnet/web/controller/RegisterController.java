@@ -21,9 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Bazlur Rahman Rokon
@@ -447,8 +446,12 @@ public class RegisterController {
         Register register = registerService.findOne(registerId);
         prepareData(register, uiModel);
 
-        Set<OperationalDetail> detailList = registerService.findOperationalDetailList(registerId);
-        uiModel.addAttribute("operationaldetails", detailList);
+        List<OperationalDetail> operationalDetails = registerService.findOperationalDetailList(registerId)
+                .stream()
+                .sorted(Comparator.comparing(OperationalDetail::getId))
+                .collect(Collectors.toList());
+
+        uiModel.addAttribute("operationaldetails", operationalDetails);
 
         return REGISTER_OPERATIONAL_DETAIL_PAGE;
     }

@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @Entity
 @JsonIgnoreProperties({"register"})
-public class OperationalDetail extends PersistentObject implements Auditable{
+public class OperationalDetail extends PersistentObject implements Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,30 +27,44 @@ public class OperationalDetail extends PersistentObject implements Auditable{
     @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm a")
     private Date dateTime;
 
-    @NotEmpty
+    @Size(max = 512)
     private String anaesthesia;
 
     @NotEmpty
+    @Size(max = 200)
     private String nameOfOperation;
+
+    @Size(max = 1000)
     private String indication;
 
-    @NotEmpty
+    @Size(max = 1000)
+    private String findings;
+
+    @Size(max = 1000)
+    private String incision;
+
+    @Size(max = 1000)
+    @Column(name = "operation_procedure") // procedure is mysql reserved keyword
+    private String procedure;
+
+    @Size(max = 1000)
+    private String perOperativeComplication;
+
+    @Size(max = 1000)
     private String nameOfSurgeon;
 
-    @NotEmpty
+    @Size(max = 1000)
     private String nameOfAnaesthetist;
-    private String findings;
-    private String incision;
-    private String donorSite;
+    @Size(max = 1000)
+
     private String plasty;
+    @Size(max = 1000)
     private String recipientSite;
 
-    @NotNull
     @Column(length = 15)
     @Enumerated(EnumType.STRING)
-    private RequiredNotRequired bloodTransfusion; // Required- Not Required
+    private RequiredNotRequired bloodTransfusion;
 
-    @NotNull
     @Column(length = 5)
     @Enumerated(EnumType.STRING)
     private YesNo drain;
@@ -102,22 +116,6 @@ public class OperationalDetail extends PersistentObject implements Auditable{
         this.indication = indication;
     }
 
-    public String getNameOfSurgeon() {
-        return nameOfSurgeon;
-    }
-
-    public void setNameOfSurgeon(String nameOfSurgeon) {
-        this.nameOfSurgeon = nameOfSurgeon;
-    }
-
-    public String getNameOfAnaesthetist() {
-        return nameOfAnaesthetist;
-    }
-
-    public void setNameOfAnaesthetist(String nameOfAnaesthetist) {
-        this.nameOfAnaesthetist = nameOfAnaesthetist;
-    }
-
     public String getFindings() {
         return findings;
     }
@@ -134,12 +132,36 @@ public class OperationalDetail extends PersistentObject implements Auditable{
         this.incision = incision;
     }
 
-    public String getDonorSite() {
-        return donorSite;
+    public String getProcedure() {
+        return procedure;
     }
 
-    public void setDonorSite(String donorSite) {
-        this.donorSite = donorSite;
+    public void setProcedure(String procedure) {
+        this.procedure = procedure;
+    }
+
+    public String getPerOperativeComplication() {
+        return perOperativeComplication;
+    }
+
+    public void setPerOperativeComplication(String perOperativeComplication) {
+        this.perOperativeComplication = perOperativeComplication;
+    }
+
+    public String getNameOfSurgeon() {
+        return nameOfSurgeon;
+    }
+
+    public void setNameOfSurgeon(String nameOfSurgeon) {
+        this.nameOfSurgeon = nameOfSurgeon;
+    }
+
+    public String getNameOfAnaesthetist() {
+        return nameOfAnaesthetist;
+    }
+
+    public void setNameOfAnaesthetist(String nameOfAnaesthetist) {
+        this.nameOfAnaesthetist = nameOfAnaesthetist;
     }
 
     public String getPlasty() {
@@ -174,19 +196,19 @@ public class OperationalDetail extends PersistentObject implements Auditable{
         this.drain = drain;
     }
 
-    public Register getRegister() {
-        return register;
-    }
-
-    public void setRegister(Register register) {
-        this.register = register;
-    }
-
     public String getComment() {
         return comment;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Register getRegister() {
+        return register;
+    }
+
+    public void setRegister(Register register) {
+        this.register = register;
     }
 }
