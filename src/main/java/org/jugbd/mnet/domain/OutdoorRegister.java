@@ -39,9 +39,6 @@ public class OutdoorRegister extends PersistentObject {
     private Date stopDatetime;
 
     @OneToMany(mappedBy = "outdoorRegister")
-    private Set<Vital> vitals = new HashSet<>();
-
-    @OneToMany(mappedBy = "outdoorRegister")
     private Set<Visit> visits = new HashSet<>();
 
     @Column(length = 6)
@@ -132,15 +129,6 @@ public class OutdoorRegister extends PersistentObject {
 
     public OutdoorRegister setStopDatetime(Date stopDatetime) {
         this.stopDatetime = stopDatetime;
-        return this;
-    }
-
-    public Set<Vital> getVitals() {
-        return vitals;
-    }
-
-    public OutdoorRegister setVitals(Set<Vital> vitals) {
-        this.vitals = vitals;
         return this;
     }
 

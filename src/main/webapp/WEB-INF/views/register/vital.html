@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/main">
 <head>
-    <title>Vital :: <span th:text="${registrationType.label}"/> Registration</title>
+    <title>Vital :: <span th:text="${registrationType.label}"></span> Registration</title>
 
 </head>
 <body th:with="page='vital'">
@@ -64,7 +64,7 @@
 
                                 <tr class="dl-horizontal">
                                     <td><strong>Pulse</strong></td>
-                                    <td th:text="${lastVital.weight} ? ${lastVital.weight + '/min'}"></td>
+                                    <td th:text="${lastVital.pulse} ? ${lastVital.pulse + '/min'}"></td>
                                 </tr>
 
                                 <tr class="dl-horizontal">
