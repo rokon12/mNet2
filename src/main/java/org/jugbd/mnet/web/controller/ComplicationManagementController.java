@@ -4,6 +4,7 @@ import org.jugbd.mnet.domain.ComplicationManagement;
 import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.service.ComplicationManagementService;
 import org.jugbd.mnet.service.RegisterService;
+import org.jugbd.mnet.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -51,6 +52,18 @@ public class ComplicationManagementController {
 
             return COMPLICATION_MANAGEMENT_CREATE_PAGE;
         }
+
+        if (StringUtils.isEmpty(complicationManagement.getPostOperativeComplication()) &&
+                StringUtils.isEmpty(complicationManagement.getManagementOfComplication()) &&
+                (complicationManagement.getOutcome() == null) &&
+                StringUtils.isEmpty(complicationManagement.getComment()) &&
+                StringUtils.isEmpty(complicationManagement.getCaseSummery()) &&
+                (complicationManagement.getHospitalStays() == null)) {
+
+            redirectAttributes.addFlashAttribute("message", "You can't not save an empty Complication Management");
+            return "redirect:/complicationmanagement/create/"+ complicationManagement.getRegister().getId();
+        }
+
 
         ComplicationManagement complicationManagementSaved = complicationManagementService.save(complicationManagement);
         redirectAttributes.addFlashAttribute("message", "Complication Management successfully created");

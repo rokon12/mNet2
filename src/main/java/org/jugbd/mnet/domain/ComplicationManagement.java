@@ -1,11 +1,9 @@
 package org.jugbd.mnet.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.jugbd.mnet.domain.enums.Outcome;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -22,14 +20,12 @@ public class ComplicationManagement extends PersistentObject implements Auditabl
     @Version
     private Long version;
 
-    @NotEmpty
     @Size(max = 2000)
     private String postOperativeComplication;
 
     @Size(max = 2000)
     private String managementOfComplication;
 
-    @NotNull
     @Column(length = 12)
     @Enumerated(EnumType.STRING)
     private Outcome outcome;
@@ -37,7 +33,6 @@ public class ComplicationManagement extends PersistentObject implements Auditabl
     @Size(max = 100)
     private String comment; // if others
 
-    @NotNull
     private Integer hospitalStays;
 
     @Size(max = 2000)
