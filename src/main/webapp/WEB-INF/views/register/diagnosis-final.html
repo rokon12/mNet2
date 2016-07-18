@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <title>FInal Diagnosis</title>
+    <link href="../../../resources/css/datepicker3.css" th:href="@{/resources/css/datepicker3.css}" rel="stylesheet"/>
+
+</head>
+<body th:with="page='diagnosis-final'">
+
+<section layout:fragment="content">
+    <div id="page-wrapper">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <h2 class="page-header"><span th:text="${registrationType.label}"></span> Registration</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div layout:include="layout/common-fragment :: patient-info"></div>
+        </div>
+
+        <div class="row clearfix">
+
+            <div class="col-lg-3 col-md-4">
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Diagnosis :: <span th:text="${registrationType.label}"></span></div>
+                    <div class="panel-body">
+
+                        <div th:if="${register.diagnosisFinal == null}">
+                            <h3 class="text-primary">No Diagnosis found</h3>
+                        </div>
+
+                        <div th:if="${register.diagnosisFinal != null}">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="bold">Final Diagnosis</td>
+                                            <span th:if="${register.diagnosisFinal.diagnosis}"> <td
+                                                    th:text="${register.diagnosisFinal.diagnosis}"></td> </span>
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">System Involved</td>
+                                            <span th:if="${register.diagnosisFinal.systemInvolved}"> <td
+                                                    th:text="${register.diagnosisFinal.systemInvolved.label}"></td> </span></tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer clearfix">
+                        <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
+                            <div th:if="${register.diagnosisFinal == null}">
+                                <a class="btn btn-sm btn-info pull-right"
+                                   th:href="@{/diagnosis-final/create/__${register.id}__}"><span
+                                        class="glyphicon glyphicon-plus"></span> Add New</a>
+                            </div>
+
+                            <div th:unless="${register.diagnosisFinal == null}">
+                                <a href="#" class="btn btn-sm btn-info pull-right"
+                                   th:href="@{/diagnosis-final/edit/__${register.diagnosisFinal.id}__}"> <span
+                                        class="glyphicon glyphicon-edit"></span> Edit </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div layout:fragment="custom-scripts">
+    <script src="../../../resources/js/bootstrap-datepicker.js"
+            th:src="@{/resources/js/bootstrap-datepicker.js}"></script>
+</div>
+</body>
+</html>

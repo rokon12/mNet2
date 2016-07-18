@@ -100,6 +100,10 @@ public class Register extends PersistentObject {
     private Diagnosis diagnosis;
 
     @OneToOne
+    @JoinColumn(name = "diagnosis_final_id")
+    private DiagnosisFinal diagnosisFinal;
+
+    @OneToOne
     @JoinColumn(name = "treatment_plan_id")
     private TreatmentPlan treatmentPlan;
 
@@ -377,6 +381,14 @@ public class Register extends PersistentObject {
     public Register setFollowUpAdvice(String followUpAdvice) {
         this.followUpAdvice = followUpAdvice;
         return this;
+    }
+
+    public DiagnosisFinal getDiagnosisFinal() {
+        return diagnosisFinal;
+    }
+
+    public void setDiagnosisFinal(DiagnosisFinal diagnosisFinal) {
+        this.diagnosisFinal = diagnosisFinal;
     }
 
     @Override

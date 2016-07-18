@@ -60,6 +60,7 @@ public class RegisterController {
     private static final String REGISTER_LIFE_STYLE_PAGE = "register/life-style";
     private static final String REGISTER_PICTURE_PAGE = "register/picture";
     private static final String REGISTER_PAGE = "register/show";
+    private static final String REGISTER_FINAL_DIAGNOSIS = "register/diagnosis-final";
 
     @Autowired
     private PatientService patientService;
@@ -340,6 +341,15 @@ public class RegisterController {
 
         return REGISTER_OUTCOME_PAGE;
     }
+
+    @RequestMapping(value = "/diagnosis-final/{registerId}", method = RequestMethod.GET)
+    public String finalDiagnosis(@PathVariable Long registerId, Model uiModel) {
+        Register register = registerService.findOne(registerId);
+        prepareData(register, uiModel);
+
+        return REGISTER_FINAL_DIAGNOSIS;
+    }
+
 
     @RequestMapping(value = "/edit-outcome/{registerId}", method = RequestMethod.GET)
     public String editOutcome(@PathVariable Long registerId,

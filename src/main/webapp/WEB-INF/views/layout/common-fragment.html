@@ -187,6 +187,11 @@
                 <i class="fa fa-info fa-fw"></i>Operational Details<span class="fa arrow"></span>
             </a>
 
+            <a class="list-group-item" th:classappend="${page == 'diagnosis-final' ? 'active' : ''}"
+               th:href="@{/register/diagnosis-final/__${register.id}__}">
+                <i class="fa fa-user-md fa-fw"></i>Final Diagnosis<span class="fa arrow"></span>
+            </a>
+
             <a class="list-group-item" th:classappend="${page == 'complicationmanagement' ? 'active' : ''}"
                th:href="@{/register/complicationmanagement/__${register.id}__}">
                 <i class="fa fa-info fa-fw"></i>Complication Management<span class="fa arrow"></span>
