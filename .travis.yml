@@ -11,4 +11,4 @@ cache:
     - $HOME/.gradle/wrapper/
 
 install: echo "skip 'gradle assemble' step"
-script: gradle build --continue
+script: gradle build -x test
