@@ -26,7 +26,8 @@ buildscript {
         classpath 'org.zeroturnaround:gradle-jrebel-plugin:1.1.2'
     }
 }
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
