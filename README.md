@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rokon12/mNet2.svg?branch=feature%2Fsurgery-dept)](https://travis-ci.org/rokon12/mNet2)
+
 MediNetServices
 
 ## Quick start
