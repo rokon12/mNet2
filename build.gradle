@@ -126,7 +126,9 @@ task deployWar() {
 war.dependsOn(generateRebel)
 deployWar.dependsOn(war)
 
-task wrapper(type: Wrapper) { gradleVersion = '1.11' }
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
 
 tomcatRunWar.contextPath = ''
 
