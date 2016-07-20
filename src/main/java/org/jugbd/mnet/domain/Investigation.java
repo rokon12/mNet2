@@ -826,4 +826,13 @@ public class Investigation extends PersistentObject implements Auditable {
 		this.register = register;
 		return this;
 	}
+
+//	public static void main(String[] args) {
+//		Field[] fields = Investigation.class.getDeclaredFields();
+//		Arrays.asList(fields).stream().forEach(field -> {
+//			String fieldName = field.getName();
+//			String capitalize = StringUtils.capitalize(fieldName);
+//			System.out.println("savedInvestigation.set"+capitalize+"(investigation.get"+capitalize+"());");
+//		});
+//	}
 }
