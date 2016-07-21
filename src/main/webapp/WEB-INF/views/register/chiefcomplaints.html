@@ -39,21 +39,21 @@
                             <table class="table table-condensed">
 
                                 <tr>
-                                    <td><strong>Chief Complaint: </strong></td>
+                                    <td class="bold"><strong>Chief Complaint: </strong></td>
                                     <td></td>
                                 </tr>
                                 <tr th:each="item, stat : ${register.chiefComplaint.complaints}">
-                                    <td th:text="${stat.index+1}"></td>
+                                    <td style="padding-left: 4em;" th:text="${'# '+(stat.index+1)}"></td>
                                     <td th:text="${item}"></td>
                                 </tr>
 
                                 <tr>
-                                    <td><strong>Present Illness:</strong></td>
+                                    <td class="bold"><strong>Present Illness:</strong></td>
                                     <td th:text="${register.chiefComplaint.presentIllness} ? ${register.chiefComplaint.presentIllness }"></td>
                                 </tr>
 
                                 <tr>
-                                    <td><strong>Comments:</strong></td>
+                                    <td class="bold"> <strong>Comments:</strong></td>
                                     <td th:text="${register.chiefComplaint.comments} ? ${register.chiefComplaint.comments}"></td>
                                 </tr>
                             </table>
