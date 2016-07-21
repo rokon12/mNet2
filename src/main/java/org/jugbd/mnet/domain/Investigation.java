@@ -95,8 +95,9 @@ public class Investigation extends PersistentObject implements Auditable {
 	@Size(max = 500)
 	private String ada; //ADA
 
-	@Size(max = 500)
+	@Size(max = 1500)
 	private String other; //Other
+
 
 	/*********
 	 * LFT - Liver Function Test
@@ -826,13 +827,4 @@ public class Investigation extends PersistentObject implements Auditable {
 		this.register = register;
 		return this;
 	}
-
-//	public static void main(String[] args) {
-//		Field[] fields = Investigation.class.getDeclaredFields();
-//		Arrays.asList(fields).stream().forEach(field -> {
-//			String fieldName = field.getName();
-//			String capitalize = StringUtils.capitalize(fieldName);
-//			System.out.println("savedInvestigation.set"+capitalize+"(investigation.get"+capitalize+"());");
-//		});
-//	}
 }
