@@ -291,7 +291,9 @@ public class Investigation extends PersistentObject implements Auditable {
 	@Size(max = 1500)
 	private String contrastFindings;
 
-	@Size(max = 2000)
+	@Size(min = 0, max = 2000)
+	//@Max(2000)
+	//@Min(0)
 	private String otherInvestigation;
 
 	@JsonIgnore
