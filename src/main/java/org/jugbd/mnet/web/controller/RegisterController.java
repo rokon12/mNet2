@@ -301,8 +301,7 @@ public class RegisterController {
     public String chiefcomplaints(@PathVariable Long registerId,
                                   Model uiModel) {
 
-        Register register = registerService.findOne(registerId);
-        uiModel.addAttribute("chiefcomplaints", register);
+        Register register = registerService.loadRegister(registerId, ChiefComplaint.class);
         prepareData(register, uiModel);
 
         return REGISTER_CHIEF_COMPLAINTS_PAGE;
@@ -444,7 +443,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/medicalhistory/{registerId}", method = RequestMethod.GET)
     public String pastMedicalHistory(@PathVariable Long registerId, Model uiModel) {
-        Register register = registerService.findOne(registerId);
+        Register register = registerService.loadRegister(registerId, MedicalHistory.class);
         prepareData(register, uiModel);
 
         return REGISTER_MEDICAL_HISTORY_PAGE;
@@ -481,7 +480,7 @@ public class RegisterController {
     //complicationmanagement
     @RequestMapping(value = "/complicationmanagement/{registerId}", method = RequestMethod.GET)
     public String complicationmanagement(@PathVariable Long registerId, Model uiModel) {
-        Register register = registerService.findOne(registerId);
+        Register register = registerService.loadRegister(registerId, ComplicationManagement.class);
         prepareData(register,  uiModel);
 
         return REGISTER_COMPLICATION_MANAGEMENT_PAGE;

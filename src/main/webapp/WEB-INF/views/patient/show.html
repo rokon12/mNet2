@@ -70,7 +70,7 @@
                                 <tbody>
                                 <tr th:each="register : ${generalIndoors}">
                                     <td>
-                                        <a th:href="@{/register/show/__${register.id}__}">Open</a>
+                                        <a class="btn btn-sm btn-success" th:href="@{/register/show/__${register.id}__}">&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"> </span> Open</a>
                                     </td>
                                     <td th:text="${register.registrationId}"></td>
                                     <td th:text="${register.startDatetime} ? ${#dates.format(register.startDatetime,'dd MMMM yyyy')}"></td>
@@ -103,7 +103,7 @@
                                 <tbody>
                                 <tr th:each="register : ${emergencyIndoors}">
                                     <td>
-                                        <a th:href="@{/register/show/__${register.id}__}">Open</a>
+                                        <a class="btn btn-sm btn-success" th:href="@{/register/show/__${register.id}__}">&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"> </span> Open</a>
                                     </td>
                                     <td th:text="${register.registrationId}"></td>
                                     <td th:text="${register.startDatetime} ? ${#dates.format(register.startDatetime,'dd MMMM yyyy')}"></td>

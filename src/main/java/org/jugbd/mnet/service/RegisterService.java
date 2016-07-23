@@ -65,4 +65,6 @@ public interface RegisterService {
     Set<Investigation> findInvestigations(Long registerId);
 
     List<OutdoorRegister> findAllOutdoorRegisterByPatientId(Long patientId);
+
+    Register loadRegister(Long registerId, Class clazz);
 }

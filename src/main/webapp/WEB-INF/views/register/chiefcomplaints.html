@@ -28,7 +28,15 @@
 
             <div class="col-lg-9 col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Chief Complaint :: <span th:text="${registrationType.label}"/></div>
+                    <div class="panel-heading">Chief Complaint :: <span class="text-uppercase" th:text="${registrationType.label}"/>
+                        <div class="pull-right">
+                            <small th:if="${register.chiefComplaint != null}">
+                                <em>Created By :</em> <strong> <em th:text="${register.chiefComplaint.createdBy.fullName}"> </em></strong>
+                                &nbsp;&nbsp;
+                                <em>Last Modified By :</em> <strong> <em th:text="${register.chiefComplaint.lastModifiedBy.fullName}"> </em></strong>
+                            </small>
+                        </div>
+                    </div>
 
                     <div class="panel-body">
                         <div th:if="${register.chiefComplaint == null}">
