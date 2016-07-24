@@ -19,9 +19,6 @@ public class RegistrationTypeEditor extends PropertyEditorSupport {
                 break;
             }
         }
-
-        if (text.equalsIgnoreCase("opd")) setValue(RegistrationType.OUTDOOR);
-        else if (text.equalsIgnoreCase("ipd")) setValue(RegistrationType.INDOOR);
     }
 
     @Override

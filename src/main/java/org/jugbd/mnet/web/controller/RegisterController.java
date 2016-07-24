@@ -205,8 +205,7 @@ public class RegisterController {
 
         registerService.closeRegister(registerId, registrationType);
         redirectAttributes.addFlashAttribute("message", "Registration has been closed!");
-        Patient patient = registerService.findRegisterEither(registerId, registrationType)
-                .fold(Register::getPatient, OutdoorRegister::getPatient);
+        Patient patient = registerService.findOne(registerId).getPatient();
 
         return REDIRECT_PATIENT_SHOW_PAGE + patient.getId();
     }
