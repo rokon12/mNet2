@@ -75,7 +75,7 @@ public class RegisterServiceImpl implements RegisterService {
 	public Register findOne(Long registerId) {
 
 		Register register = registerDao.findOne(registerId);
-		initializeRegister(register);
+		//initializeRegister(register);
 
 		return register;
 	}
@@ -100,11 +100,9 @@ public class RegisterServiceImpl implements RegisterService {
 	private Register initializeRegister(Register register) {
 		//log.info("initializeRegister() ={}", register);
 		// Ref: http://stackoverflow.com/questions/19928568/hibernate-best-practice-to-pull-all-lazy-collections
-		register.getVitals().size();
-		register.getOperationalDetails().size();
-		register.getInvestigation().size();
-		register.getChiefComplaint().getLastModifiedBy();
-		register.getChiefComplaint().getCreatedBy();
+		//register.getVitals().size();
+		//register.getOperationalDetails().size();
+		//register.getInvestigation().size();
 
 		return register;
 	}
