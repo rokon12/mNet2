@@ -94,7 +94,7 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public void closeRegister(Long registerId, RegistrationType registrationType) {
+    public void closeRegister(Long registerId) {
         Register register = registerDao.findOne(registerId);
         register.setStatus(Status.CLOSED);
         register.setStopDatetime(new Date());

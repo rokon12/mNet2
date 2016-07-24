@@ -19,7 +19,7 @@ public interface RegisterService {
 
     List<Register> findAllRegisterByPatientId(Long patientId);
 
-    void closeRegister(Long registerId, RegistrationType registrationType);
+    void closeRegister(Long registerId);
 
     void update(Register register);
 

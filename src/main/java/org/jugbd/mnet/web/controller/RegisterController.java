@@ -199,10 +199,9 @@ public class RegisterController {
 
     @RequestMapping(value = "close/{registerId}", method = RequestMethod.POST)
     public String close(@PathVariable(value = "registerId") Long registerId,
-                        @RequestParam RegistrationType registrationType,
                         RedirectAttributes redirectAttributes) {
 
-        registerService.closeRegister(registerId, registrationType);
+        registerService.closeRegister(registerId);
         redirectAttributes.addFlashAttribute("message", "Registration has been closed!");
         Patient patient = registerService.findOne(registerId).getPatient();
 
