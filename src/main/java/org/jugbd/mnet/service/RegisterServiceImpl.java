@@ -215,6 +215,9 @@ public class RegisterServiceImpl implements RegisterService {
         } else if (clazz.isAssignableFrom(ComplicationManagement.class) && register.getComplicationManagement() != null) {
             Hibernate.initialize(register.getComplicationManagement().getCreatedBy());
             Hibernate.initialize(register.getComplicationManagement().getLastModifiedBy());
+        }else if (clazz.isAssignableFrom(Examination.class) && register.getExamination() != null) {
+            Hibernate.initialize(register.getExamination().getCreatedBy());
+            Hibernate.initialize(register.getExamination().getLastModifiedBy());
         }
 
 

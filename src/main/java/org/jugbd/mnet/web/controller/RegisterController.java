@@ -289,7 +289,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/examination/{registerId}", method = RequestMethod.GET)
     public String examination(@PathVariable Long registerId, Model uiModel) {
-        Register register = registerService.findOne(registerId);
+        Register register = registerService.loadRegister(registerId, Examination.class);
         prepareData(register,  uiModel);
 
         return REGISTER_EXAMINATION_PAGE;
