@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/main">
 <head>
-    <title>Indoor Patient Register</title>
+    <title>Patient Register</title>
     <link href="../../../resources/css/datepicker3.css" th:href="@{/resources/css/datepicker3.css}" rel="stylesheet"/>
 
 </head>
@@ -30,7 +30,7 @@
 
             <div class="col-lg-9 col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Outdoor Patient Registration</div>
+                    <div class="panel-heading"><span th:text="${register.registrationType.label}"> </span> Patient Registration</div>
                     <div class="panel-body">
 
                         <h4 th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}"

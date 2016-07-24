@@ -5,7 +5,6 @@ import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.exception.PatientNotFoundException;
 import org.jugbd.mnet.service.PatientService;
 import org.jugbd.mnet.service.RegisterService;
-import org.jugbd.mnet.utils.StringUtils;
 import org.jugbd.mnet.web.editor.CaseInsensitivePropertyEditor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +38,7 @@ public class RegisterController {
     private static final String REGISTER_OPD_PAGE = "register/opd";
     private static final String REDIRECT_REGISTER_OPD = "redirect:/register/opd/";
     private static final String REGISTER_IPD_PAGE = "register/ipd";
-    private static final String REDIRECT_REGISTER_IPD_PAGE = "redirect:/register/ipd/";
+    private static final String REDIRECT_REGISTER_SHOW_PAGE = "redirect:/register/show/";
     private static final String REGISTER_OPD_REGISTRATION_PAGE = "register/opd-registration";
     private static final String REDIRECT_PATIENT_SHOW_PAGE = "redirect:/patient/show/";
     private static final String REGISTER_OPD_EDIT_PAGE = "register/opd-edit";
@@ -166,7 +165,7 @@ public class RegisterController {
 //
 //        registerService.save(register);
 //
-//        return REDIRECT_REGISTER_IPD_PAGE + register.getId();
+//        return REDIRECT_REGISTER_SHOW_PAGE + register.getId();
 //    }
 
 //    @RequestMapping(value = "opd/{id}", method = RequestMethod.GET)
@@ -223,18 +222,10 @@ public class RegisterController {
                                    @RequestParam(value = "type") String type,
                                    Model uiModel) {
 
-        if (StringUtils.isNotEmpty(type) && type.equalsIgnoreCase("opd")) {
-            OutdoorRegister outdoorRegister = registerService.findOpdRegister(registrationId);
-            uiModel.addAttribute("outdoorRegister", outdoorRegister);
+        Register register = registerService.findOne(registrationId);
+        uiModel.addAttribute("register", register);
 
-            return REGISTER_OPD_EDIT_PAGE;
-        } else {
-            Register register = registerService.findOne(registrationId);
-
-            uiModel.addAttribute("register", register);
-
-            return "register/ipd-edit";
-        }
+        return "register/edit";
     }
 
     @RequestMapping(value = "opd/update", method = RequestMethod.POST)
@@ -252,11 +243,11 @@ public class RegisterController {
         return REDIRECT_REGISTER_OPD + outdoorRegister.getId();
     }
 
-    @RequestMapping(value = "ipd/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateRegistration(@Valid Register register) {
         Register savedRegister = registerService.save(register);
 
-        return REDIRECT_REGISTER_IPD_PAGE + savedRegister.getId();
+        return REDIRECT_REGISTER_SHOW_PAGE + savedRegister.getId();
     }
 
     //Diagnosis
@@ -290,7 +281,7 @@ public class RegisterController {
     @RequestMapping(value = "/examination/{registerId}", method = RequestMethod.GET)
     public String examination(@PathVariable Long registerId, Model uiModel) {
         Register register = registerService.loadRegister(registerId, Examination.class);
-        prepareData(register,  uiModel);
+        prepareData(register, uiModel);
 
         return REGISTER_EXAMINATION_PAGE;
     }
@@ -387,7 +378,7 @@ public class RegisterController {
     public String editRemarks(@PathVariable Long registerId,
                               Model uiModel) {
         Register register = registerService.findOne(registerId);
-        prepareData(register,  uiModel);
+        prepareData(register, uiModel);
         uiModel.addAttribute("edit", true);
         uiModel.addAttribute("registerId", registerId);
 
@@ -401,7 +392,7 @@ public class RegisterController {
 
         registerService.saveRemarks(remarks, registerId);
 
-        return REDIRECT_REGISTER_REMARKS_PAGE + registerId ;
+        return REDIRECT_REGISTER_REMARKS_PAGE + registerId;
     }
 
     // Convert OPD to IPD
@@ -467,7 +458,7 @@ public class RegisterController {
     @RequestMapping(value = "/investigation/{registerId}", method = RequestMethod.GET)
     public String investigation(@PathVariable Long registerId, Model uiModel) {
         Register register = registerService.findOne(registerId);
-        prepareData(register,  uiModel);
+        prepareData(register, uiModel);
 
         Set<Investigation> investigations = registerService.findInvestigations(registerId);
 
@@ -480,7 +471,7 @@ public class RegisterController {
     @RequestMapping(value = "/complicationmanagement/{registerId}", method = RequestMethod.GET)
     public String complicationmanagement(@PathVariable Long registerId, Model uiModel) {
         Register register = registerService.loadRegister(registerId, ComplicationManagement.class);
-        prepareData(register,  uiModel);
+        prepareData(register, uiModel);
 
         return REGISTER_COMPLICATION_MANAGEMENT_PAGE;
     }
@@ -495,7 +486,7 @@ public class RegisterController {
     @RequestMapping(value = "/picture/{registerId}", method = RequestMethod.GET)
     public String pictureInformation(@PathVariable Long registerId, Model uiModel) {
         Register register = registerService.findOne(registerId);
-        prepareData(register,  uiModel);
+        prepareData(register, uiModel);
 
         return REGISTER_PICTURE_PAGE;
     }
@@ -510,7 +501,7 @@ public class RegisterController {
 //        uiModel.addAttribute("patient", patient);
 //    }
 
-    private void prepareData(Register register,  Model uiModel) {
+    private void prepareData(Register register, Model uiModel) {
         uiModel.addAttribute("register", register);
         uiModel.addAttribute("registrationType", register.getRegistrationType());
         uiModel.addAttribute("patient", register.getPatient());

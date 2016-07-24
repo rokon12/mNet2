@@ -72,10 +72,9 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public Register findOne(Long registerId) {
 
-        Register register = registerDao.findOne(registerId);
         //initializeRegister(register);
 
-        return register;
+        return registerDao.findOne(registerId);
     }
 
     @Override

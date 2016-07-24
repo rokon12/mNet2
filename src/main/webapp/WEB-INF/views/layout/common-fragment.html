@@ -202,9 +202,9 @@
                 <!--<i class="fa fa-info fa-fw"></i>Life Style<span class="fa arrow"></span>-->
             <!--</a>-->
 
-            <a class="list-group-item" th:classappend="${page == 'picture' ? 'active' : ''}"
-               th:href="@{/register/picture/__${register.id}__}">
-                <i class="fa fa-info fa-fw"></i>Picture Information<span class="fa arrow"></span>
+            <a class="list-group-item" th:classappend="${page == 'picture' ? 'active' : ''}" href="#">
+               <!--th:href="@{/register/picture/__${register.id}__}">-->
+                <i class="fa fa-info fa-fw"></i><strike>Picture Information</strike><span class="fa arrow"></span>
             </a>
 
             <a class="list-group-item" th:classappend="${page == 'vital' ? 'active' : ''}"
