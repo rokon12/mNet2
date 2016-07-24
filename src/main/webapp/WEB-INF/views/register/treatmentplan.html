@@ -27,7 +27,17 @@
 
             <div class="col-lg-9 col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Plan Of Rx :: <span th:text="${registrationType.label}"></span></div>
+                    <div class="panel-heading">Plan Of Rx :: <span th:text="${registrationType.label}"></span>
+                        <div class="pull-right">
+                            <small th:if="${register.treatmentPlan != null}">
+                                <em>Created By :</em> <strong> <em
+                                    th:text="${register.treatmentPlan.createdBy.fullName}"> </em></strong>
+                                &nbsp;&nbsp;
+                                <em>Last Modified By :</em> <strong> <em
+                                    th:text="${register.treatmentPlan.lastModifiedBy.fullName}"> </em></strong>
+                            </small>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         <div th:if="${register.treatmentPlan == null}">
                             <h3 class="text-primary">No Plan Of Rx found</h3>

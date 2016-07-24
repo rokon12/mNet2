@@ -265,7 +265,7 @@ public class RegisterController {
     public String diagnosis(@PathVariable Long registerId, Diagnosis diagnosis,
                             Model uiModel) {
 
-        Register register = registerService.findOne(registerId);
+        Register register = registerService.loadRegister(registerId, Diagnosis.class);
         diagnosis.setRegister(register);
         prepareData(register, uiModel);
 
@@ -278,7 +278,7 @@ public class RegisterController {
     public String treatmentPlan(@PathVariable Long registerId,
                                 TreatmentPlan treatmentPlan,
                                 Model uiModel) {
-        Register register = registerService.findOne(registerId);
+        Register register = registerService.loadRegister(registerId, TreatmentPlan.class);
         treatmentPlan.setRegister(register);
         prepareData(register, uiModel);
 
@@ -342,7 +342,7 @@ public class RegisterController {
 
     @RequestMapping(value = "/diagnosis-final/{registerId}", method = RequestMethod.GET)
     public String finalDiagnosis(@PathVariable Long registerId, Model uiModel) {
-        Register register = registerService.findOne(registerId);
+        Register register = registerService.loadRegister(registerId, DiagnosisFinal.class);
         prepareData(register, uiModel);
 
         return REGISTER_FINAL_DIAGNOSIS;

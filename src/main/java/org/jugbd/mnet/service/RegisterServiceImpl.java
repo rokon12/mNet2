@@ -218,6 +218,15 @@ public class RegisterServiceImpl implements RegisterService {
         }else if (clazz.isAssignableFrom(Examination.class) && register.getExamination() != null) {
             Hibernate.initialize(register.getExamination().getCreatedBy());
             Hibernate.initialize(register.getExamination().getLastModifiedBy());
+        }else if (clazz.isAssignableFrom(Diagnosis.class) && register.getDiagnosis() != null) {
+            Hibernate.initialize(register.getDiagnosis().getCreatedBy());
+            Hibernate.initialize(register.getDiagnosis().getLastModifiedBy());
+        }else if (clazz.isAssignableFrom(DiagnosisFinal.class) && register.getDiagnosisFinal() != null) {
+            Hibernate.initialize(register.getDiagnosisFinal().getCreatedBy());
+            Hibernate.initialize(register.getDiagnosisFinal().getLastModifiedBy());
+        }else if (clazz.isAssignableFrom(TreatmentPlan.class) && register.getTreatmentPlan() != null) {
+            Hibernate.initialize(register.getTreatmentPlan().getCreatedBy());
+            Hibernate.initialize(register.getTreatmentPlan().getLastModifiedBy());
         }
 
 

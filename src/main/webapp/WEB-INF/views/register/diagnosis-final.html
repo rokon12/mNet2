@@ -30,7 +30,17 @@
 
             <div class="col-lg-9 col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Diagnosis :: <span th:text="${registrationType.label}"></span></div>
+                    <div class="panel-heading">Final Diagnosis :: <span th:text="${registrationType.label}"></span>
+                        <div class="pull-right">
+                            <small th:if="${register.diagnosisFinal != null}">
+                                <em>Created By :</em> <strong> <em
+                                    th:text="${register.diagnosisFinal.createdBy.fullName}"> </em></strong>
+                                &nbsp;&nbsp;
+                                <em>Last Modified By :</em> <strong> <em
+                                    th:text="${register.diagnosisFinal.lastModifiedBy.fullName}"> </em></strong>
+                            </small>
+                        </div>
+                    </div>
                     <div class="panel-body">
 
                         <div th:if="${register.diagnosisFinal == null}">

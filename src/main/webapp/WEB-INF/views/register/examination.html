@@ -33,7 +33,7 @@
                                                                     th:text="${registrationType.label}"> </span>
 
                         <div class="pull-right">
-                            <small th:if="${register.chiefComplaint != null}">
+                            <small th:if="${register.examination != null}">
                                 <em>Created By :</em> <strong> <em th:text="${register.examination.createdBy.fullName}"> </em></strong>
                                 &nbsp;&nbsp;
                                 <em>Last Modified By :</em> <strong> <em th:text="${register.examination.lastModifiedBy.fullName}"> </em></strong>
