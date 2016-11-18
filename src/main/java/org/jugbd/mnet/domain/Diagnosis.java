@@ -18,23 +18,8 @@ public class Diagnosis extends PersistentObject implements Auditable {
     @Version
     private Long version;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private DiagnosisData burns;
-
     @Size(max = 1000)
-    private String congenitalAnomaly;
-
-    @Size(max = 1000)
-    private String neoplastic;
-
-    @Size(max = 1000)
-    private String postInfective;
-
-    @Size(max = 1000)
-    private String traumatic;
-
-    @Size(max = 1000)
-    private String aesthetic;
+    private String diagnosis;
 
     @Size(max = 1000)
     private String comment;
@@ -46,72 +31,50 @@ public class Diagnosis extends PersistentObject implements Auditable {
     @OneToOne(mappedBy = "diagnosis")
     private Register register;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "diagnosis")
-    private OutdoorRegister outdoorRegister;
-
+    @Override
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public Diagnosis setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Long getVersion() {
         return version;
     }
 
-    public void setVersion(Long version) {
+    public Diagnosis setVersion(Long version) {
         this.version = version;
+        return this;
     }
 
-    public DiagnosisData getBurns() {
-        return burns;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setBurns(DiagnosisData burns) {
-        this.burns = burns;
+    public Diagnosis setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+        return this;
     }
 
-    public String getCongenitalAnomaly() {
-        return congenitalAnomaly;
+    public String getComment() {
+        return comment;
     }
 
-    public void setCongenitalAnomaly(String congenitalAnomaly) {
-        this.congenitalAnomaly = congenitalAnomaly;
+    public Diagnosis setComment(String comment) {
+        this.comment = comment;
+        return this;
     }
 
-    public String getNeoplastic() {
-        return neoplastic;
+    public String getIcd10() {
+        return icd10;
     }
 
-    public void setNeoplastic(String neoplastic) {
-        this.neoplastic = neoplastic;
-    }
-
-    public String getPostInfective() {
-        return postInfective;
-    }
-
-    public void setPostInfective(String postInfective) {
-        this.postInfective = postInfective;
-    }
-
-    public String getTraumatic() {
-        return traumatic;
-    }
-
-    public void setTraumatic(String traumatic) {
-        this.traumatic = traumatic;
-    }
-
-    public String getAesthetic() {
-        return aesthetic;
-    }
-
-    public void setAesthetic(String aesthetic) {
-        this.aesthetic = aesthetic;
+    public Diagnosis setIcd10(String icd10) {
+        this.icd10 = icd10;
+        return this;
     }
 
     public Register getRegister() {
@@ -120,31 +83,6 @@ public class Diagnosis extends PersistentObject implements Auditable {
 
     public Diagnosis setRegister(Register register) {
         this.register = register;
-        return this;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getIcd10() {
-        return icd10;
-    }
-
-    public void setIcd10(String icd10) {
-        this.icd10 = icd10;
-    }
-
-    public OutdoorRegister getOutdoorRegister() {
-        return outdoorRegister;
-    }
-
-    public Diagnosis setOutdoorRegister(OutdoorRegister outdoorRegister) {
-        this.outdoorRegister = outdoorRegister;
         return this;
     }
 }

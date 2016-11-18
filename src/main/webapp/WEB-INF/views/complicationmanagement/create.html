@@ -23,10 +23,14 @@
                       th:action="@{/complicationmanagement/create}">
                     <div class="panel-body">
 
+                        <div th:if="${message != null}">
+                            <div class="alert alert-danger" role="alert"><p th:text="${message}"></p></div>
+                        </div>
+
                         <fieldset>
                             <input type="hidden" th:field="*{register.id}"/>
 
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label required-field"
                                        th:text="#{label.complication.management.postOperativeComplication}">
                                     Outcome
@@ -56,7 +60,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label required-field"
                                        th:text="#{label.complication.management.outcome}">
                                     Outcome
@@ -95,7 +99,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label required-field"
                                        th:text="#{label.complication.management.hospitalStays}">
                                     Outcome
@@ -124,8 +128,6 @@
                                     </p>
                                 </div>
                             </div>
-
-
                         </fieldset>
 
                     </div>

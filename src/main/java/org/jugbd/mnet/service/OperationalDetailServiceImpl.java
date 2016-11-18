@@ -26,7 +26,6 @@ public class OperationalDetailServiceImpl implements OperationalDetailService {
     public OperationalDetail save(OperationalDetail operationalDetail) {
         if (operationalDetail.getId() == null) {
             Register register = registerService.findOne(operationalDetail.getRegister().getId());
-
             operationalDetail.setRegister(register);
 
             return operationalDetailDao.save(operationalDetail);
@@ -36,15 +35,17 @@ public class OperationalDetailServiceImpl implements OperationalDetailService {
             operationalDetailSaved.setAnaesthesia(operationalDetail.getAnaesthesia());
             operationalDetailSaved.setNameOfOperation(operationalDetail.getNameOfOperation());
             operationalDetailSaved.setIndication(operationalDetail.getIndication());
-            operationalDetailSaved.setNameOfSurgeon(operationalDetail.getNameOfSurgeon());
-            operationalDetailSaved.setNameOfAnaesthetist(operationalDetail.getNameOfAnaesthetist());
             operationalDetailSaved.setFindings(operationalDetail.getFindings());
             operationalDetailSaved.setIncision(operationalDetail.getIncision());
-            operationalDetailSaved.setDonorSite(operationalDetail.getDonorSite());
+            operationalDetailSaved.setProcedure(operationalDetail.getProcedure());
+            operationalDetailSaved.setPerOperativeComplication(operationalDetail.getPerOperativeComplication());
+            operationalDetailSaved.setNameOfSurgeon(operationalDetail.getNameOfSurgeon());
+            operationalDetailSaved.setNameOfAnaesthetist(operationalDetail.getNameOfAnaesthetist());
             operationalDetailSaved.setPlasty(operationalDetail.getPlasty());
             operationalDetailSaved.setRecipientSite(operationalDetail.getRecipientSite());
             operationalDetailSaved.setBloodTransfusion(operationalDetail.getBloodTransfusion());
             operationalDetailSaved.setDrain(operationalDetail.getDrain());
+            operationalDetailSaved.setComment(operationalDetail.getComment());
 
             return operationalDetailDao.save(operationalDetailSaved);
         }

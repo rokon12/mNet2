@@ -48,7 +48,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"> Anaesthesia </label>
 
                                 <div class="col-sm-3">
@@ -84,31 +84,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group required">
-                                <label class="col-sm-2 control-label"> Name Of Surgeon </label>
-
-                                <div class="col-sm-3">
-                                    <textarea type="text" class="form-control" th:field="*{nameOfSurgeon}"></textarea>
-
-                                    <p class="text-danger" th:if="${#fields.hasErrors('nameOfSurgeon')}">
-                                        <span th:errors="*{nameOfSurgeon}">Required</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="form-group required">
-                                <label class="col-sm-2 control-label"> Name Of Anaesthetist</label>
-
-                                <div class="col-sm-3">
-                                    <textarea type="text" class="form-control"
-                                              th:field="*{nameOfAnaesthetist}"></textarea>
-
-                                    <p class="text-danger" th:if="${#fields.hasErrors('nameOfAnaesthetist')}">
-                                        <span th:errors="*{nameOfAnaesthetist}">Required</span>
-                                    </p>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"> Findings</label>
 
@@ -134,13 +109,50 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"> Donor Site</label>
+                                <label class="col-sm-2 control-label"> Procedure</label>
 
                                 <div class="col-sm-3">
-                                    <textarea type="text" class="form-control" th:field="*{donorSite}"></textarea>
+                                    <textarea type="text" class="form-control" th:field="*{procedure}"></textarea>
 
-                                    <p class="text-danger" th:if="${#fields.hasErrors('donorSite')}">
-                                        <span th:errors="*{donorSite}">Required</span>
+                                    <p class="text-danger" th:if="${#fields.hasErrors('procedure')}">
+                                        <span th:errors="*{procedure}">Required</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Per Operative Complication</label>
+
+                                <div class="col-sm-3">
+                                    <textarea type="text" class="form-control" th:field="*{perOperativeComplication}"></textarea>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('perOperativeComplication')}">
+                                        <span th:errors="*{perOperativeComplication}">Required</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Name Of Surgeon </label>
+
+                                <div class="col-sm-3">
+                                    <textarea type="text" class="form-control" th:field="*{nameOfSurgeon}"></textarea>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('nameOfSurgeon')}">
+                                        <span th:errors="*{nameOfSurgeon}">Required</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Name Of Anaesthetist</label>
+
+                                <div class="col-sm-3">
+                                    <textarea type="text" class="form-control"
+                                              th:field="*{nameOfAnaesthetist}"></textarea>
+
+                                    <p class="text-danger" th:if="${#fields.hasErrors('nameOfAnaesthetist')}">
+                                        <span th:errors="*{nameOfAnaesthetist}">Required</span>
                                     </p>
                                 </div>
                             </div>
@@ -169,8 +181,7 @@
                                 </div>
                             </div>
 
-
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"> Blood Transfusion</label>
 
                                 <div class="col-sm-3">
@@ -187,7 +198,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"> Drain</label>
 
                                 <div class="col-sm-3">
@@ -203,7 +214,6 @@
                                     </p>
                                 </div>
                             </div>
-
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"> Comments </label>

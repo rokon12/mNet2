@@ -20,237 +20,617 @@
                 <div class="panel-heading">Investigation</div>
 
                 <div class="panel-body">
-                    <fieldset class="border">
-                        <legend class="border"> Blood CBC</legend>
-                        <table class="table table-condensed table-bordered">
-                            <thead>
-                            <th>Date</th>
-                            <th>TC</th>
-                            <th>DC</th>
-                            <th>HB</th>
-                            <th>ESR</th>
-                            <th>PCV</th>
-                            <th>Comment</th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td th:text="${investigation.bloodCbc.dateOfInvestigation}? ${investigation.bloodCbc.dateOfInvestigation}"></td>
-                                <td th:text="${investigation.bloodCbc.tc}? ${investigation.bloodCbc.tc}"></td>
-                                <td th:text="${investigation.bloodCbc.dc}? ${investigation.bloodCbc.dc}"></td>
-                                <td th:text="${investigation.bloodCbc.hb}? ${investigation.bloodCbc.hb}"></td>
-                                <td th:text="${investigation.bloodCbc.esr}? ${investigation.bloodCbc.esr}"></td>
-                                <td th:text="${investigation.bloodCbc.pcv}? ${investigation.bloodCbc.pcv}"></td>
-                                <td th:text="${investigation.bloodCbc.comment}? ${investigation.bloodCbc.comment}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
 
-                    <fieldset class="border">
-                        <legend class="border">Blood C/S</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Blood CBC</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Date Of Investigation</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCbc.dateOfInvestigation} ? ${investigation.bloodCbc.dateOfInvestigation}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Tc</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCbc.tc} ? ${investigation.bloodCbc.tc}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Dc</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCbc.dc} ? ${investigation.bloodCbc.dc}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Hb</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCbc.hb} ? ${investigation.bloodCbc.hb}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Esr</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCbc.esr} ? ${investigation.bloodCbc.esr}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Pcv</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCbc.pcv} ? ${investigation.bloodCbc.pcv}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Comment</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCbc.comment} ? ${investigation.bloodCbc.comment}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
 
-                        <table class="table table-condensed table-bordered">
-                            <thead>
-                            <th>Date</th>
-                            <th>Name Of Organism</th>
-                            <th>Sensitive Antibiotic</th>
-                            <th>Comment</th>
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Blood CS</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Date Of Investigation</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCs.dateOfInvestigation} ? ${investigation.bloodCs.dateOfInvestigation}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Name Of Organism</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCs.nameOfOrganism} ? ${investigation.bloodCs.nameOfOrganism}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Sensitive Antibiotic</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCs.sensitiveAntibiotic} ? ${investigation.bloodCs.sensitiveAntibiotic}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Comment</td>
+                                        <td><span
+                                                th:text="${investigation.bloodCs.comment} ? ${investigation.bloodCs.comment}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
 
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td th:text="${investigation.bloodCs.dateOfInvestigation}? ${investigation.bloodCs.dateOfInvestigation}"></td>
-                                <td th:text="${investigation.bloodCs.nameOfOrganism}? ${investigation.bloodCs.nameOfOrganism}"></td>
-                                <td th:text="${investigation.bloodCs.sensitiveAntibiotic}? ${investigation.bloodCs.sensitiveAntibiotic}"></td>
-                                <td th:text="${investigation.bloodCs.comment}? ${investigation.bloodCs.comment}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
+                    </div>
 
-                    <fieldset class="border">
-                        <legend class="border">Wound C/S</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Wound CS</legend>
 
-                        <table class="table table-condensed table-bordered">
-                            <thead>
-                            <th>Date</th>
-                            <th>Name Of Organism</th>
-                            <th>Sensitive Antibiotic</th>
-                            <th>Comment</th>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Date Of Investigation</td>
+                                        <td><span
+                                                th:text="${investigation.woundCs.dateOfInvestigation} ? ${investigation.woundCs.dateOfInvestigation}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Name Of Organism</td>
+                                        <td><span
+                                                th:text="${investigation.woundCs.nameOfOrganism} ? ${investigation.woundCs.nameOfOrganism}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Sensitive Antibiotic</td>
+                                        <td><span
+                                                th:text="${investigation.woundCs.sensitiveAntibiotic} ? ${investigation.woundCs.sensitiveAntibiotic}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Comment</td>
+                                        <td><span
+                                                th:text="${investigation.woundCs.comment} ? ${investigation.woundCs.comment}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
 
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td th:text="${investigation.woundCs.dateOfInvestigation}? ${investigation.woundCs.dateOfInvestigation}"></td>
-                                <td th:text="${investigation.woundCs.nameOfOrganism}? ${investigation.woundCs.nameOfOrganism}"></td>
-                                <td th:text="${investigation.woundCs.sensitiveAntibiotic}? ${investigation.woundCs.sensitiveAntibiotic}"></td>
-                                <td th:text="${investigation.woundCs.comment}? ${investigation.woundCs.comment}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Electrolyte</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Date Of Investigation</td>
+                                        <td><span
+                                                th:text="${investigation.electrolyte.dateOfInvestigation} ? ${investigation.electrolyte.dateOfInvestigation}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Sodium</td>
+                                        <td><span
+                                                th:text="${investigation.electrolyte.sodium} ? ${investigation.electrolyte.sodium}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Chlorine</td>
+                                        <td><span
+                                                th:text="${investigation.electrolyte.chlorine} ? ${investigation.electrolyte.chlorine}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Potassium</td>
+                                        <td><span
+                                                th:text="${investigation.electrolyte.potassium} ? ${investigation.electrolyte.potassium}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Bicarbonate</td>
+                                        <td><span
+                                                th:text="${investigation.electrolyte.bicarbonate} ? ${investigation.electrolyte.bicarbonate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Calcium</td>
+                                        <td><span
+                                                th:text="${investigation.electrolyte.calcium} ? ${investigation.electrolyte.calcium}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Comment</td>
+                                        <td><span
+                                                th:text="${investigation.electrolyte.comment} ? ${investigation.electrolyte.comment}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
 
-                    <fieldset class="border">
-                        <legend class="border">Electrolyte</legend>
-                        <table class="table table-condensed table-bordered">
-                            <thead>
-                            <th>Date</th>
-                            <th>Sodium (Na)</th>
-                            <th>Chlorine (Cl)</th>
-                            <th>Potassium (K)</th>
-                            <th>Bicarbonate (HCO3)</th>
-                            <th>Calcium (Ca)</th>
-                            <th>Comment</th>
+                    <div class="row">
 
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td th:text="${investigation.electrolyte.dateOfInvestigation}? ${investigation.electrolyte.dateOfInvestigation}"></td>
-                                <td th:text="${investigation.electrolyte.sodium}? ${investigation.electrolyte.sodium}"></td>
-                                <td th:text="${investigation.electrolyte.chlorine}? ${investigation.electrolyte.chlorine}"></td>
-                                <td th:text="${investigation.electrolyte.potassium}? ${investigation.electrolyte.potassium}"></td>
-                                <td th:text="${investigation.electrolyte.bicarbonate}? ${investigation.electrolyte.bicarbonate}"></td>
-                                <td th:text="${investigation.electrolyte.calcium}? ${investigation.electrolyte.calcium}"></td>
-                                <td th:text="${investigation.electrolyte.comment}? ${investigation.electrolyte.comment}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Others</legend>
+                                <table class="table table-condensed table-hover">
 
-                    <fieldset class="border">
-                        <legend class="border">PT</legend>
-                        <table class="table table-condensed table-bordered">
-                            <thead>
-                            <th>Date</th>
-                            <th>Patient</th>
-                            <th>Control</th>
-                            <th>IN Index</th>
-                            <th>Comment</th>
+                                    <tr>
+                                        <td class="bold">Blood Sugar</td>
+                                        <td><span
+                                                th:text="${investigation.bloodSugar} ? ${investigation.bloodSugar}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Urine R/E</td>
+                                        <td><span th:text="${investigation.urineRe} ? ${investigation.urineRe}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">S Creatinine</td>
+                                        <td><span
+                                                th:text="${investigation.sCreatinine} ? ${investigation.sCreatinine}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">CXR</td>
+                                        <td><span th:text="${investigation.cxr} ? ${investigation.cxr}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">ECG</td>
+                                        <td><span th:text="${investigation.ecg} ? ${investigation.ecg}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Echo</td>
+                                        <td><span th:text="${investigation.echo} ? ${investigation.echo}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">S Calcium</td>
+                                        <td><span
+                                                th:text="${investigation.sCalcium} ? ${investigation.sCalcium}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">S Mg</td>
+                                        <td><span th:text="${investigation.sMg} ? ${investigation.sMg}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">D Dimer</td>
+                                        <td><span th:text="${investigation.dDimer} ? ${investigation.dDimer}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">APTT</td>
+                                        <td><span th:text="${investigation.aptt} ? ${investigation.aptt}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">ADA</td>
+                                        <td><span th:text="${investigation.ada} ? ${investigation.ada}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Other</td>
+                                        <td><span th:text="${investigation.other} ? ${investigation.other}"></span></td>
+                                    </tr>
 
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td th:text="${investigation.pt.dateOfInvestigation}? ${investigation.pt.dateOfInvestigation}"></td>
-                                <td th:text="${investigation.pt.patient}? ${investigation.pt.patient}"></td>
-                                <td th:text="${investigation.pt.control}? ${investigation.pt.control}"></td>
-                                <td th:text="${investigation.pt.inIndex}? ${investigation.pt.inIndex}"></td>
-                                <td th:text="${investigation.pt.comment}? ${investigation.pt.comment}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Liver Function Test</legend>
 
-                    <fieldset class="border">
-                        <legend class="border">Others</legend>
-                        <table class="table table-condensed table-bordered">
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">S Bilirubin</td>
+                                        <td><span
+                                                th:text="${investigation.sBilirubin} ? ${investigation.sBilirubin}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">SGPT</td>
+                                        <td><span th:text="${investigation.sgpt} ? ${investigation.sgpt}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">SGUT</td>
+                                        <td><span th:text="${investigation.sgut} ? ${investigation.sgut}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Alkaline Phosphatase</td>
+                                        <td><span
+                                                th:text="${investigation.alkalinePhosphatase} ? ${investigation.alkalinePhosphatase}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">S. Total Protein</td>
+                                        <td><span
+                                                th:text="${investigation.sTotalProtein} ? ${investigation.sTotalProtein}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Serum Albumin</td>
+                                        <td><span
+                                                th:text="${investigation.serumAlbumin} ? ${investigation.serumAlbumin}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Albumin Globulin Ratio</td>
+                                        <td><span
+                                                th:text="${investigation.albuminGlobulinRatio} ? ${investigation.albuminGlobulinRatio}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">PT</td>
+                                        <td><span th:text="${investigation.pt} ? ${investigation.pt}"></span></td>
+                                    </tr>
 
-                            <thead>
-                            <th>#</th>
-                            <th>#</th>
-                            <th>#</th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td width="40%">RBS</td>
-                                <td th:text="${investigation.rbs}? ${investigation.rbs}"></td>
-                                <td th:text="${investigation.dateRbs}? ${investigation.dateRbs}"></td>
-                            </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
 
-                            <tr>
-                                <td>S. Creatinine</td>
-                                <td th:text="${investigation.serumCreatinine}? ${investigation.serumCreatinine}"></td>
-                                <td th:text="${investigation.dateSerumCreatinine}? ${investigation.dateSerumCreatinine}"></td>
-                            </tr>
-                            <tr>
-                                <td>S. Albumin</td>
-                                <td th:text="${investigation.serumAlbumin}? ${investigation.serumAlbumin}"></td>
-                                <td th:text="${investigation.dateSerumAlbumin}? ${investigation.dateSerumAlbumin}"></td>
-                            </tr>
-                            <tr>
-                                <td>S. Total Protein</td>
-                                <td th:text="${investigation.sTotalProtein}? ${investigation.sTotalProtein}"></td>
-                                <td th:text="${investigation.dateSTotalProtein}? ${investigation.dateSTotalProtein}"></td>
-                            </tr>
-                            <tr>
-                                <td>A/G Ratio</td>
-                                <td th:text="${investigation.albuminGlobulinRatio}? ${investigation.albuminGlobulinRatio}"></td>
-                                <td th:text="${investigation.dateAlbuminGlobulinRatio}? ${investigation.dateAlbuminGlobulinRatio}"></td>
-                            </tr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">X Rays</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Date</td>
+                                        <td><span
+                                                th:text="${investigation.xRaysDate} ? ${investigation.xRaysDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Plain X Ray Abdomen</td>
+                                        <td><span
+                                                th:text="${investigation.plainXRayAbdomen} ? ${investigation.plainXRayAbdomen}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">X Ray KUB</td>
+                                        <td><span th:text="${investigation.xRayKub} ? ${investigation.xRayKub}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Others</td>
+                                        <td><span
+                                                th:text="${investigation.xRayOthers} ? ${investigation.xRayOthers}"></span>
+                                        </td>
+                                    </tr>
 
-                            <tr>
-                                <td>SGPT</td>
-                                <td th:text="${investigation.sgpt}? ${investigation.sgpt}"></td>
-                                <td th:text="${investigation.dateSgpt}? ${investigation.dateSgpt}"></td>
-                            </tr>
-                            <tr>
-                                <td>Al phos</td>
-                                <td th:text="${investigation.alphos}? ${investigation.alphos}"></td>
-                                <td th:text="${investigation.dateAlphos}? ${investigation.dateAlphos}"></td>
-                            </tr>
-                            <tr>
-                                <td>APTT</td>
-                                <td th:text="${investigation.aptt}? ${investigation.aptt}"></td>
-                                <td th:text="${investigation.dateAptt}? ${investigation.dateAptt}"></td>
-                            </tr>
+                                </table>
+                            </fieldset>
+                        </div>
 
-                            <tr>
-                                <td>FDP</td>
-                                <td th:text="${investigation.fdp}? ${investigation.fdp}"></td>
-                                <td th:text="${investigation.dateFdp}? ${investigation.dateFdp}"></td>
-                            </tr>
-                            <tr>
-                                <td>D-Dimer</td>
-                                <td th:text="${investigation.dDimer}? ${investigation.dDimer}"></td>
-                                <td th:text="${investigation.dateDDimer}? ${investigation.dateDDimer}"></td>
-                            </tr>
-                            <tr>
-                                <td>C-ReactiveProtein</td>
-                                <td th:text="${investigation.cReactiveProtein}? ${investigation.cReactiveProtein}"></td>
-                                <td th:text="${investigation.dateCReactiveProtein}? ${investigation.dateCReactiveProtein}"></td>
-                            </tr>
-                            <tr>
-                                <td>X-Ray/USG</td>
-                                <td th:text="${investigation.xRayUsg}? ${investigation.xRayUsg}"></td>
-                                <td th:text="${investigation.dateOfXRayUsg}? ${investigation.dateOfXRayUsg}"></td>
-                            </tr>
-                            <tr>
-                                <td> MRI/MRA/CT/Echo/E.C.G</td>
-                                <td th:text="${investigation.mriMraCtEchoEcg}? ${investigation.mriMraCtEchoEcg}"></td>
-                                <td th:text="${investigation.dateOfMriMraCtEchoEcg}? ${investigation.dateOfMriMraCtEchoEcg}"></td>
-                            </tr>
-                            <tr>
-                                <td>Duplex Scan/ Doppler Study</td>
-                                <td th:text="${investigation.duplexScanDopplerStudy}? ${investigation.duplexScanDopplerStudy}"></td>
-                                <td th:text="${investigation.dateOfDuplexScanDopplerStudy}? ${investigation.dateOfDuplexScanDopplerStudy}"></td>
-                            </tr>
-                            <tr>
-                                <td>FNAC / Histopathology</td>
-                                <td th:text="${investigation.fnacHistopathology}? ${investigation.fnacHistopathology}"></td>
-                                <td th:text="${investigation.dateOfFnacHistopathology}? ${investigation.dateOfFnacHistopathology}"></td>
-                            </tr>
-                            <tr>
-                                <td>Other Investigation</td>
-                                <td th:text="${investigation.otherInvestigation}? ${investigation.otherInvestigation}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Ultrasonogram</legend>
+                                <table class="table table-condensed table-hover">
 
+                                    <tr>
+                                        <td class="bold">Date</td>
+                                        <td><span
+                                                th:text="${investigation.ultrasonogramDate} ? ${investigation.ultrasonogramDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">USG Of W/A</td>
+                                        <td><span th:text="${investigation.usgOfWA} ? ${investigation.usgOfWA}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">USG Of HBS</td>
+                                        <td><span
+                                                th:text="${investigation.usgOfHBS} ? ${investigation.usgOfHBS}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">USG Of L/A</td>
+                                        <td><span th:text="${investigation.usgOfLA} ? ${investigation.usgOfLA}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">USG KUB</td>
+                                        <td><span th:text="${investigation.usaKub} ? ${investigation.usaKub}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Ultrasonogram Others</td>
+                                        <td><span
+                                                th:text="${investigation.ultrasonogramOthers} ? ${investigation.ultrasonogramOthers}"></span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">CT Scan</legend>
+                                <table class="table table-condensed table-hover">
+
+                                    <tr>
+                                        <td class="bold">Ct Scan Date</td>
+                                        <td><span
+                                                th:text="${investigation.ctScanDate} ? ${investigation.ctScanDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Name Of Ct</td>
+                                        <td><span
+                                                th:text="${investigation.nameOfCt} ? ${investigation.nameOfCt}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Ct Findings</td>
+                                        <td><span
+                                                th:text="${investigation.ctFindings} ? ${investigation.ctFindings}"></span>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">MRCP</legend>
+                                <table class="table table-condensed table-hover">
+
+                                    <tr>
+                                        <td class="bold">Date</td>
+                                        <td><span
+                                                th:text="${investigation.mrcpDate} ? ${investigation.mrcpDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Findings</td>
+                                        <td><span
+                                                th:text="${investigation.mrcpFindings} ? ${investigation.mrcpFindings}"></span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">MRI</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Date</td>
+                                        <td><span th:text="${investigation.mriDate} ? ${investigation.mriDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Name Of MRI</td>
+                                        <td><span
+                                                th:text="${investigation.nameOfMri} ? ${investigation.nameOfMri}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Findings</td>
+                                        <td><span
+                                                th:text="${investigation.mriFindings} ? ${investigation.mriFindings}"></span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">ERCP</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Date</td>
+                                        <td><span
+                                                th:text="${investigation.ercpDate} ? ${investigation.ercpDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">ERCP Findings</td>
+                                        <td><span
+                                                th:text="${investigation.ercpFindings} ? ${investigation.ercpFindings}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Intervention</td>
+                                        <td><span
+                                                th:text="${investigation.intervention} ? ${investigation.intervention}"></span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Upper GI EndoscopyS</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold"> Date</td>
+                                        <td><span
+                                                th:text="${investigation.upperGiEndoscopyDate} ? ${investigation.upperGiEndoscopyDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Findings</td>
+                                        <td><span
+                                                th:text="${investigation.upperGiEndoscopyFindings} ? ${investigation.upperGiEndoscopyFindings}"></span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Colonoscopy/Sigmoidoscopy</legend>
+                                <table class="table table-condensed table-hover">
+
+                                    <tr>
+                                        <td class="bold">Date</td>
+                                        <td><span
+                                                th:text="${investigation.colonscopyDate} ? ${investigation.colonscopyDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Findings</td>
+                                        <td><span
+                                                th:text="${investigation.colonscopyFindings} ? ${investigation.colonscopyFindings}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <fieldset class="border">
+                                <legend class="border">Upper GI Endoscopy</legend>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold">Biopsy Date</td>
+                                        <td><span
+                                                th:text="${investigation.biopsyDate} ? ${investigation.biopsyDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Biopsy Findings</td>
+                                        <td><span
+                                                th:text="${investigation.biopsyFindings} ? ${investigation.biopsyFindings}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Biopsy</td>
+                                        <td><span th:text="${investigation.biopsy} ? ${investigation.biopsy}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-md-6">
+                            <fieldset class="border">
+                                <legend class="border">Contrast</legend>
+
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td class="bold"> Date</td>
+                                        <td><span
+                                                th:text="${investigation.contrastDate} ? ${investigation.contrastDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Name Of Contract Film</td>
+                                        <td><span
+                                                th:text="${investigation.nameOfContractFilm} ? ${investigation.nameOfContractFilm}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Findings</td>
+                                        <td><span
+                                                th:text="${investigation.contrastFindings} ? ${investigation.contrastFindings}"></span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </fieldset>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="panel-footer clearfix">
-                    <a href="#" class="btn btn-info pull-left"
-                       th:href="@{/investigation/cancel/__${investigation.register.id}__}"> <span
-                            class="glyphicon glyphicon-arrow-left"></span> <span
-                            th:text="#{label.back}">Back</span> </a>
+                <div class="row">
 
-                    <a href="#" class="btn btn-info pull-right"
-                       th:href="@{/investigation/edit/__${investigation.id}__}"> <span
-                            class="glyphicon glyphicon-edit"></span> Edit </a>
+                    <div class="col-md-12">
+                        <fieldset class="border">
+                            <legend class="border">Other Investigation</legend>
+                            <table class="table table-condensed table-hover">
+                                <tr>
+                                    <td class="bold">Other Investigation</td>
+                                    <td><span
+                                            th:text="${investigation.otherInvestigation} ? ${investigation.otherInvestigation}"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
                 </div>
+            </div>
+
+            <div class="panel-footer clearfix">
+                <a href="#" class="btn btn-info pull-left"
+                   th:href="@{/investigation/cancel/__${investigation.register.id}__}"> <span
+                        class="glyphicon glyphicon-arrow-left"></span> <span
+                        th:text="#{label.back}">Back</span> </a>
+
+                <a href="#" class="btn btn-info pull-right"
+                   th:href="@{/investigation/edit/__${investigation.id}__}"> <span
+                        class="glyphicon glyphicon-edit"></span> Edit </a>
             </div>
         </div>
     </div>
+
 </section>
 
 </body>

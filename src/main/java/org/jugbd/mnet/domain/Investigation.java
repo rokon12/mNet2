@@ -1,6 +1,9 @@
 package org.jugbd.mnet.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.jugbd.mnet.domain.enums.Biopsy;
+import org.jugbd.mnet.domain.enums.BloodSugar;
+import org.jugbd.mnet.domain.enums.PT;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,478 +18,815 @@ import java.util.Date;
 @Entity
 public class Investigation extends PersistentObject implements Auditable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Version
-    private Long version;
-
-    @Valid
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "comment", column = @Column(name = "comment_blood_cbc")),
-            @AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_blood_cbc"))
-    })
-    private BloodCbc bloodCbc;
-
-    @Valid
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "nameOfOrganism", column = @Column(name = "blood_cbc_name_of_organism")),
-            @AttributeOverride(name = "sensitiveAntibiotic", column = @Column(name = "blood_cbc_sensitive_antibiotic")),
-            @AttributeOverride(name = "comment", column = @Column(name = "comment_blood_cs")),
-            @AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_blood_cs")),
-    })
-    private CultureAndSensitivity bloodCs;
-
-    @Size(max = 100)
-    private String rbs;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateRbs;
-
-    @Valid
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "nameOfOrganism", column = @Column(name = "wound_cs_name_of_organism")),
-            @AttributeOverride(name = "sensitiveAntibiotic", column = @Column(name = "wound_cs_sensitive_antibiotic")),
-            @AttributeOverride(name = "comment", column = @Column(name = "comment_wound_cs")),
-            @AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_wound_cs")),
-    })
-    private CultureAndSensitivity woundCs;
-
-    @Size(max = 100)
-    private String serumCreatinine;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateSerumCreatinine;
-
-    @Size(max = 100)
-    private String serumAlbumin;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateSerumAlbumin;
-
-    @Size(max = 100)
-    private String sTotalProtein;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateSTotalProtein;
-
-    @Size(max = 100)
-    private String albuminGlobulinRatio;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateAlbuminGlobulinRatio;
-
-    @AttributeOverrides({
-            @AttributeOverride(name = "comment", column = @Column(name = "comment_electrolyte")),
-            @AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_electrolyte"))
-    })
-    private Electrolyte electrolyte;
-
-    @Size(max = 100)
-    private String sgpt;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateSgpt;
-
-    @Size(max = 100)
-    private String alphos;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateAlphos;
-
-
-    @Size(max = 100)
-    private String aptt;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateAptt;
-
-    @Valid
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "comment", column = @Column(name = "comment_pt")),
-            @AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_pt")),
-    })
-    private PT pt;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Size(max = 100)
-    private String fdp;
+	@Version
+	private Long version;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateFdp;
+	@Valid
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "comment", column = @Column(name = "comment_blood_cbc")),
+		@AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_blood_cbc"))
+	})
+	private BloodCbc bloodCbc;
 
-    @Size(max = 100)
-    private String dDimer;
+	@Valid
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "nameOfOrganism", column = @Column(name = "blood_cbc_name_of_organism")),
+		@AttributeOverride(name = "sensitiveAntibiotic", column = @Column(name = "blood_cbc_sensitive_antibiotic")),
+		@AttributeOverride(name = "comment", column = @Column(name = "comment_blood_cs")),
+		@AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_blood_cs")),
+	})
+	private CultureAndSensitivity bloodCs;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateDDimer;
+	@Valid
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "nameOfOrganism", column = @Column(name = "wound_cs_name_of_organism")),
+		@AttributeOverride(name = "sensitiveAntibiotic", column = @Column(name = "wound_cs_sensitive_antibiotic")),
+		@AttributeOverride(name = "comment", column = @Column(name = "comment_wound_cs")),
+		@AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_wound_cs")),
+	})
+	private CultureAndSensitivity woundCs;
 
-    @Size(max = 100)
-    private String cReactiveProtein;
+	@AttributeOverrides({
+		@AttributeOverride(name = "comment", column = @Column(name = "comment_electrolyte")),
+		@AttributeOverride(name = "dateOfInvestigation", column = @Column(name = "date_inv_electrolyte"))
+	})
+	private Electrolyte electrolyte;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateCReactiveProtein;
+	//Others
 
-    @Size(max = 1000)
-    private String xRayUsg;
+	@Column(length = 20)
+	@Enumerated(EnumType.STRING)
+	private BloodSugar bloodSugar;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateOfXRayUsg;
+	@Size(max = 500)
+	private String urineRe; // Urine R/E -> urine routine examination
 
-    @Size(max = 1000)
-    private String mriMraCtEchoEcg;
+	@Size(max = 500)
+	private String sCreatinine; //S. Creatinine
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateOfMriMraCtEchoEcg;
+	@Size(max = 500)
+	private String cxr;
 
-    @Size(max = 1000)
-    private String duplexScanDopplerStudy;
+	@Size(max = 500)
+	private String ecg;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateOfDuplexScanDopplerStudy;
+	@Size(max = 500)
+	private String echo;
 
-    @Size(max = 1000)
-    private String fnacHistopathology;
+	@Size(max = 500)
+	private String sCalcium;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateOfFnacHistopathology;
+	@Size(max = 500)
+	private String sMg;
 
-    @Size(max = 1000)
-    private String otherInvestigation;
+	@Size(max = 500)
+	private String dDimer;
 
-    @JsonIgnore
-    @ManyToOne
-    private Register register;
+	@Size(max = 500)
+	private String aptt; //APTT
 
-    @Override
-    public Long getId() {
-        return id;
-    }
+	@Size(max = 500)
+	private String ada; //ADA
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Size(max = 1500)
+	private String other; //Other
 
-    public Long getVersion() {
-        return version;
-    }
 
-    public void setVersion(Long version) {
-        this.version = version;
-    }
+	/*********
+	 * LFT - Liver Function Test
+	 **********/
 
-    public BloodCbc getBloodCbc() {
-        return bloodCbc;
-    }
+	@Size(max = 500)
+	private String sBilirubin;
 
-    public void setBloodCbc(BloodCbc bloodCbc) {
-        this.bloodCbc = bloodCbc;
-    }
+	@Size(max = 500)
+	private String sgpt; //SGPT
+
+	@Size(max = 500)
+	private String sgut; // SGUT
+
+	@Size(max = 500)
+	private String alkalinePhosphatase;
 
-    public CultureAndSensitivity getBloodCs() {
-        return bloodCs;
-    }
-
-    public void setBloodCs(CultureAndSensitivity bloodCs) {
-        this.bloodCs = bloodCs;
-    }
-
-    public String getRbs() {
-        return rbs;
-    }
-
-    public void setRbs(String rbs) {
-        this.rbs = rbs;
-    }
-
-    public Date getDateRbs() {
-        return dateRbs;
-    }
-
-    public void setDateRbs(Date dateRbs) {
-        this.dateRbs = dateRbs;
-    }
-
-    public CultureAndSensitivity getWoundCs() {
-        return woundCs;
-    }
-
-    public void setWoundCs(CultureAndSensitivity woundCs) {
-        this.woundCs = woundCs;
-    }
-
-    public String getSerumCreatinine() {
-        return serumCreatinine;
-    }
-
-    public void setSerumCreatinine(String serumCreatinine) {
-        this.serumCreatinine = serumCreatinine;
-    }
-
-    public Date getDateSerumCreatinine() {
-        return dateSerumCreatinine;
-    }
-
-    public void setDateSerumCreatinine(Date dateSerumCreatinine) {
-        this.dateSerumCreatinine = dateSerumCreatinine;
-    }
-
-    public String getSerumAlbumin() {
-        return serumAlbumin;
-    }
-
-    public void setSerumAlbumin(String serumAlbumin) {
-        this.serumAlbumin = serumAlbumin;
-    }
-
-    public Date getDateSerumAlbumin() {
-        return dateSerumAlbumin;
-    }
-
-    public void setDateSerumAlbumin(Date dateSerumAlbumin) {
-        this.dateSerumAlbumin = dateSerumAlbumin;
-    }
-
-    public String getsTotalProtein() {
-        return sTotalProtein;
-    }
-
-    public void setsTotalProtein(String sTotalProtein) {
-        this.sTotalProtein = sTotalProtein;
-    }
-
-    public Date getDateSTotalProtein() {
-        return dateSTotalProtein;
-    }
-
-    public void setDateSTotalProtein(Date dateSTotalProtein) {
-        this.dateSTotalProtein = dateSTotalProtein;
-    }
-
-    public String getAlbuminGlobulinRatio() {
-        return albuminGlobulinRatio;
-    }
-
-    public void setAlbuminGlobulinRatio(String albuminGlobulinRatio) {
-        this.albuminGlobulinRatio = albuminGlobulinRatio;
-    }
-
-    public Date getDateAlbuminGlobulinRatio() {
-        return dateAlbuminGlobulinRatio;
-    }
-
-    public void setDateAlbuminGlobulinRatio(Date dateAlbuminGlobulinRatio) {
-        this.dateAlbuminGlobulinRatio = dateAlbuminGlobulinRatio;
-    }
-
-    public Electrolyte getElectrolyte() {
-        return electrolyte;
-    }
-
-    public void setElectrolyte(Electrolyte electrolyte) {
-        this.electrolyte = electrolyte;
-    }
-
-    public String getSgpt() {
-        return sgpt;
-    }
-
-    public void setSgpt(String sgpt) {
-        this.sgpt = sgpt;
-    }
-
-    public Date getDateSgpt() {
-        return dateSgpt;
-    }
-
-    public void setDateSgpt(Date dateSgpt) {
-        this.dateSgpt = dateSgpt;
-    }
-
-    public String getAlphos() {
-        return alphos;
-    }
-
-    public void setAlphos(String alphos) {
-        this.alphos = alphos;
-    }
-
-    public Date getDateAlphos() {
-        return dateAlphos;
-    }
-
-    public void setDateAlphos(Date dateAlphos) {
-        this.dateAlphos = dateAlphos;
-    }
-
-    public String getAptt() {
-        return aptt;
-    }
-
-    public void setAptt(String aptt) {
-        this.aptt = aptt;
-    }
-
-    public Date getDateAptt() {
-        return dateAptt;
-    }
-
-    public void setDateAptt(Date dateAptt) {
-        this.dateAptt = dateAptt;
-    }
-
-    public PT getPt() {
-        return pt;
-    }
-
-    public void setPt(PT pt) {
-        this.pt = pt;
-    }
-
-    public String getFdp() {
-        return fdp;
-    }
-
-    public void setFdp(String fdp) {
-        this.fdp = fdp;
-    }
-
-    public Date getDateFdp() {
-        return dateFdp;
-    }
-
-    public void setDateFdp(Date dateFdp) {
-        this.dateFdp = dateFdp;
-    }
-
-    public String getdDimer() {
-        return dDimer;
-    }
-
-    public void setdDimer(String dDimer) {
-        this.dDimer = dDimer;
-    }
-
-    public Date getDateDDimer() {
-        return dateDDimer;
-    }
-
-    public void setDateDDimer(Date dateDDimer) {
-        this.dateDDimer = dateDDimer;
-    }
-
-    public String getcReactiveProtein() {
-        return cReactiveProtein;
-    }
-
-    public void setcReactiveProtein(String cReactiveProtein) {
-        this.cReactiveProtein = cReactiveProtein;
-    }
-
-    public Date getDateCReactiveProtein() {
-        return dateCReactiveProtein;
-    }
-
-    public void setDateCReactiveProtein(Date dateCReactiveProtein) {
-        this.dateCReactiveProtein = dateCReactiveProtein;
-    }
-
-    public String getxRayUsg() {
-        return xRayUsg;
-    }
-
-    public void setxRayUsg(String xRayUsg) {
-        this.xRayUsg = xRayUsg;
-    }
-
-    public Date getDateOfXRayUsg() {
-        return dateOfXRayUsg;
-    }
-
-    public void setDateOfXRayUsg(Date dateOfXRayUsg) {
-        this.dateOfXRayUsg = dateOfXRayUsg;
-    }
-
-    public String getMriMraCtEchoEcg() {
-        return mriMraCtEchoEcg;
-    }
-
-    public void setMriMraCtEchoEcg(String mriMraCtEchoEcg) {
-        this.mriMraCtEchoEcg = mriMraCtEchoEcg;
-    }
-
-    public Date getDateOfMriMraCtEchoEcg() {
-        return dateOfMriMraCtEchoEcg;
-    }
-
-    public void setDateOfMriMraCtEchoEcg(Date dateOfMriMraCtEchoEcg) {
-        this.dateOfMriMraCtEchoEcg = dateOfMriMraCtEchoEcg;
-    }
-
-    public String getDuplexScanDopplerStudy() {
-        return duplexScanDopplerStudy;
-    }
-
-    public void setDuplexScanDopplerStudy(String duplexScanDopplerStudy) {
-        this.duplexScanDopplerStudy = duplexScanDopplerStudy;
-    }
-
-    public Date getDateOfDuplexScanDopplerStudy() {
-        return dateOfDuplexScanDopplerStudy;
-    }
-
-    public void setDateOfDuplexScanDopplerStudy(Date dateOfDuplexScanDopplerStudy) {
-        this.dateOfDuplexScanDopplerStudy = dateOfDuplexScanDopplerStudy;
-    }
-
-    public String getFnacHistopathology() {
-        return fnacHistopathology;
-    }
-
-    public void setFnacHistopathology(String fnacHistopathology) {
-        this.fnacHistopathology = fnacHistopathology;
-    }
-
-    public Date getDateOfFnacHistopathology() {
-        return dateOfFnacHistopathology;
-    }
-
-    public void setDateOfFnacHistopathology(Date dateOfFnacHistopathology) {
-        this.dateOfFnacHistopathology = dateOfFnacHistopathology;
-    }
-
-    public String getOtherInvestigation() {
-        return otherInvestigation;
-    }
-
-    public void setOtherInvestigation(String otherInvestigation) {
-        this.otherInvestigation = otherInvestigation;
-    }
-
-    public Register getRegister() {
-        return register;
-    }
-
-    public void setRegister(Register register) {
-        this.register = register;
-    }
+	@Size(max = 500)
+	private String sTotalProtein;
+
+	@Size(max = 500)
+	private String serumAlbumin;
+
+	@Size(max = 500)
+	private String albuminGlobulinRatio; // A:G Ration
+
+	@Column(length = 20)
+	@Enumerated(EnumType.STRING)
+	private PT pt;
+
+	/************
+	 * XRays
+	 ************/
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date xRaysDate;
+
+	@Size(max = 500)
+	private String plainXRayAbdomen;
+
+	@Size(max = 500)
+	private String xRayKub;
+
+	@Size(max = 500)
+	private String xRayOthers;
+
+	/*********
+	 * Ultrasonogram
+	 *********/
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date ultrasonogramDate;
+
+	@Size(max = 500)
+	private String usgOfWA;
+
+	@Size(max = 500)
+	private String usgOfHBS;
+
+	@Size(max = 500)
+	private String usgOfLA;
+
+	@Size(max = 500)
+	private String usaKub;
+
+	@Size(max = 500)
+	private String ultrasonogramOthers;
+
+	/*
+	CT Scan
+	- Date
+	- Name of CT
+	- Findings
+	*/
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date ctScanDate;
+
+	@Size(max = 200)
+	private String nameOfCt;
+
+	@Size(max = 1500)
+	private String ctFindings;
+
+	/*
+	MRCP
+	- Date
+	- Findings
+	*/
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date mrcpDate;
+
+	@Size(max = 1500)
+	private String mrcpFindings;
+
+	/*
+	MRI
+	- Date
+	- Name of MRi
+	- Findings
+	* */
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date mriDate;
+	@Size(max = 200)
+	private String nameOfMri;
+
+	@Size(max = 1500)
+	private String mriFindings;
+
+	/*
+	ERCP
+		- Date
+		- Findings
+		- Intervention
+	*/
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date ercpDate;
+
+	@Size(max = 1500)
+	private String ercpFindings;
+
+	@Size(max = 1000)
+	private String intervention;
+
+	/*
+	Upper GI Endoscopy
+		- Date
+		- Findings
+	*/
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date upperGiEndoscopyDate;
+
+	@Size(max = 1500)
+	private String upperGiEndoscopyFindings;
+
+
+	/*
+	Colonoscopy/Sigmoidoscopy
+		Date
+		Findings
+	*/
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date colonscopyDate;
+
+	@Size(max = 1500)
+	private String colonscopyFindings;
+
+
+	/*
+	FNAC/Biopsy
+		Date
+		Findings
+			Preoperative FNAC
+			Preoperative Biopsy
+			Postoperative Biopsy
+	* */
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date biopsyDate;
+
+	@Size(max = 1500)
+	private String biopsyFindings;
+
+	@Column(length = 100)
+	@Enumerated(EnumType.STRING)
+	private Biopsy biopsy;
+
+	/*
+
+	Contrast
+		Date
+		Name of Contrast Film
+		Findings
+	*/
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date contrastDate;
+
+	@Size(max = 150)
+	private String nameOfContractFilm;
+
+	@Size(max = 1500)
+	private String contrastFindings;
+
+	@Size(min = 0, max = 2000)
+	//@Max(2000)
+	//@Min(0)
+	private String otherInvestigation;
+
+	@JsonIgnore
+	@ManyToOne
+	private Register register;
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public BloodCbc getBloodCbc() {
+		return bloodCbc;
+	}
+
+	public Investigation setBloodCbc(BloodCbc bloodCbc) {
+		this.bloodCbc = bloodCbc;
+		return this;
+	}
+
+	public CultureAndSensitivity getBloodCs() {
+		return bloodCs;
+	}
+
+	public Investigation setBloodCs(CultureAndSensitivity bloodCs) {
+		this.bloodCs = bloodCs;
+		return this;
+	}
+
+	public CultureAndSensitivity getWoundCs() {
+		return woundCs;
+	}
+
+	public Investigation setWoundCs(CultureAndSensitivity woundCs) {
+		this.woundCs = woundCs;
+		return this;
+	}
+
+	public Electrolyte getElectrolyte() {
+		return electrolyte;
+	}
+
+	public Investigation setElectrolyte(Electrolyte electrolyte) {
+		this.electrolyte = electrolyte;
+		return this;
+	}
+
+	public BloodSugar getBloodSugar() {
+		return bloodSugar;
+	}
+
+	public Investigation setBloodSugar(BloodSugar bloodSugar) {
+		this.bloodSugar = bloodSugar;
+		return this;
+	}
+
+	public String getUrineRe() {
+		return urineRe;
+	}
+
+	public Investigation setUrineRe(String urineRe) {
+		this.urineRe = urineRe;
+		return this;
+	}
+
+	public String getsCreatinine() {
+		return sCreatinine;
+	}
+
+	public Investigation setsCreatinine(String sCreatinine) {
+		this.sCreatinine = sCreatinine;
+		return this;
+	}
+
+	public String getCxr() {
+		return cxr;
+	}
+
+	public Investigation setCxr(String cxr) {
+		this.cxr = cxr;
+		return this;
+	}
+
+	public String getEcg() {
+		return ecg;
+	}
+
+	public Investigation setEcg(String ecg) {
+		this.ecg = ecg;
+		return this;
+	}
+
+	public String getEcho() {
+		return echo;
+	}
+
+	public Investigation setEcho(String echo) {
+		this.echo = echo;
+		return this;
+	}
+
+	public String getsCalcium() {
+		return sCalcium;
+	}
+
+	public Investigation setsCalcium(String sCalcium) {
+		this.sCalcium = sCalcium;
+		return this;
+	}
+
+	public String getsMg() {
+		return sMg;
+	}
+
+	public Investigation setsMg(String sMg) {
+		this.sMg = sMg;
+		return this;
+	}
+
+	public String getdDimer() {
+		return dDimer;
+	}
+
+	public Investigation setdDimer(String dDimer) {
+		this.dDimer = dDimer;
+		return this;
+	}
+
+	public String getAptt() {
+		return aptt;
+	}
+
+	public Investigation setAptt(String aptt) {
+		this.aptt = aptt;
+		return this;
+	}
+
+	public String getAda() {
+		return ada;
+	}
+
+	public Investigation setAda(String ada) {
+		this.ada = ada;
+		return this;
+	}
+
+	public String getOther() {
+		return other;
+	}
+
+	public Investigation setOther(String other) {
+		this.other = other;
+		return this;
+	}
+
+	public String getsBilirubin() {
+		return sBilirubin;
+	}
+
+	public Investigation setsBilirubin(String sBilirubin) {
+		this.sBilirubin = sBilirubin;
+		return this;
+	}
+
+	public String getSgpt() {
+		return sgpt;
+	}
+
+	public Investigation setSgpt(String sgpt) {
+		this.sgpt = sgpt;
+		return this;
+	}
+
+	public String getSgut() {
+		return sgut;
+	}
+
+	public Investigation setSgut(String sgut) {
+		this.sgut = sgut;
+		return this;
+	}
+
+	public String getAlkalinePhosphatase() {
+		return alkalinePhosphatase;
+	}
+
+	public Investigation setAlkalinePhosphatase(String alkalinePhosphatase) {
+		this.alkalinePhosphatase = alkalinePhosphatase;
+		return this;
+	}
+
+	public String getsTotalProtein() {
+		return sTotalProtein;
+	}
+
+	public Investigation setsTotalProtein(String sTotalProtein) {
+		this.sTotalProtein = sTotalProtein;
+		return this;
+	}
+
+	public String getSerumAlbumin() {
+		return serumAlbumin;
+	}
+
+	public Investigation setSerumAlbumin(String serumAlbumin) {
+		this.serumAlbumin = serumAlbumin;
+		return this;
+	}
+
+	public String getAlbuminGlobulinRatio() {
+		return albuminGlobulinRatio;
+	}
+
+	public Investigation setAlbuminGlobulinRatio(String albuminGlobulinRatio) {
+		this.albuminGlobulinRatio = albuminGlobulinRatio;
+		return this;
+	}
+
+	public PT getPt() {
+		return pt;
+	}
+
+	public Investigation setPt(PT pt) {
+		this.pt = pt;
+		return this;
+	}
+
+	public Date getxRaysDate() {
+		return xRaysDate;
+	}
+
+	public Investigation setxRaysDate(Date xRaysDate) {
+		this.xRaysDate = xRaysDate;
+		return this;
+	}
+
+	public String getPlainXRayAbdomen() {
+		return plainXRayAbdomen;
+	}
+
+	public Investigation setPlainXRayAbdomen(String plainXRayAbdomen) {
+		this.plainXRayAbdomen = plainXRayAbdomen;
+		return this;
+	}
+
+	public String getxRayKub() {
+		return xRayKub;
+	}
+
+	public Investigation setxRayKub(String xRayKub) {
+		this.xRayKub = xRayKub;
+		return this;
+	}
+
+	public String getxRayOthers() {
+		return xRayOthers;
+	}
+
+	public Investigation setxRayOthers(String xRayOthers) {
+		this.xRayOthers = xRayOthers;
+		return this;
+	}
+
+	public Date getUltrasonogramDate() {
+		return ultrasonogramDate;
+	}
+
+	public Investigation setUltrasonogramDate(Date ultrasonogramDate) {
+		this.ultrasonogramDate = ultrasonogramDate;
+		return this;
+	}
+
+	public String getUsgOfWA() {
+		return usgOfWA;
+	}
+
+	public Investigation setUsgOfWA(String usgOfWA) {
+		this.usgOfWA = usgOfWA;
+		return this;
+	}
+
+	public String getUsgOfHBS() {
+		return usgOfHBS;
+	}
+
+	public Investigation setUsgOfHBS(String usgOfHBS) {
+		this.usgOfHBS = usgOfHBS;
+		return this;
+	}
+
+	public String getUsgOfLA() {
+		return usgOfLA;
+	}
+
+	public Investigation setUsgOfLA(String usgOfLA) {
+		this.usgOfLA = usgOfLA;
+		return this;
+	}
+
+	public String getUsaKub() {
+		return usaKub;
+	}
+
+	public Investigation setUsaKub(String usaKub) {
+		this.usaKub = usaKub;
+		return this;
+	}
+
+	public String getUltrasonogramOthers() {
+		return ultrasonogramOthers;
+	}
+
+	public Investigation setUltrasonogramOthers(String ultrasonogramOthers) {
+		this.ultrasonogramOthers = ultrasonogramOthers;
+		return this;
+	}
+
+	public Date getCtScanDate() {
+		return ctScanDate;
+	}
+
+	public Investigation setCtScanDate(Date ctScanDate) {
+		this.ctScanDate = ctScanDate;
+		return this;
+	}
+
+	public String getNameOfCt() {
+		return nameOfCt;
+	}
+
+	public Investigation setNameOfCt(String nameOfCt) {
+		this.nameOfCt = nameOfCt;
+		return this;
+	}
+
+	public String getCtFindings() {
+		return ctFindings;
+	}
+
+	public Investigation setCtFindings(String ctFindings) {
+		this.ctFindings = ctFindings;
+		return this;
+	}
+
+	public Date getMrcpDate() {
+		return mrcpDate;
+	}
+
+	public Investigation setMrcpDate(Date mrcpDate) {
+		this.mrcpDate = mrcpDate;
+		return this;
+	}
+
+	public String getMrcpFindings() {
+		return mrcpFindings;
+	}
+
+	public Investigation setMrcpFindings(String mrcpFindings) {
+		this.mrcpFindings = mrcpFindings;
+		return this;
+	}
+
+	public Date getMriDate() {
+		return mriDate;
+	}
+
+	public Investigation setMriDate(Date mriDate) {
+		this.mriDate = mriDate;
+		return this;
+	}
+
+	public String getNameOfMri() {
+		return nameOfMri;
+	}
+
+	public Investigation setNameOfMri(String nameOfMri) {
+		this.nameOfMri = nameOfMri;
+		return this;
+	}
+
+	public String getMriFindings() {
+		return mriFindings;
+	}
+
+	public Investigation setMriFindings(String mriFindings) {
+		this.mriFindings = mriFindings;
+		return this;
+	}
+
+	public Date getErcpDate() {
+		return ercpDate;
+	}
+
+	public Investigation setErcpDate(Date ercpDate) {
+		this.ercpDate = ercpDate;
+		return this;
+	}
+
+	public String getErcpFindings() {
+		return ercpFindings;
+	}
+
+	public Investigation setErcpFindings(String ercpFindings) {
+		this.ercpFindings = ercpFindings;
+		return this;
+	}
+
+	public String getIntervention() {
+		return intervention;
+	}
+
+	public Investigation setIntervention(String intervention) {
+		this.intervention = intervention;
+		return this;
+	}
+
+	public Date getUpperGiEndoscopyDate() {
+		return upperGiEndoscopyDate;
+	}
+
+	public Investigation setUpperGiEndoscopyDate(Date upperGiEndoscopyDate) {
+		this.upperGiEndoscopyDate = upperGiEndoscopyDate;
+		return this;
+	}
+
+	public String getUpperGiEndoscopyFindings() {
+		return upperGiEndoscopyFindings;
+	}
+
+	public Investigation setUpperGiEndoscopyFindings(String upperGiEndoscopyFindings) {
+		this.upperGiEndoscopyFindings = upperGiEndoscopyFindings;
+		return this;
+	}
+
+	public Date getColonscopyDate() {
+		return colonscopyDate;
+	}
+
+	public Investigation setColonscopyDate(Date colonscopyDate) {
+		this.colonscopyDate = colonscopyDate;
+		return this;
+	}
+
+	public String getColonscopyFindings() {
+		return colonscopyFindings;
+	}
+
+	public Investigation setColonscopyFindings(String colonscopyFindings) {
+		this.colonscopyFindings = colonscopyFindings;
+		return this;
+	}
+
+	public Date getBiopsyDate() {
+		return biopsyDate;
+	}
+
+	public Investigation setBiopsyDate(Date biopsyDate) {
+		this.biopsyDate = biopsyDate;
+		return this;
+	}
+
+	public String getBiopsyFindings() {
+		return biopsyFindings;
+	}
+
+	public Investigation setBiopsyFindings(String biopsyFindings) {
+		this.biopsyFindings = biopsyFindings;
+		return this;
+	}
+
+	public Biopsy getBiopsy() {
+		return biopsy;
+	}
+
+	public Investigation setBiopsy(Biopsy biopsy) {
+		this.biopsy = biopsy;
+		return this;
+	}
+
+	public Date getContrastDate() {
+		return contrastDate;
+	}
+
+	public Investigation setContrastDate(Date contrastDate) {
+		this.contrastDate = contrastDate;
+		return this;
+	}
+
+	public String getNameOfContractFilm() {
+		return nameOfContractFilm;
+	}
+
+	public Investigation setNameOfContractFilm(String nameOfContractFilm) {
+		this.nameOfContractFilm = nameOfContractFilm;
+		return this;
+	}
+
+	public String getContrastFindings() {
+		return contrastFindings;
+	}
+
+	public Investigation setContrastFindings(String contrastFindings) {
+		this.contrastFindings = contrastFindings;
+		return this;
+	}
+
+	public String getOtherInvestigation() {
+		return otherInvestigation;
+	}
+
+	public Investigation setOtherInvestigation(String otherInvestigation) {
+		this.otherInvestigation = otherInvestigation;
+		return this;
+	}
+
+	public Register getRegister() {
+		return register;
+	}
+
+	public Investigation setRegister(Register register) {
+		this.register = register;
+		return this;
+	}
 }

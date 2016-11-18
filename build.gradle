@@ -26,7 +26,8 @@ buildscript {
         classpath 'org.zeroturnaround:gradle-jrebel-plugin:1.1.2'
     }
 }
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -75,7 +76,7 @@ dependencies {
 
     compile 'ch.qos.logback:logback-classic:1.1.2'
     // compile 'org.slf4j:jcl-over-slf4j:1.7.7'
-    //compile 'org.slf4j:slf4j-log4j12:1.7.7'
+    // compile 'org.slf4j:slf4j-log4j12:1.7.7'
     compile 'javax.mail:mail:1.4.7'
     compile 'javax.activation:activation:1.1.1'
 
@@ -87,6 +88,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.4.4'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:2.4.4'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.4'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 
     testCompile 'org.springframework:spring-test:4.0.5.RELEASE'
     testCompile 'junit:junit:4.11'
@@ -125,7 +127,9 @@ task deployWar() {
 war.dependsOn(generateRebel)
 deployWar.dependsOn(war)
 
-task wrapper(type: Wrapper) { gradleVersion = '1.11' }
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
 
 tomcatRunWar.contextPath = ''
 

@@ -74,7 +74,7 @@
                 </div>
                 <div class="panel-footer clearfix">
                     <a href="#" class="btn btn-primary btn-sm pull-left"
-                       th:href="@{/register/vitals/__${register.id}__?registrationType=} + ${registrationType}"> <span
+                       th:href="@{/register/vitals/__${register.id}__}"> <span
                             class="glyphicon glyphicon-arrow-left"></span> Back </a>
 
                     <div class="btn-group inline pull-right" style="margin-right: 10px">
@@ -96,7 +96,7 @@
                         </script>
 
                         <form style="visibility: hidden" th:id="delete-vital" method="post" action="#"
-                              th:action="@{/vital/delete/__${vital.id}__?registrationType=}+${registrationType}">
+                              th:action="@{/vital/delete/__${vital.id}__}">
                         </form>
 
                     </div>

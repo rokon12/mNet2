@@ -2,8 +2,9 @@ package org.jugbd.mnet.domain;
 
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.domain.enums.Status;
-import org.jugbd.mnet.domain.enums.Ward;
+import org.jugbd.mnet.domain.enums.Unit;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -38,9 +39,13 @@ public class Register extends PersistentObject {
     private Date admissionDate;
 
     @NotNull
-    @Column(length = 10)
-    @Enumerated(EnumType.STRING)
-    private Ward ward;
+    @Column(length = 200)
+    private String ward;
+
+    @NotNull(message = "Registration type is required")
+    @Column(length = 20)
+    @Enumerated(value = EnumType.STRING)
+    private RegistrationType registrationType;
 
     @Size(max = 100)
     @Column(length = 100)
@@ -51,10 +56,10 @@ public class Register extends PersistentObject {
     @Column(length = 32)
     private String bedNumber;
 
-    @NotEmpty
-    @Size(max = 32)
+    @NotNull
     @Column(length = 32)
-    private String unit;
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
 
     @ManyToOne
     private Patient patient;
@@ -95,6 +100,10 @@ public class Register extends PersistentObject {
     private Diagnosis diagnosis;
 
     @OneToOne
+    @JoinColumn(name = "diagnosis_final_id")
+    private DiagnosisFinal diagnosisFinal;
+
+    @OneToOne
     @JoinColumn(name = "treatment_plan_id")
     private TreatmentPlan treatmentPlan;
 
@@ -116,6 +125,15 @@ public class Register extends PersistentObject {
     @Valid
     @Embedded
     private PatientContact patientContact;
+
+    @Column(columnDefinition = "LONGTEXT" )
+    private String outcome;
+
+    @Column(columnDefinition = "LONGTEXT" )
+    private String remarks;
+
+    @Lob
+    private String followUpAdvice;
 
     @Column(name = "outdoor_register_blnk", nullable = true)
     private Long outdoorRegister; //back reference
@@ -152,11 +170,11 @@ public class Register extends PersistentObject {
         this.admissionDate = admissionDate;
     }
 
-    public Ward getWard() {
+    public String getWard() {
         return ward;
     }
 
-    public void setWard(Ward ward) {
+    public void setWard(String ward) {
         this.ward = ward;
     }
 
@@ -176,11 +194,11 @@ public class Register extends PersistentObject {
         this.bedNumber = bedNumber;
     }
 
-    public String getUnit() {
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 
@@ -327,6 +345,50 @@ public class Register extends PersistentObject {
     public Register setOutdoorRegister(Long outdoorRegister) {
         this.outdoorRegister = outdoorRegister;
         return this;
+    }
+
+    public RegistrationType getRegistrationType() {
+        return registrationType;
+    }
+
+    public Register setRegistrationType(RegistrationType registrationType) {
+        this.registrationType = registrationType;
+        return this;
+    }
+
+    public String getOutcome() {
+        return outcome;
+    }
+
+    public Register setOutcome(String outcome) {
+        this.outcome = outcome;
+        return this;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public Register setRemarks(String remarks) {
+        this.remarks = remarks;
+        return this;
+    }
+
+    public String getFollowUpAdvice() {
+        return followUpAdvice;
+    }
+
+    public Register setFollowUpAdvice(String followUpAdvice) {
+        this.followUpAdvice = followUpAdvice;
+        return this;
+    }
+
+    public DiagnosisFinal getDiagnosisFinal() {
+        return diagnosisFinal;
+    }
+
+    public void setDiagnosisFinal(DiagnosisFinal diagnosisFinal) {
+        this.diagnosisFinal = diagnosisFinal;
     }
 
     @Override

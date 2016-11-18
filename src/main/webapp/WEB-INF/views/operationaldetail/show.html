@@ -21,59 +21,66 @@
                 <div class="panel-body">
                     <table class="table table-hover">
                         <tr>
-                            <td> Date And Time</td>
+                            <td class="bold"> Date And Time</td>
                             <td th:text="${operationalDetail.dateTime} ? ${#dates.format(operationalDetail.dateTime,'dd MMMM yyyy h:mm a')}"></td>
                         </tr>
                         <tr>
-                            <td> Anaesthesia</td>
+                            <td class="bold"> Anaesthesia</td>
                             <td th:text="${operationalDetail.anaesthesia} ? ${operationalDetail.anaesthesia}"></td>
                         </tr>
                         <tr>
-                            <td> Name Of Operation</td>
+                            <td class="bold"> Name Of Operation</td>
                             <td th:text="${operationalDetail.nameOfOperation} ? ${operationalDetail.nameOfOperation}"></td>
                         </tr>
                         <tr>
-                            <td> Indication</td>
+                            <td class="bold"> Indication</td>
                             <td th:text="${operationalDetail.indication} ? ${operationalDetail.indication}"></td>
                         </tr>
                         <tr>
-                            <td> Name Of Surgeon</td>
-                            <td th:text="${operationalDetail.nameOfSurgeon} ? ${operationalDetail.nameOfSurgeon}"></td>
-                        </tr>
-                        <tr>
-                            <td> Name Of Anaesthetist</td>
-                            <td th:text="${operationalDetail.nameOfAnaesthetist} ? ${operationalDetail.nameOfAnaesthetist}"></td>
-                        </tr>
-                        <tr>
-                            <td> Findings</td>
+                            <td class="bold"> Findings</td>
                             <td th:text="${operationalDetail.findings} ? ${operationalDetail.findings}"></td>
                         </tr>
                         <tr>
-                            <td> Incision</td>
+                            <td class="bold"> Incision</td>
                             <td th:text="${operationalDetail.incision} ? ${operationalDetail.incision}"></td>
                         </tr>
+
                         <tr>
-                            <td> Donor Site</td>
-                            <td th:text="${operationalDetail.donorSite} ? ${operationalDetail.donorSite}"></td>
+                            <td class="bold"> Procedure</td>
+                            <td th:text="${operationalDetail.procedure} ? ${operationalDetail.procedure}"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="bold"> Per Operative Complication</td>
+                            <td th:text="${operationalDetail.perOperativeComplication} ? ${operationalDetail.perOperativeComplication}"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="bold"> Name Of Surgeon</td>
+                            <td th:text="${operationalDetail.nameOfSurgeon} ? ${operationalDetail.nameOfSurgeon}"></td>
                         </tr>
                         <tr>
-                            <td> Plasty</td>
+                            <td class="bold"> Name Of Anaesthetist</td>
+                            <td th:text="${operationalDetail.nameOfAnaesthetist} ? ${operationalDetail.nameOfAnaesthetist}"></td>
+                        </tr>
+                        <tr>
+                            <td class="bold"> Plasty</td>
                             <td th:text="${operationalDetail.plasty} ? ${operationalDetail.plasty}"></td>
                         </tr>
                         <tr>
-                            <td> Recipient Site</td>
+                            <td class="bold"> Recipient Site</td>
                             <td th:text="${operationalDetail.recipientSite} ? ${operationalDetail.recipientSite}"></td>
                         </tr>
                         <tr>
-                            <td> Blood Transfusion</td>
+                            <td class="bold"> Blood Transfusion</td>
                             <td th:text="${operationalDetail.bloodTransfusion} ? ${operationalDetail.bloodTransfusion.label}"></td>
                         </tr>
                         <tr>
-                            <td> Drain</td>
+                            <td class="bold"> Drain</td>
                             <td th:text="${operationalDetail.drain} ? ${operationalDetail.drain.label}"></td>
                         </tr>
                         <tr>
-                            <td> Comments</td>
+                            <td class="bold"> Comments</td>
                             <td th:text="${operationalDetail.comment} ? ${operationalDetail.comment}"></td>
                         </tr>
                     </table>

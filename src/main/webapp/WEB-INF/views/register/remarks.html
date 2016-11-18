@@ -23,7 +23,7 @@
         <div class="row clearfix">
 
             <div class="col-lg-3 col-md-4">
-                <div layout:include="layout/common-fragment :: opd-register"></div>
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -33,7 +33,7 @@
                     <div class="panel-body">
                         <div th:if="${edit == true}">
                             <form id="remarks-from" class="form-horizontal" method='POST'
-                                  th:action="@{/register/edit-remarks/__${registerId}__?registrationType=}+${registrationType}">
+                                  th:action="@{/register/edit-remarks/__${registerId}__}">
                                 <div class="form-group required">
                                     <div style="margin: 15px">
                                     <textarea type="text" class="form-control"
@@ -43,10 +43,11 @@
                                               name="remarks"
                                               th:inline="text"
                                               data-bv-notempty="true">
-                                        <span th:unless="${#strings.isEmpty(register.remarks)}">
+                                         <p th:unless="${#strings.isEmpty(register.remarks)}">
                                                 [[${register.remarks}]]
-                                        </span>
+                                        </p>
                                     </textarea>
+
                                     </div>
                                 </div>
                             </form>
@@ -65,7 +66,7 @@
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
                             <div th:if="${edit == true}">
                                 <a class="btn btn-sm btn-info pull-right"
-                                   th:onclick="'javascript:saveOutcome();'">
+                                   th:onclick="'javascript:saveRemarks();'">
                                     <span class="glyphicon glyphicon-plus"></span> Save</a>
                             </div>
 
@@ -73,13 +74,13 @@
 
                                 <div th:if="${#strings.isEmpty(register.remarks)}">
                                     <a class="btn btn-sm btn-info pull-right"
-                                       th:href="@{/register/edit-remarks/__${register.id}__?registrationType=}+ ${registrationType}"><span
+                                       th:href="@{/register/edit-remarks/__${register.id}__}"><span
                                             class="glyphicon glyphicon-plus"></span> Add New</a>
                                 </div>
 
                                 <div th:unless="${#strings.isEmpty(register.remarks)}">
                                     <a href="#" class="btn btn-sm btn-info pull-right"
-                                       th:href="@{/register/edit-remarks/__${register.id}__?registrationType=} +${registrationType}"> <span
+                                       th:href="@{/register/edit-remarks/__${register.id}__}"> <span
                                             class="glyphicon glyphicon-edit"></span> Edit </a>
                                 </div>
                             </div>
@@ -94,7 +95,7 @@
 
 <div layout:fragment="custom-scripts">
     <script type="text/javascript">
-        function saveOutcome() {
+        function saveRemarks() {
             console.log("remarks");
             $("#remarks-from").submit();
         }

@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/main">
 <head>
-    <title>Vital :: <span th:text="${registrationType.label}"/> Registration</title>
+    <title>Vital :: <span th:text="${registrationType.label}"></span> Registration</title>
 
 </head>
 <body th:with="page='vital'">
@@ -24,12 +24,7 @@
         <div class="row clearfix">
 
             <div class="col-lg-3 col-md-4">
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'INDOOR'}">
-                    <div layout:include="layout/common-fragment :: ipd-register"></div>
-                </div>
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'OUTDOOR'}">
-                    <div layout:include="layout/common-fragment :: opd-register"></div>
-                </div>
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -69,7 +64,7 @@
 
                                 <tr class="dl-horizontal">
                                     <td><strong>Pulse</strong></td>
-                                    <td th:text="${lastVital.weight} ? ${lastVital.weight + '/min'}"></td>
+                                    <td th:text="${lastVital.pulse} ? ${lastVital.pulse + '/min'}"></td>
                                 </tr>
 
                                 <tr class="dl-horizontal">
@@ -97,12 +92,12 @@
                     <div class="panel-footer clearfix">
 
                         <a class="btn btn-sm btn-info pull-left"
-                           th:href="@{/vital/index/__${register.id}__?registrationType=} +${registrationType}"><span
+                           th:href="@{/vital/index/__${register.id}__}"><span
                                 class="glyphicon glyphicon-th-list"></span>View all</a>
 
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
                             <a class="btn btn-sm btn-info pull-right"
-                               th:href="@{/vital/create/__${register.id}__?registrationType=} +${registrationType}"><span
+                               th:href="@{/vital/create/__${register.id}__}"><span
                                     class="glyphicon glyphicon-plus"></span> Add New</a>
                         </div>
                     </div>

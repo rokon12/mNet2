@@ -187,7 +187,7 @@ CREATE TABLE `examination` (
   `listening_examination` varchar(1000) DEFAULT NULL,
   `neck_vein` bit(1) DEFAULT NULL,
   `nervous_system` varchar(1000) DEFAULT NULL,
-  `oelema` bit(1) DEFAULT NULL,
+  `oedema` bit(1) DEFAULT NULL,
   `respiratory_system` varchar(1000) DEFAULT NULL,
   `urogenital_system` varchar(1000) DEFAULT NULL,
   `version` bigint(20) DEFAULT NULL,

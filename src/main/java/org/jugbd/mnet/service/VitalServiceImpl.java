@@ -2,7 +2,6 @@ package org.jugbd.mnet.service;
 
 import org.jugbd.mnet.dao.RegisterDao;
 import org.jugbd.mnet.dao.VitalDao;
-import org.jugbd.mnet.domain.OutdoorRegister;
 import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.domain.Vital;
 import org.jugbd.mnet.domain.enums.RegistrationType;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Bazlur Rahman Rokon
@@ -23,9 +21,6 @@ import java.util.stream.Collectors;
 public class VitalServiceImpl implements VitalService {
     @Autowired
     private RegisterDao registerDao;
-
-    @Autowired
-    private RegisterService registerService;
 
     @Autowired
     private VitalDao vitalDao;
@@ -61,26 +56,26 @@ public class VitalServiceImpl implements VitalService {
         return savedVital.getRegister().getId();
     }
 
-    @Override
-    public Vital saveByRegisterId(Vital vital, Long registerId, RegistrationType registrationType) {
+//    @Override
+//    public Vital saveByRegisterId(Vital vital, Long registerId, RegistrationType registrationType) {
+//
+//        Register register = registerService.findOne(registerId);
+//        vital.setPatient(register.getPatient());
+//        vital.setRegister(register);
+//        vital.setStatus(Status.ACTIVE);
+//
+//        return vitalDao.save(vital);
+//    }
 
-        Vital fold = registerService.findRegisterEither(registerId, registrationType)
-                .fold(register -> vital.setPatient(register.getPatient()).setRegister(register),
-                        outdoorRegister -> vital.setPatient(outdoorRegister.getPatient()).setOutdoorRegister(outdoorRegister));
-        fold.setStatus(Status.ACTIVE);
-
-        return vitalDao.save(fold);
-    }
-
-    @Override
-    public List<Vital> findByRegisterId(Long registerId, RegistrationType registrationType) {
-
-        return registerService.findRegisterEither(registerId, registrationType)
-                .fold(Register::getVitals, OutdoorRegister::getVitals)
-                .stream()
-                .filter(vital -> vital.getStatus() == Status.ACTIVE)
-                .collect(Collectors.toList());
-    }
+//    @Override
+//    public List<Vital> findByRegisterId(Long registerId, RegistrationType registrationType) {
+//
+//        return registerService.findRegisterEither(registerId, registrationType)
+//                .fold(Register::getVitals, OutdoorRegister::getVitals)
+//                .stream()
+//                .filter(vital -> vital.getStatus() == Status.ACTIVE)
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public Long delete(Long id, RegistrationType registrationType) {
@@ -88,7 +83,6 @@ public class VitalServiceImpl implements VitalService {
         vital.setStatus(Status.DELETED);
         Vital savedVital = vitalDao.save(vital);
 
-        return registrationType == RegistrationType.OUTDOOR ?
-                savedVital.getOutdoorRegister().getId() : savedVital.getRegister().getId();
+        return savedVital.getRegister().getId();
     }
 }

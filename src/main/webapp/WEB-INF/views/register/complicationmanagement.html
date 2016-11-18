@@ -27,7 +27,17 @@
 
             <div class="col-lg-9 col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Complication of Management :: <span th:text="${registrationType.label}"></span></div>
+                    <div class="panel-heading">
+                        Complication of Management :: <span th:text="${registrationType.label}"></span>
+
+                        <div class="pull-right">
+                            <small th:if="${register.complicationManagement != null}">
+                                <em>Created By :</em> <strong> <em th:text="${register.complicationManagement.createdBy.fullName}"> </em></strong>
+                                &nbsp;&nbsp;
+                                <em>Last Modified By :</em> <strong> <em th:text="${register.complicationManagement.lastModifiedBy.fullName}"> </em></strong>
+                            </small>
+                        </div>
+                    </div>
 
                     <div class="panel-body">
                         <div th:if="${register.complicationManagement == null}">
@@ -70,6 +80,7 @@
 
                     <div class="panel-footer clearfix">
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
+
                             <div th:if="${register.complicationManagement == null}">
                                 <a class="btn btn-sm btn-info pull-right"
                                    th:href="@{/complicationmanagement/create/__${register.id}__?registrationType=}+ ${registrationType}"><span

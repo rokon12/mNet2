@@ -1,8 +1,8 @@
 package org.jugbd.mnet.service;
 
 import org.jugbd.mnet.dao.VisitRepository;
+import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.domain.Visit;
-import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.domain.enums.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,23 +23,21 @@ public class VisitService {
     @Autowired
     private RegisterService registerService;
 
-    public Visit save(Visit visit, Long registerId, RegistrationType registrationType) {
+    public Visit save(Visit visit, Long registerId) {
 
-        Visit folded = registerService.findRegisterEither(registerId, registrationType)
-                .fold(visit::setRegister, visit::setOutdoorRegister);
+        Register register = registerService.findOne(registerId);
+        visit.setRegister(register);
+        visit.setStatus(Status.ACTIVE);
+        visit.setVisitTime(new Date());
 
-        folded.setStatus(Status.ACTIVE);
-        folded.setVisitTime(new Date());
-
-        return visitRepository.save(folded);
+        return visitRepository.save(visit);
     }
 
-    public Long delete(Long id, RegistrationType registrationType) {
+    public Long delete(Long id) {
         Visit visit = visitRepository.findOne(id);
         visit.setStatus(Status.DELETED);
         Visit savedVital = visitRepository.save(visit);
 
-        return registrationType == RegistrationType.OUTDOOR ?
-                savedVital.getOutdoorRegister().getId() : savedVital.getRegister().getId();
+        return savedVital.getRegister().getId();
     }
 }

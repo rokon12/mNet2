@@ -81,12 +81,7 @@
         <div class="row clearfix">
 
             <div class="col-lg-3 col-md-4">
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'INDOOR'}">
-                    <div layout:include="layout/common-fragment :: ipd-register"></div>
-                </div>
-                <div th:if="${#strings.toString(registrationType).toUpperCase() == 'OUTDOOR'}">
-                    <div layout:include="layout/common-fragment :: opd-register"></div>
-                </div>
+                <div layout:include="layout/common-fragment :: ipd-register"></div>
             </div>
 
             <div class="col-lg-9 col-md-8">
@@ -119,7 +114,7 @@
 
                                         <form style="visibility: hidden" th:id="'delete-note-' +${visit.id}"
                                               method="post" action="#"
-                                              th:action="@{/visit/delete/__${visit.id}__?registrationType=} +${registrationType}">
+                                              th:action="@{/visit/delete/__${visit.id}__}">
                                         </form>
                                     </div>
                                 </li>
@@ -131,7 +126,7 @@
                     <div class="panel-footer clearfix">
                         <div th:if="${#strings.toString(register.status).toUpperCase() == 'ACTIVE'}">
                             <a class="btn btn-sm btn-info pull-right"
-                               th:href="@{/visit/new/__${register.id}__?registrationType=} +${registrationType}"><span
+                               th:href="@{/visit/new/__${register.id}__}"><span
                                     class="glyphicon glyphicon-plus"></span> Add New</a>
                         </div>
                     </div>

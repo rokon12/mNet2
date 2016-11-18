@@ -5,7 +5,6 @@ import org.jugbd.mnet.domain.enums.Status;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
 
 /**
  * Created by Bazlur Rahman Rokon on 8/4/14.
@@ -25,17 +24,17 @@ public class Vital extends PersistentObject implements Auditable {
     private Double weight;  //Weight (kg)
     private Double bmi;     //(Calculated) BMI
 
-    @NotNull(message = "Temperature is required")
+    //@NotNull(message = "Temperature is required")
     @Digits(integer = 3, fraction = 2)
     private Double temperature;     //Temperature (F)
     private Integer pulse;          //Pulse per minute
     private Integer respiratoryRate; //Respiratory rate per minute
 
-    @NotNull(message = "Systolic pressure is required")
+    //@NotNull(message = "Systolic pressure is required")
     @Digits(integer = 3, fraction = 0)
     private Integer systolic;  //Blood Pressure
 
-    @NotNull(message = "Diastolic pressure is required")
+    //@NotNull(message = "Diastolic pressure is required")
     @Digits(integer = 3, fraction = 0)
     private Integer diastolic;
     private Double bloodOxygenSaturation;//Blood oxygen saturation
@@ -45,9 +44,6 @@ public class Vital extends PersistentObject implements Auditable {
 
     @ManyToOne
     private Register register;
-
-    @ManyToOne
-    private OutdoorRegister outdoorRegister;
 
     @Column(length = 10)
     @Enumerated(EnumType.STRING)
@@ -168,15 +164,6 @@ public class Vital extends PersistentObject implements Auditable {
         return this;
     }
 
-    public OutdoorRegister getOutdoorRegister() {
-        return outdoorRegister;
-    }
-
-    public Vital setOutdoorRegister(OutdoorRegister outdoorRegister) {
-        this.outdoorRegister = outdoorRegister;
-        return this;
-    }
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Vital{");
@@ -193,7 +180,6 @@ public class Vital extends PersistentObject implements Auditable {
         sb.append(", bloodOxygenSaturation=").append(bloodOxygenSaturation);
         sb.append(", patient=").append(patient);
         sb.append(", register=").append(register);
-        sb.append(", outdoorRegister=").append(outdoorRegister);
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();

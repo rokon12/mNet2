@@ -52,7 +52,8 @@
                                     <td th:text="${operationalDetail.dateTime} ? ${#dates.format(operationalDetail.dateTime,'dd MMMM yyyy h:mm a')}"></td>
                                     <td th:text="${operationalDetail.nameOfOperation} ? ${operationalDetail.nameOfOperation}"></td>
                                     <td th:text="${operationalDetail.findings} ? ${operationalDetail.findings}"></td>
-                                    <td><a th:href="@{/operationaldetail/show/__${operationalDetail.id}__}">Details</a>
+                                    <td><a class="btn btn-sm btn-success" th:href="@{/operationaldetail/show/__${operationalDetail.id}__}">
+                                        Details&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"> </span></a>
                                     </td>
                                 </tr>
                                 </tbody>

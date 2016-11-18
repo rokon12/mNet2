@@ -1,10 +1,10 @@
 package org.jugbd.mnet.web.controller;
 
-import org.jugbd.mnet.domain.OutdoorRegister;
 import org.jugbd.mnet.domain.Patient;
 import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.domain.Vital;
 import org.jugbd.mnet.domain.enums.Gender;
+import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.domain.enums.Relationship;
 import org.jugbd.mnet.domain.enums.Status;
 import org.jugbd.mnet.service.PatientService;
@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.jugbd.mnet.utils.StringUtils.isEmpty;
 
@@ -131,27 +132,29 @@ public class PatientController {
                        Model uiModel) {
 
         Patient patient = patientService.findOne(id);
-        List<Register> allRegisterByPatientId = registerService.findAllRegisterByPatientId(patient.getId());
-        List<OutdoorRegister> allOutdoorRegisterByPatientId = registerService.findAllOutdoorRegisterByPatientId(patient.getId());
+        List<Register> registrations = registerService.findAllRegisterByPatientId(patient.getId());
+        log.info("Total registrations found: {}", registrations.size());
 
-        boolean hasActiveRegister = allRegisterByPatientId.stream().anyMatch(register -> register.getStatus() == Status.ACTIVE);
-        boolean hasActiveOutdoorRegister = allOutdoorRegisterByPatientId.stream().anyMatch(outdoorRegister -> outdoorRegister.getStatus() == Status.ACTIVE);
+        registrations.stream().forEach(register -> {
+            log.info("id: {}, type: {}", register.getId(), register.getRegistrationType());
+        });
+        boolean hasActiveRegister = registrations.stream().anyMatch(register -> register.getStatus() == Status.ACTIVE);
+        log.info("hasActiveRegister :{}", hasActiveRegister);
 
         if (hasActiveRegister) {
-            Optional<Register> first = allRegisterByPatientId.stream().filter(register -> register.getStatus() == Status.ACTIVE).findFirst();
+            Optional<Register> first = registrations.stream().filter(register -> register.getStatus() == Status.ACTIVE).findFirst();
             first.ifPresent(register -> uiModel.addAttribute("activeIndoor", register));
         }
 
-        if (hasActiveOutdoorRegister) {
-            Optional<OutdoorRegister> first = allOutdoorRegisterByPatientId.stream().filter(register -> register.getStatus() == Status.ACTIVE).findFirst();
-            first.ifPresent(register -> uiModel.addAttribute("activeOutdoor", register));
-        }
+        List<Register> emergencyIndoors = registrations.stream().filter(register -> register.getRegistrationType() == RegistrationType.EMERGENCY).collect(Collectors.toList());
+        log.info("Total emergency Indoor found: {}", emergencyIndoors.size());
+        List<Register> generalIndoors = registrations.stream().filter(register -> register.getRegistrationType() == RegistrationType.GENERAL).collect(Collectors.toList());
+        log.info("Total general Indoor found: {}", generalIndoors.size());
 
         uiModel.addAttribute("patient", patient);
-        uiModel.addAttribute("registers", allRegisterByPatientId);
-        uiModel.addAttribute("outdoorRegisters", allOutdoorRegisterByPatientId);
+        uiModel.addAttribute("emergencyIndoors", emergencyIndoors);
+        uiModel.addAttribute("generalIndoors", generalIndoors);
         uiModel.addAttribute("hasActiveIndoor", hasActiveRegister);
-        uiModel.addAttribute("hasActiveOutdoor", hasActiveOutdoorRegister);
 
         return PATIENT_SHOW_PAGE;
     }

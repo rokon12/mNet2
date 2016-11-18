@@ -1,10 +1,11 @@
-.*
 !.gitignore
 *.ipr
 *.iws
 *.iml
 target
 build
+.gradle/*
+.idea/*
 out
 s
 classes/
