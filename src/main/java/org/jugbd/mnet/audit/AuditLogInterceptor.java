@@ -108,7 +108,7 @@ public class AuditLogInterceptor extends EmptyInterceptor {
 
         AuditLog auditLog = new AuditLog();
         auditLog.setAction(action);
-        auditLog.setDetail(make(entity));
+        auditLog.setDetail((entity));
         auditLog.setEntityName(entity.getClass().getName());
         auditLog.setEntityId(entity.getId());
 
