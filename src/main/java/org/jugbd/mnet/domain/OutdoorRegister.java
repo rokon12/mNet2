@@ -1,5 +1,6 @@
 package org.jugbd.mnet.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.jugbd.mnet.domain.enums.Status;
 
@@ -15,7 +16,7 @@ import java.util.Set;
  * @date 9/12/15.
  */
 @Entity
-public class OutdoorRegister extends PersistentObject {
+public class OutdoorRegister extends PersistentObject implements Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +29,7 @@ public class OutdoorRegister extends PersistentObject {
     @NotEmpty(message = "Register id can not be empty")
     private String registrationId;
 
+    @JsonIgnore
     @ManyToOne
     private Patient patient;
 
@@ -38,6 +40,7 @@ public class OutdoorRegister extends PersistentObject {
     @Temporal(TemporalType.TIMESTAMP)
     private Date stopDatetime;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "outdoorRegister")
     private Set<Visit> visits = new HashSet<>();
 
@@ -45,22 +48,27 @@ public class OutdoorRegister extends PersistentObject {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "chief_complaint_id")
     private ChiefComplaint chiefComplaint;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "examination_id")
     private Examination examination;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "diagnosis_id")
     private Diagnosis diagnosis;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "treatment_plan_id")
     private TreatmentPlan treatmentPlan;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "picture_information_id")
     private PictureInformation pictureInformation;

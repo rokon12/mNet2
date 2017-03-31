@@ -1,6 +1,7 @@
 package org.jugbd.mnet.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.jugbd.mnet.domain.enums.RegistrationType;
 import org.jugbd.mnet.domain.enums.Status;
@@ -20,7 +21,7 @@ import java.util.Set;
  * @since 8/4/14.
  */
 @Entity
-public class Register extends PersistentObject {
+public class Register extends PersistentObject implements Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,6 +62,7 @@ public class Register extends PersistentObject {
     @Enumerated(EnumType.STRING)
     private Unit unit;
 
+    @JsonIgnore
     @ManyToOne
     private Patient patient;
 
@@ -70,12 +72,15 @@ public class Register extends PersistentObject {
     @Temporal(TemporalType.TIMESTAMP)
     private Date stopDatetime;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "register")
     private Set<Vital> vitals = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "register")
     private Set<OperationalDetail> operationalDetails = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "register")
     private Set<Visit> visits;
 
@@ -83,41 +88,51 @@ public class Register extends PersistentObject {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "medical_history_id")
     private MedicalHistory medicalHistory;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "chief_complaint_id")
     private ChiefComplaint chiefComplaint;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "examination_id")
     private Examination examination;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "diagnosis_id")
     private Diagnosis diagnosis;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "diagnosis_final_id")
     private DiagnosisFinal diagnosisFinal;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "treatment_plan_id")
     private TreatmentPlan treatmentPlan;
 
+    @JsonIgnore
     @OneToOne(orphanRemoval = false)
     @JoinColumn(name = "complication_management")
     private ComplicationManagement complicationManagement;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "life_style_id")
     private LifeStyle lifeStyle;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "register")
     private Set<Investigation> investigation = new HashSet<>();
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "picture_information_id")
     private PictureInformation pictureInformation;
