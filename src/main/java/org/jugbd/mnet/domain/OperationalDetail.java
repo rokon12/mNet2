@@ -24,7 +24,7 @@ public class OperationalDetail extends PersistentObject implements Auditable {
     private Long id;
 
     @NotNull
-    @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm a")
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm a")
     private Date dateTime;
 
     @Size(max = 512)

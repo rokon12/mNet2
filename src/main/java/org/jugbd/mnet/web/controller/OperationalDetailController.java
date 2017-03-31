@@ -45,7 +45,7 @@ public class OperationalDetailController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
 
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("MM/dd/yyyy hh:mm a"), true));
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy hh:mm a"), true));
     }
 
     @RequestMapping(value = "create/{registerId}", method = RequestMethod.GET)

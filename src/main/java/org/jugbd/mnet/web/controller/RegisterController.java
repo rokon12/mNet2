@@ -102,7 +102,7 @@ public class RegisterController {
     public String registerNewPatient(@PathVariable Long patientId,
                                      @PathVariable RegistrationType registrationType,
                                      Register register) {
-        log.info("creating a new registration for patient id: {} with {}", patientId, registrationType.getLabel());
+        log.info("creating a new registration for patient id: {} with {} and admission date: {}", patientId, registrationType.getLabel(), register.getAdmissionDate());
 
         Optional<Patient> patientOptional = patientService.findPatientById(patientId);
         if (patientOptional.isPresent()) {
@@ -186,6 +186,8 @@ public class RegisterController {
     public String save(@Valid Register register,
                        BindingResult result,
                        RedirectAttributes redirectAttributes) {
+
+        log.info("patient getAdmissionDate: {}", register.getAdmissionDate());
 
         if (result.hasErrors()) {
 

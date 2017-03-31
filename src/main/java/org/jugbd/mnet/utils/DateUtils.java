@@ -20,6 +20,6 @@ public class DateUtils {
     }
 
     private static DateFormat getDateFormat() {
-        return new SimpleDateFormat("MM/dd/yyyy");
+        return new SimpleDateFormat("dd/MM/yyyy");
     }
 }

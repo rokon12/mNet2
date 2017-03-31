@@ -196,6 +196,7 @@
                                     Admission Date </label>
 
                                 <div class="col-sm-3">
+
                                     <input type="text" class="form-control input-sm" th:field="*{admissionDate}"/>
 
                                     <p class="text-danger" th:if="${#fields.hasErrors('admissionDate')}">
@@ -233,6 +234,7 @@
 
             jQuery('#admissionDate').datepicker({
                 todayBtn: true,
+                format: 'dd/mm/yyyy',
                 keyboardNavigation: false,
                 calendarWeeks: true,
                 autoclose: true,
