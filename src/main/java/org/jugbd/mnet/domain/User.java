@@ -96,6 +96,7 @@ public class User extends PersistentObject implements UserDetails, Serializable,
         this.enabled = true;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
