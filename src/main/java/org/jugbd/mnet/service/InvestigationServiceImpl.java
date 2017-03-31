@@ -1,8 +1,10 @@
 package org.jugbd.mnet.service;
 
+import org.hibernate.Hibernate;
 import org.jugbd.mnet.dao.InvestigationDao;
 import org.jugbd.mnet.domain.Investigation;
 import org.jugbd.mnet.domain.Register;
+import org.jugbd.mnet.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,7 +98,11 @@ public class InvestigationServiceImpl implements InvestigationService {
 
     @Override
     public Investigation findOne(Long id) {
+        Investigation investigation = investigationDao.findOne(id);
 
-        return investigationDao.findOne(id);
+        Hibernate.initialize(investigation.getCreatedBy());
+        Hibernate.initialize(investigation.getLastModifiedBy());
+
+        return investigation;
     }
 }

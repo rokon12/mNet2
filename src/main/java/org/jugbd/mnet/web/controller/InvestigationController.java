@@ -4,6 +4,8 @@ import org.jugbd.mnet.domain.Investigation;
 import org.jugbd.mnet.domain.Register;
 import org.jugbd.mnet.service.InvestigationService;
 import org.jugbd.mnet.service.RegisterService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.access.annotation.Secured;
@@ -29,6 +31,8 @@ import java.util.Date;
 @Secured({"ROLE_ADMIN", "ROLE_USER"})
 @RequestMapping("investigation")
 public class InvestigationController {
+
+    private static final Logger log = LoggerFactory.getLogger(InvestigationController.class);
 
     public static final String INVESTIGATION_CREATE_PAGE = "investigation/create";
     public static final String REDIRECT_INVESTIGATION_SHOW_PAGE = "redirect:/investigation/show/";

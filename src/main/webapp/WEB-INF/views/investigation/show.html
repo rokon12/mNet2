@@ -17,7 +17,18 @@
         </div>
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">Investigation</div>
+                <div class="panel-heading">Investigation :: <span class="text-uppercase"
+                                                                th:text="${investigation.register.registrationType.label}"> </span>
+
+                    <div class="pull-right">
+                        <small th:if="${investigation != null}">
+                            <em>Created By :</em> <strong> <em th:text="${investigation.createdBy.fullName}"> </em></strong>
+                            &nbsp;&nbsp;
+                            <em>Last Modified By :</em> <strong> <em th:text="${investigation.lastModifiedBy.fullName}"> </em></strong>
+                        </small>
+                    </div>
+
+                </div>
 
                 <div class="panel-body">
 

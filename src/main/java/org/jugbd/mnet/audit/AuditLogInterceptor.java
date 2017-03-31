@@ -78,20 +78,20 @@ public class AuditLogInterceptor extends EmptyInterceptor {
 
         try {
 
-            for (Iterator it = inserts.iterator(); it.hasNext(); ) {
-                Auditable entity = (Auditable) it.next();
+            for (Object insert : inserts) {
+                Auditable entity = (Auditable) insert;
 
                 logEvent(AuditAction.CREATED, entity, auditLogDao);
             }
 
-            for (Iterator it = updates.iterator(); it.hasNext(); ) {
-                Auditable entity = (Auditable) it.next();
+            for (Object update : updates) {
+                Auditable entity = (Auditable) update;
 
                 logEvent(AuditAction.UPDATED, entity, auditLogDao);
             }
 
-            for (Iterator it = deletes.iterator(); it.hasNext(); ) {
-                Auditable entity = (Auditable) it.next();
+            for (Object delete : deletes) {
+                Auditable entity = (Auditable) delete;
 
                 logEvent(AuditAction.DELETED, entity, auditLogDao);
             }
