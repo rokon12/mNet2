@@ -3,6 +3,7 @@ package org.jugbd.mnet.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 import java.io.IOException;
 
@@ -12,6 +13,9 @@ import java.io.IOException;
  */
 public class JacksonUtil {
 	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	static {
+		OBJECT_MAPPER.registerModule(new JodaModule());
+	}
 
 	public static <T> T fromString(String string, Class<T> clazz) {
 		try {
